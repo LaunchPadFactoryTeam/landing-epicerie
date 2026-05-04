@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traceo, l'allié anti-gaspi des épiciers — Une étude LaunchPad</title>
+  <meta name="description" content="Comment Traceo, application mobile de gestion des DLC née d'un besoin terrain, est devenue l'outil quotidien de plus de 50 épiceries fines en France." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="traceo-v2.css" />
+</head>
+<body>
+
+  <!-- ============ TOPBAR ============ -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="topbar-back" href="index.html" aria-label="Retour à la landing LaunchPad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+        LaunchPad
+      </a>
+      <span class="topbar-meta">Étude produit · 2026</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ COVER ============ -->
+    <header class="cover shell">
+      <div class="col-wide">
+        <span class="cover-kicker">Traceo · L'allié anti-gaspi des épiciers</span>
+        <h1 class="cover-title">Ne laissez plus périmer<br/><em>vos marges</em> en rayon.</h1>
+        <p class="cover-deck">Comment une application mobile, née du besoin d'une seule épicerie fine indépendante, est devenue l'outil quotidien de plus de cinquante commerces de bouche en France.</p>
+
+        <dl class="cover-meta">
+          <div>
+            <dt>Type</dt>
+            <dd>Application mobile</dd>
+          </div>
+          <div>
+            <dt>Plateformes</dt>
+            <dd>iOS · Android</dd>
+          </div>
+          <div>
+            <dt>Adoption</dt>
+            <dd>+50 épiceries fines</dd>
+          </div>
+          <div>
+            <dt>Édité par</dt>
+            <dd>LaunchPad</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <!-- ============ COVER FIGURE ============ -->
+    <figure class="cover-figure shell">
+      <img src="traceo-screenshot.png" alt="Écran d'accueil de Traceo sur iPhone : alerte produits périmés, liste des produits expirant aujourd'hui et cette semaine." />
+    </figure>
+
+    <!-- ============ ARTICLE BODY ============ -->
+    <article class="article shell">
+
+      <!-- ---------- Lede + introduction ---------- -->
+      <p class="lede col">En France, toute épicerie fine doit pouvoir attester d'une traçabilité impeccable des dates limites de consommation de ses produits en rayon. En cas de contrôle, pas de marge d'erreur — et surtout, jamais de produit périmé vendu au client.</p>
+
+      <p class="col">Pourtant, dans la grande majorité des commerces de bouche indépendants, ce relevé est encore tenu à la main, sur des carnets ou dans des tableurs Excel qui s'allongent à chaque livraison. Le résultat est connu : du temps grignoté chaque jour, un risque d'erreur permanent, et des marges qui finissent silencieusement à la poubelle.</p>
+
+      <p class="col">C'est dans cette zone d'ombre du quotidien d'épicier qu'est née <strong>Traceo</strong>.</p>
+
+      <!-- ============ CHAPITRE I — LE CONSTAT ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre I</span>
+        <h2 class="chapter-title">La contrainte qu'on n'évite pas.</h2>
+      </header>
+
+      <p class="col">Tenir l'historique de ses DLC n'est pas un luxe d'organisation, c'est une <em class="mark">obligation réglementaire</em>. Mais sur le terrain, l'obligation se traduit en gestes répétitifs : recopier une date, la chercher dans un fichier, vérifier un lot, raturer une ligne, passer à la livraison suivante.</p>
+
+      <p class="col">Chacun de ces gestes, pris isolément, ne pèse rien. Mis bout à bout sur une semaine, ils représentent <strong>plusieurs heures</strong> que le gérant ne passe pas en rayon, ni avec ses clients, ni à imaginer la prochaine animation de sa vitrine. Et plus le suivi est manuel, plus il est fragile : oublis, doublons, lignes obsolètes — autant de failles dans la traçabilité censée protéger le commerce.</p>
+
+      <p class="col">Le coût caché n'est pas seulement administratif. Sans visibilité sur les dates critiques, les invendus s'accumulent. Un fromage oublié quelques jours, un lot de surgelés mal suivi, une promotion lancée trop tard : à chaque fois, c'est de la marge nette qui disparaît, sans qu'on puisse même la quantifier après coup.</p>
+
+      <!-- ============ CHAPITRE II — LE BRIEF ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre II</span>
+        <h2 class="chapter-title">Un brief, presque banal.</h2>
+      </header>
+
+      <p class="col">Tout commence par une conversation. Un de nos clients, gérant d'une épicerie fine indépendante, formule une demande simple — celle qu'on entend dans la moitié des commerces qu'on visite, à un mot près :</p>
+
+      <blockquote class="pullquote">
+        <p>J'aimerais un outil léger, très intuitif et efficace pour renseigner mes produits, automatiser la gestion de mes DLC, et quantifier mes pertes liées à la péremption.</p>
+        <cite>— Le gérant d'une épicerie fine indépendante</cite>
+      </blockquote>
+
+      <p class="col">Trois verbes : <strong>renseigner, automatiser, quantifier</strong>. Aucun jargon, aucune fonctionnalité demandée. Juste une intention. C'est exactement le type de brief que nous aimons, parce qu'il laisse toute la place à la conception et nous oblige à aller chercher la réponse là où elle est : derrière le comptoir, à la réception des livraisons, devant le rayon frais à 18 h un jeudi soir.</p>
+
+      <p class="col">Nous avons cadré le besoin sur place, avec l'équipe. Conçu un parcours minimal — <em>scanner, alerter, archiver</em> — pour qu'un nouvel employé puisse être autonome en moins de dix minutes. Un premier prototype a été testé en conditions réelles dès la troisième semaine, et ajusté au fil des retours.</p>
+
+      <!-- ============ CHAPITRE III — LE PRODUIT ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre III</span>
+        <h2 class="chapter-title">Trois gestes, et plus rien à recopier.</h2>
+      </header>
+
+      <p class="col">L'application tient sur trois moments du quotidien d'épicier. Pas de paramétrage interminable, pas de tableau de bord à dompter avant de l'utiliser : Traceo veut être ouvert et refermé en quelques secondes, plusieurs fois par jour.</p>
+
+      <ol class="sequence">
+        <li>
+          <div>
+            <h3>Scanner</h3>
+            <p>À la réception, on scanne le code-barres et on renseigne la DLC. Le produit est référencé en quelques secondes : nom, lot, fournisseur, photo, date. Le carnet de réception, lui, reste fermé.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Être alerté</h3>
+            <p>Chaque catégorie a son seuil : J-3 sur le frais, J-15 sur l'épicerie sèche, ce que l'on veut. L'application notifie au bon moment — ni trop tôt pour ne pas créer du bruit, ni trop tard pour pouvoir encore agir.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Valoriser</h3>
+            <p>D'un coup d'œil, on identifie les sur-stocks et les lots à écouler. On lance une promo ciblée, on met un rayon en avant, on récupère la marge qui serait partie à la poubelle.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="col">Sous cette mécanique simple se cache un inventaire complet, multi-utilisateurs, qui se met à jour en temps réel sur chaque appareil de la boutique. Voici, sans bruit, ce que l'application embarque concrètement.</p>
+
+      <ul class="feature-list">
+        <li>
+          <h3>Scan code-barres</h3>
+          <p>Lecture rapide depuis le mobile, sans matériel additionnel. Les produits déjà référencés sont reconnus automatiquement.</p>
+        </li>
+        <li>
+          <h3>Inventaire centralisé</h3>
+          <p>Une fiche par produit — nom, lot, fournisseur, photo, DLC. Toute la boutique consultable d'un seul écran, à jour en temps réel.</p>
+        </li>
+        <li>
+          <h3>Alertes paramétrables</h3>
+          <p>Seuils de notification définis par catégorie de produit, ajustables à tout moment selon la saison ou la rotation.</p>
+        </li>
+        <li>
+          <h3>Multi-utilisateurs</h3>
+          <p>Chaque collaborateur dispose de son accès, scanne et met à jour depuis son propre appareil.</p>
+        </li>
+        <li>
+          <h3>Archives &amp; statistiques</h3>
+          <p>Historique des invendus et remises, répartition des pertes par catégorie, évolution sur douze mois glissants.</p>
+        </li>
+        <li>
+          <h3>Mobile et tablette</h3>
+          <p>Disponible sur iOS et Android, accessible partout en boutique. Prise en main en moins de dix minutes.</p>
+        </li>
+      </ul>
+
+      <!-- ============ CHAPITRE IV — LA STRATÉGIE ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre IV</span>
+        <h2 class="chapter-title">Plus qu'une app de scan : un levier de marge.</h2>
+      </header>
+
+      <p class="col">Si Traceo se résumait à transformer un carnet en application, il n'aurait qu'un intérêt limité : l'épicier gagnerait du temps, sans gagner d'argent. La vraie bascule se joue ailleurs. En centralisant l'information sur les dates et les stocks, l'application <em class="mark">transforme une contrainte réglementaire en lecture commerciale</em> — et c'est là que la marge se récupère.</p>
+
+      <div class="strategy">
+        <article>
+          <h3>Opérations commerciales</h3>
+          <p>Identifier facilement les sur-stocks ou les DLC approchantes pour lancer des promotions au moment parfait, sur les bons produits — et non au hasard.</p>
+        </article>
+        <article>
+          <h3>Animation vitrine</h3>
+          <p>Mettre en avant les bons produits au bon moment, faire vivre les rayons, transformer une perte potentielle en vente impulsive.</p>
+        </article>
+        <article>
+          <h3>Réduction des pertes</h3>
+          <p>Quantifier la valeur exacte des invendus pour ajuster les achats, négocier les commandes et maximiser la marge sur la durée.</p>
+        </article>
+      </div>
+
+      <p class="col">Cette lecture stratégique repose sur un tableau de bord pensé pour les gérants : lisible en trente secondes, exploitable immédiatement. Répartition des pertes par catégorie sur l'année, évolution mensuelle sur douze mois, vue par lot et par fournisseur. Pas de graphique gratuit, pas d'indicateur cosmétique : ce qui est affiché doit pouvoir déclencher une décision.</p>
+
+      <figure class="figure figure-wide figure-tablet">
+        <img src="extended_ipad_stats_screenshot-landscape.png" alt="Tableau de bord Traceo sur tablette : un graphique en secteurs présente la répartition des pertes par catégorie (frais, sec, surgelés, fruits) et un histogramme montre l'évolution mensuelle des pertes en euros sur douze mois." />
+        <figcaption><strong>Le tableau de bord Traceo</strong> — répartition des pertes par catégorie et évolution mensuelle, sur l'année courante.</figcaption>
+      </figure>
+
+      <!-- ============ CHAPITRE V — LE RÉSULTAT ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre V</span>
+        <h2 class="chapter-title">Ce que ça change, concrètement.</h2>
+      </header>
+
+      <p class="col">Quelques semaines après le premier prototype, l'application était disponible sur les stores. Aujourd'hui, elle est utilisée par <strong>plus de cinquante épiceries fines</strong> en France — toutes parties du même besoin de départ.</p>
+
+      <dl class="stat-row">
+        <div>
+          <dt>−15 min</dt>
+          <dd>par jour gagnées sur la gestion des relevés DLC, à boutique équivalente.</dd>
+        </div>
+        <div>
+          <dt>−30%</dt>
+          <dd>jusqu'à, sur les pertes liées aux invendus, en anticipant les dates critiques.</dd>
+        </div>
+        <div>
+          <dt>100%</dt>
+          <dd>de traçabilité conforme, prête à être présentée en cas de contrôle.</dd>
+        </div>
+      </dl>
+      <p class="stat-disclaimer">Estimations sur la base des retours utilisateurs et de l'analyse de cas types en épicerie fine indépendante.</p>
+
+      <p class="col">Au-delà des chiffres, ce que disent les utilisateurs revient souvent au même : ils ne réfléchissent plus à leurs DLC. Le suivi est devenu un automatisme léger, intégré au flux de la journée. Et l'attention qu'ils consacraient au carnet a glissé là où elle a le plus de valeur : sur les rayons, et avec les clients.</p>
+
+      <!-- ============ CHAPITRE VI — RETOUR D'EXPÉRIENCE ============ -->
+      <header class="chapter">
+        <span class="chapter-num">Chapitre VI</span>
+        <h2 class="chapter-title">Étude de cas : du premier client au produit.</h2>
+      </header>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-label">Le contexte</span>
+          <h3>Plusieurs heures par semaine, sur du papier.</h3>
+          <p>Le gérant suivait ses DLC sur un classeur papier doublé d'un fichier Excel. Entre les livraisons hebdomadaires, les rotations rapides du frais et la pression réglementaire, le suivi prenait du temps et restait fragile : oublis, doublons, lignes obsolètes.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-label">La demande</span>
+          <h3>Trois verbes, aucune fonctionnalité.</h3>
+          <p>« Renseigner, automatiser, quantifier. » Le brief n'imposait rien, ni écran, ni techno, ni feature précise. Juste une intention, formulée du point de vue du métier, pas de l'outil.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-label">La démarche</span>
+          <h3>Cadrer en boutique, pas en réunion.</h3>
+          <p>Observation sur place, à la réception et en rayon. Conception d'un parcours minimal — scanner, alerter, archiver — et premier prototype testé en conditions réelles dès la troisième semaine, ajusté au fil des retours.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-label">Le résultat</span>
+          <h3>Un outil né d'un besoin, devenu un produit.</h3>
+          <p>Quelques semaines plus tard, l'application était en boutique. Le bouche-à-oreille a fait le reste : d'un client unique, Traceo est devenu l'outil quotidien de plus de cinquante épiceries fines en France.</p>
+        </div>
+      </div>
+
+      <div class="results-inline">
+        <span class="timeline-label">En chiffres</span>
+        <ul>
+          <li>
+            <span class="result-mark">heures → minutes</span>
+            <span class="result-text">le relevé DLC, passé d'un travail hebdomadaire à un geste quotidien.</span>
+          </li>
+          <li>
+            <span class="result-mark">visibilité</span>
+            <span class="result-text">claire sur les lots à écouler et la répartition des pertes par catégorie.</span>
+          </li>
+          <li>
+            <span class="result-mark">+50 épiceries</span>
+            <span class="result-text">utilisent aujourd'hui Traceo en France, à partir de ce premier déploiement.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ============ ENDPLATE — TÉLÉCHARGEMENT ============ -->
+      <aside class="endplate" id="telecharger">
+        <p class="endplate-kicker">Disponible maintenant</p>
+        <h2>Prêt à arrêter de jeter vos marges ?</h2>
+        <p class="endplate-deck">Téléchargez Traceo gratuitement et testez l'application sur vos rayons dès aujourd'hui. Aucune installation côté boutique, aucune carte bancaire à donner.</p>
+
+        <div class="stores">
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.launchpadfactory.traceo&pcampaignid=web_share" target="_blank" rel="noopener">
+            <div class="store-qr">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.launchpadfactory.traceo" alt="QR code Google Play Traceo" loading="lazy" width="200" height="200" />
+            </div>
+            <div>
+              <span class="store-name">Google Play</span>
+              <span class="store-os">Pour Android</span>
+              <span class="store-cta">Ouvrir le store →</span>
+            </div>
+          </a>
+          <a class="store" href="https://apps.apple.com/fr/app/traceo/id6754067857" target="_blank" rel="noopener">
+            <div class="store-qr">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fapps.apple.com%2Ffr%2Fapp%2Ftraceo%2Fid6754067857" alt="QR code App Store Traceo" loading="lazy" width="200" height="200" />
+            </div>
+            <div>
+              <span class="store-name">App Store</span>
+              <span class="store-os">Pour iPhone &amp; iPad</span>
+              <span class="store-cta">Ouvrir le store →</span>
+            </div>
+          </a>
+        </div>
+
+        <p class="endplate-secondary">Vous préférez en discuter avant ? <a href="#">Réservez une démo de trente minutes</a>.</p>
+      </aside>
+
+      <!-- ============ CODA — pont LaunchPad ============ -->
+      <section class="coda">
+        <hr class="coda-rule" aria-hidden="true" />
+        <p class="coda-kicker">LaunchPad</p>
+        <h2>Un outil métier qui vous manque ?</h2>
+        <p>Traceo est né d'une conversation. Si vous portez vous aussi une idée d'outil, d'application ou de site sur mesure, on aimerait en entendre parler.</p>
+        <a class="coda-link" href="index.html#services">
+          Découvrir nos services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- ============ COLOPHON ============ -->
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <span>© 2026 LaunchPad — Étude produit Traceo</span>
+      <nav>
+        <a href="index.html">Landing</a>
+        <a href="https://launchpadfactory.webflow.io/" target="_blank" rel="noopener">Site agence</a>
+        <a href="#">Mentions légales</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
