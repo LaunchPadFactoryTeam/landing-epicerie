@@ -452,4 +452,4 @@ Voir `schema.sql` — table `contact_requests` avec index sur `email`, `created_
 | 400 | `{ "error": "invalid_email" }` | Email mal formé |
 | 400 | `{ "error": "missing_<champ>" }` | Champ requis vide |
 | 400 | `{ "error": "spam_detected" }` | Turnstile invalide |
-| 400 | `{ "error": "message_too_short" }` | Message < 10 caractères |
+| 400 | `{ "error": "missing_message" }` | Message vide |

@@ -180,7 +180,7 @@ export async function onRequestPost({ request, env }) {
   if (!EMAIL_RE.test(email)) return json({ error: 'invalid_email' }, 400);
   if (!company) return json({ error: 'missing_company' }, 400);
   if (!city) return json({ error: 'missing_city' }, 400);
-  if (!message || message.length < 10) return json({ error: 'message_too_short' }, 400);
+  if (!message) return json({ error: 'missing_message' }, 400);
   if (availability.length === 0) return json({ error: 'missing_availability' }, 400);
   if (!consent) return json({ error: 'missing_consent' }, 400);
 
