@@ -62,23 +62,44 @@
   const success = document.getElementById('formSuccess');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Native HTML5 validation
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      // Simulate sending — could be wired to Brevo/Mailchimp later
-      const submitBtn = form.querySelector('button[type="submit"]');
+      const data = new FormData(form);
+      const payload = {
+        firstname: (data.get('firstname') || '').toString().trim(),
+        email: (data.get('email') || '').toString().trim(),
+        guide: (data.get('guide') || '').toString(),
+      };
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Envoi en cours…';
       }
 
-      setTimeout(() => {
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error('request_failed');
+        const json = await res.json();
+        if (!json.downloadUrl) throw new Error('no_url');
+
+        // Déclenche le téléchargement du PDF
+        window.location.href = json.downloadUrl;
+
+        // Réinitialise et affiche le message de succès
         form.querySelectorAll('input').forEach((i) => {
           if (i.type !== 'radio') i.value = '';
         });
@@ -86,11 +107,15 @@
           success.hidden = false;
           success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+      } catch (err) {
+        alert("Une erreur est survenue. Merci de réessayer dans un instant.");
+        console.error(err);
+      } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = '→ Je reçois mon guide gratuitement';
+          submitBtn.textContent = originalLabel;
         }
-      }, 600);
+      }
     });
   }
 })();

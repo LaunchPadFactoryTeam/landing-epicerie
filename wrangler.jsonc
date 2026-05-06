@@ -1,14 +1,33 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "landing-epicerie",
-  "compatibility_date": "2026-05-06",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "epiceries"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "landing-epicerie",
+	"main": "src/worker.js",
+	"compatibility_date": "2026-05-06",
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"directory": "epiceries",
+		"binding": "ASSETS"
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// --- D1 : leads + downloads ---
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "launchpad-leads",
+			"database_id": "4cbcf4f9-e184-49db-bd5f-da67cc62ceb2"
+		}
+	],
+	// --- R2 : PDF privés ---
+	"r2_buckets": [
+		{
+			"binding": "PDFS",
+			"bucket_name": "launchpad-guides"
+		}
+	]
+	// SIGNING_KEY est un secret défini via :
+	//   wrangler pages secret put SIGNING_KEY --project-name landing-epicerie
 }

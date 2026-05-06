@@ -4,3 +4,6 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Source PDFs (uploaded to R2, not versioned)
+*.pdf
