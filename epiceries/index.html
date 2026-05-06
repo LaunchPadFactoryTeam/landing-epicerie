@@ -53,7 +53,7 @@
           <li><a href="#processus">Processus</a></li>
           <li><a href="#ressources">Ressources</a></li>
         </ul>
-        <a href="#" class="btn btn-primary btn-sm nav-cta">Réserver un appel</a>
+        <a href="#contact" class="btn btn-primary btn-sm nav-cta js-open-contact" data-cta-source="nav">Réserver un appel</a>
       </nav>
 
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primaryNav">
@@ -75,7 +75,7 @@
         <h1>L'agence digitale qui parle le langage des épiceries fines</h1>
         <p class="hero-sub">On gère votre environnement digital pour que vous puissiez vous concentrer sur l'essentiel : conseiller, vendre et faire grandir votre épicerie.</p>
         <div class="hero-cta">
-          <a href="#" class="btn btn-primary btn-lg">→ Réserver un appel découverte gratuit</a>
+          <a href="#contact" class="btn btn-primary btn-lg js-open-contact" data-cta-source="hero">→ Réserver un appel découverte gratuit</a>
         </div>
         <p class="hero-proof">
           <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -171,7 +171,7 @@
 
         <div class="section-footer-cta reveal">
           <p>L'une de ces solutions vous intéresse pour votre boutique ?</p>
-          <a href="#" class="btn btn-primary">→ Réserver un appel pour en parler</a>
+          <a href="#contact" class="btn btn-primary js-open-contact" data-cta-source="problems">→ Réserver un appel pour en parler</a>
         </div>
       </div>
     </section>
@@ -474,7 +474,7 @@
         </div>
         
         <div class="section-footer-cta reveal">
-          <a href="#" class="btn btn-accent btn-lg">→ Déclencher l'Étape 1 : Réserver mon appel</a>
+          <a href="#contact" class="btn btn-accent btn-lg js-open-contact" data-cta-source="processus">→ Déclencher l'Étape 1 : Réserver mon appel</a>
         </div>
       </div>
     </section>
@@ -484,7 +484,7 @@
       <div class="container final-cta-inner">
         <h2>Votre épicerie mérite une présence digitale à la hauteur de vos produits.</h2>
         <p>Prenez 30 minutes pour en parler avec nous. C'est gratuit, sans engagement, et vous repartez avec des idées concrètes — même si on ne travaille pas ensemble.</p>
-        <a href="#" class="btn btn-accent btn-lg">→ Réserver mon appel découverte</a>
+        <a href="#contact" class="btn btn-accent btn-lg js-open-contact" data-cta-source="final">→ Réserver mon appel découverte</a>
         <p class="reassurance">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
           Aucun démarchage. Juste une conversation entre professionnels.
@@ -531,7 +531,7 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="#">Réserver un appel</a></li>
+            <li><a href="#contact" class="js-open-contact" data-cta-source="footer">Réserver un appel</a></li>
             <li><a href="#ressources">Nos guides gratuits</a></li>
           </ul>
         </div>
@@ -543,6 +543,146 @@
       </div>
     </div>
   </footer>
+
+  <!-- =========== MODAL CONTACT =========== -->
+  <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
+    <div class="contact-modal-backdrop" data-close-contact></div>
+
+    <div class="contact-modal-dialog" role="document">
+      <button type="button" class="contact-modal-close" data-close-contact aria-label="Fermer la fenêtre">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="contact-modal-header">
+        <span class="eyebrow accent">Réserver un appel</span>
+        <h2 id="contactModalTitle">Parlons de votre projet</h2>
+        <p>Laissez-nous quelques infos et vos disponibilités. <strong>On vous recontacte sous 24h ouvrées</strong> avec 2 ou 3 créneaux qui collent à votre rythme — c'est gratuit et sans engagement.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <!-- Honeypot (anti-bot) -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="contact_website">Site web</label>
+          <input type="text" id="contact_website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact_firstname">Prénom <span class="req">*</span></label>
+            <input type="text" id="contact_firstname" name="firstname" required autocomplete="given-name" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label for="contact_lastname">Nom <span class="req">*</span></label>
+            <input type="text" id="contact_lastname" name="lastname" required autocomplete="family-name" maxlength="80" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact_email">Email <span class="req">*</span></label>
+            <input type="email" id="contact_email" name="email" required autocomplete="email" maxlength="254" />
+          </div>
+          <div class="form-group">
+            <label for="contact_phone">Téléphone <span class="opt">(optionnel)</span></label>
+            <input type="tel" id="contact_phone" name="phone" autocomplete="tel" maxlength="40" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact_company">Nom de votre commerce <span class="req">*</span></label>
+            <input type="text" id="contact_company" name="company" required autocomplete="organization" maxlength="120" />
+          </div>
+          <div class="form-group">
+            <label for="contact_city">Ville <span class="req">*</span></label>
+            <input type="text" id="contact_city" name="city" required autocomplete="address-level2" maxlength="80" />
+          </div>
+        </div>
+
+        <div class="form-group form-group-full">
+          <label for="contact_message">Votre projet en quelques mots <span class="req">*</span></label>
+          <textarea id="contact_message" name="message" rows="4" required maxlength="2000" placeholder="Ex : refonte de mon site vitrine, automatisation de la gestion des stocks, app mobile pour mes clients fidèles…"></textarea>
+        </div>
+
+        <fieldset class="availability-field">
+          <legend>Vos disponibilités préférées <span class="req">*</span></legend>
+          <p class="availability-hint">Cochez tous les moments qui vous arrangent — on s'adapte à votre rythme.</p>
+          <div class="availability-grid">
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="matin" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                Matin <em>(8h–12h)</em>
+              </span>
+            </label>
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="midi" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                Midi <em>(12h–14h)</em>
+              </span>
+            </label>
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="apres-midi" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 4v3M4.93 7.93l2.12 2.12M16.95 10.05l2.12-2.12"/></svg>
+                Après-midi <em>(14h–18h)</em>
+              </span>
+            </label>
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="soir" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                Soir <em>(18h–20h)</em>
+              </span>
+            </label>
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="semaine" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+                En semaine
+              </span>
+            </label>
+            <label class="availability-option">
+              <input type="checkbox" name="availability" value="weekend" />
+              <span class="availability-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                Le week-end
+              </span>
+            </label>
+          </div>
+          <input type="text" id="contact_avail_notes" name="availability_notes" maxlength="200" placeholder="Précisions (ex : « plutôt le mardi », « avant 10h »…)" class="availability-notes" />
+        </fieldset>
+
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required />
+          <span>
+            En envoyant ce formulaire, j'accepte d'être recontacté par LaunchPad au sujet de ma demande. Mes données ne sont ni revendues, ni utilisées pour du démarchage. <a href="#" target="_blank" rel="noopener">En savoir plus</a>.
+          </span>
+        </label>
+
+        <!-- Cloudflare Turnstile (anti-spam) — la div est rendue uniquement si la clé est configurée -->
+        <div class="cf-turnstile" data-sitekey="" data-theme="light" data-size="flexible"></div>
+
+        <div class="contact-form-actions">
+          <button type="submit" class="btn btn-accent btn-lg btn-block">→ Envoyer ma demande</button>
+          <p class="form-error" id="contactFormError" hidden></p>
+        </div>
+
+        <p class="form-rgpd">Réponse personnelle sous 24h ouvrées depuis <strong>launchpadfactory.contact@gmail.com</strong>.</p>
+      </form>
+
+      <div class="contact-form-success" id="contactFormSuccess" hidden>
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Demande bien reçue !</h3>
+        <p>Merci <strong id="contactSuccessName">!</strong><br />On vous écrit personnellement <strong>sous 24h ouvrées</strong> depuis <strong>launchpadfactory.contact@gmail.com</strong> avec 2 ou 3 créneaux qui collent à vos disponibilités.</p>
+        <p class="success-tip">💡 Pensez à vérifier vos spams si vous ne nous voyez pas arriver.</p>
+        <button type="button" class="btn btn-primary" data-close-contact>Fermer</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>

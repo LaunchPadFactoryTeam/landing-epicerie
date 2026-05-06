@@ -30,4 +30,13 @@
 	]
 	// SIGNING_KEY est un secret défini via :
 	//   wrangler pages secret put SIGNING_KEY --project-name landing-epicerie
+	//
+	// Secrets liés au formulaire /api/contact :
+	//   wrangler pages secret put BREVO_API_KEY     --project-name landing-epicerie
+	//   wrangler pages secret put TURNSTILE_SECRET  --project-name landing-epicerie  (optionnel)
+	//
+	// Variables non sensibles (peuvent aussi être définies via le dashboard Pages → Settings → Environment variables) :
+	//   NOTIFY_TO_EMAIL    = launchpadfactory.contact@gmail.com
+	//   NOTIFY_FROM_EMAIL  = launchpadfactory.contact@gmail.com  (vérifié dans Brevo)
+	//   NOTIFY_FROM_NAME   = "LaunchPad — Site"
 }

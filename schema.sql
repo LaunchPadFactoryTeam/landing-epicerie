@@ -25,3 +25,26 @@ CREATE TABLE IF NOT EXISTS downloads (
 
 CREATE INDEX IF NOT EXISTS idx_downloads_guide   ON downloads(guide);
 CREATE INDEX IF NOT EXISTS idx_downloads_created ON downloads(created_at);
+
+-- Demandes de contact / réservation d'appel envoyées via la modal
+CREATE TABLE IF NOT EXISTS contact_requests (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  firstname TEXT NOT NULL,
+  lastname TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  company TEXT NOT NULL,
+  city TEXT NOT NULL,
+  message TEXT NOT NULL,
+  availability TEXT NOT NULL,           -- valeurs séparées par ',' (ex: "matin,semaine")
+  availability_notes TEXT,
+  source TEXT,                          -- d'où le CTA a été cliqué (hero, footer, etc.)
+  ip TEXT,
+  user_agent TEXT,
+  status TEXT NOT NULL DEFAULT 'new',   -- new | replied | converted | archived
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_contact_email   ON contact_requests(email);
+CREATE INDEX IF NOT EXISTS idx_contact_created ON contact_requests(created_at);
+CREATE INDEX IF NOT EXISTS idx_contact_status  ON contact_requests(status);
