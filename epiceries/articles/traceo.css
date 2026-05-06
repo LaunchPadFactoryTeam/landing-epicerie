@@ -363,12 +363,7 @@ a:hover { color: var(--ink); text-decoration-color: var(--ink); }
     0 30px 80px -20px rgba(20, 24, 31, 0.35);
 }
 .figure-tablet img {
-  border: 1px solid var(--rule-soft);
-  background: #fff;
-  padding: 2px;
-  box-shadow:
-    0 1px 0 rgba(0,0,0,.04),
-    0 30px 80px -30px rgba(20, 24, 31, 0.30);
+  box-shadow: 0 30px 80px -30px rgba(20, 24, 31, 0.30);
 }
 .figure figcaption {
   font-family: var(--sans);
@@ -388,7 +383,7 @@ a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 
 /* ---------- Hero figure (cover image) ---------- */
 .cover-figure {
-  margin: 0;
+  margin: clamp(40px, 6vw, 64px) 0 0;
   padding: 0 0 clamp(48px, 7vw, 80px);
   display: grid;
   place-items: center;
@@ -396,10 +391,16 @@ a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 .cover-figure img {
   max-width: 280px;
   width: 60%;
-  border-radius: 36px;
-  box-shadow:
-    0 1px 0 rgba(0,0,0,.04),
-    0 40px 100px -30px rgba(20, 24, 31, 0.45);
+  border-radius: 0;
+  box-shadow: none;
+}
+.cover-figure figcaption {
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--ink-mute);
+  margin-top: 18px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* ---------- Sequence (steps) — no cards, numbered list ---------- */
@@ -790,4 +791,27 @@ a:hover { color: var(--ink); text-decoration-color: var(--ink); }
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+/* ---------- Mobile : plus de respiration ---------- */
+@media (max-width: 600px) {
+  .shell {
+    padding: 0 28px;
+  }
+  .cover {
+    padding-top: clamp(80px, 14vw, 120px);
+  }
+  p.lede {
+    margin-top: 3.6rem;
+  }
+}
+
+/* ---------- Desktop : aligner le contenu sur la largeur de la cover ---------- */
+@media (min-width: 900px) {
+  .article {
+    --col-text: var(--col-wide);
+  }
+  .pullquote {
+    max-width: var(--col-wide);
+  }
 }

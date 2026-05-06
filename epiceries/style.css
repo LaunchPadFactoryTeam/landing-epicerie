@@ -167,6 +167,11 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
 .btn-lg { padding: 18px 32px; font-size: 1.05rem; }
 .btn-block { width: 100%; }
 
+@media (max-width: 600px) {
+  .btn-lg { padding: 14px 20px; font-size: .95rem; }
+  .section-footer-cta .btn-lg { width: 100%; max-width: 400px; }
+}
+
 .btn-primary {
   background: var(--c-primary);
   color: #fff;
@@ -315,7 +320,7 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
    ============================================ */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 94vh;
   display: flex;
   align-items: center;
   padding: 120px 0 80px;
@@ -630,7 +635,7 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
 
 .float-badge-1 { top: 6%; left: -4%; animation-delay: 0s; }
 .float-badge-2 { top: 38%; right: -8%; animation-delay: 1.5s; }
-.float-badge-3 { bottom: 8%; left: -2%; animation-delay: 3s; }
+.float-badge-3 { bottom: 8%; right: -2%; left: auto; animation-delay: 3s; }
 
 .float-pill {
   position: absolute;
@@ -645,7 +650,7 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
   animation: floaty 7s ease-in-out infinite;
 }
 .float-pill-1 { top: 22%; right: 0%; background: var(--c-accent); animation-delay: .8s; }
-.float-pill-2 { bottom: 28%; right: -6%; animation-delay: 2.4s; }
+.float-pill-2 { bottom: 28%; left: -6%; right: auto; animation-delay: 2.4s; }
 
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }
@@ -656,7 +661,7 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
   .float-badge { padding: 8px 10px; }
   .float-badge > div span { display: none; }
   .float-badge-1 { left: 0%; }
-  .float-badge-3 { left: 4%; }
+  .float-badge-3 { left: 4%; right: auto; }
   .float-badge-2 { right: 0%; }
   .float-pill { font-size: .72rem; padding: 6px 12px; }
 }
@@ -991,6 +996,7 @@ p { margin: 0 0 1em; color: var(--c-text-soft); }
   gap: 32px;
   padding: 0;
   margin: 0;
+  list-style: none;
   z-index: 2;
 }
 
