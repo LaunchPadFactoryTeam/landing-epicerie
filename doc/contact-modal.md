@@ -88,6 +88,7 @@ Tous les CTA "Réserver un appel" de la landing étaient des `href="#"` morts. I
 | `epiceries/style.css` | modifié | Section `CONTACT MODAL` ajoutée en fin de fichier |
 | `epiceries/script.js` | modifié | IIFE étendu avec gestion ouverture/fermeture, focus trap, ESC, soumission AJAX |
 | `functions/api/contact.js` | nouveau | Endpoint POST : validation, Turnstile, D1, Brevo |
+| `src/worker.js` | modifié | Route `/api/contact` ajoutée (le projet utilise un Worker avec routage manuel, pas le routage auto Pages Functions) |
 | `schema.sql` | modifié | Table `contact_requests` ajoutée |
 | `wrangler.jsonc` | modifié | Commentaires sur les secrets attendus |
 
