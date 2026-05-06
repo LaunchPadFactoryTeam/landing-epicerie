@@ -27,16 +27,19 @@
 			"binding": "PDFS",
 			"bucket_name": "launchpad-guides"
 		}
-	]
+	],
+	// --- Variables non sensibles (notifs email contact) ---
+	// Les secrets (BREVO_API_KEY, TURNSTILE_SECRET, SIGNING_KEY) restent gérés
+	// via `wrangler pages secret put` ou le dashboard (Variables and Secrets).
+	"vars": {
+		"NOTIFY_TO_EMAIL": "launchpadfactory.contact@gmail.com",
+		"NOTIFY_FROM_EMAIL": "launchpadfactory.contact@gmail.com",
+		"NOTIFY_FROM_NAME": "LaunchPad — Site"
+	}
 	// SIGNING_KEY est un secret défini via :
 	//   wrangler pages secret put SIGNING_KEY --project-name landing-epicerie
 	//
 	// Secrets liés au formulaire /api/contact :
 	//   wrangler pages secret put BREVO_API_KEY     --project-name landing-epicerie
 	//   wrangler pages secret put TURNSTILE_SECRET  --project-name landing-epicerie  (optionnel)
-	//
-	// Variables non sensibles (peuvent aussi être définies via le dashboard Pages → Settings → Environment variables) :
-	//   NOTIFY_TO_EMAIL    = launchpadfactory.contact@gmail.com
-	//   NOTIFY_FROM_EMAIL  = launchpadfactory.contact@gmail.com  (vérifié dans Brevo)
-	//   NOTIFY_FROM_NAME   = "LaunchPad — Site"
 }

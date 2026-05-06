@@ -168,21 +168,24 @@ wrangler d1 execute launchpad-leads --remote --command "SELECT name FROM sqlite_
 
 ### Étape 4 — Définir les variables sur Cloudflare Pages
 
-Via le dashboard CF Pages → projet `landing-epicerie` → **Settings → Environment variables** :
+> ⚠ **Important** : ce projet utilise un Worker (`src/worker.js`) déployé via Git. Cloudflare considère donc `wrangler.jsonc` comme la **source de vérité** pour les variables non sensibles. Toute variable ajoutée via le dashboard mais absente de `wrangler.jsonc` sera **effacée au prochain déploiement**. Les secrets (chiffrés) ne sont pas concernés.
 
-**Variables (non chiffrées, OK pour dashboard) :**
-| Nom | Valeur |
-|---|---|
-| `NOTIFY_TO_EMAIL` | `launchpadfactory.contact@gmail.com` |
-| `NOTIFY_FROM_EMAIL` | `launchpadfactory.contact@gmail.com` |
-| `NOTIFY_FROM_NAME` | `LaunchPad — Site` |
+**Variables non sensibles → déjà déclarées dans [`wrangler.jsonc`](../wrangler.jsonc) :**
 
-**Secrets (chiffrés) — via CLI ou dashboard "Encrypt" :**
+```jsonc
+"vars": {
+  "NOTIFY_TO_EMAIL": "launchpadfactory.contact@gmail.com",
+  "NOTIFY_FROM_EMAIL": "launchpadfactory.contact@gmail.com",
+  "NOTIFY_FROM_NAME": "LaunchPad — Site"
+}
+```
+
+**Secrets (chiffrés) → via CLI uniquement :**
 ```powershell
-wrangler pages secret put BREVO_API_KEY    --project-name landing-epicerie
+npx wrangler pages secret put BREVO_API_KEY    --project-name landing-epicerie
 # Coller la clé xkeysib-... quand demandé
 
-wrangler pages secret put TURNSTILE_SECRET --project-name landing-epicerie
+npx wrangler pages secret put TURNSTILE_SECRET --project-name landing-epicerie
 # Coller la Secret Key Turnstile (optionnel)
 ```
 
