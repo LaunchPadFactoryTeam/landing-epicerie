@@ -7,3 +7,7 @@
 
 # Source PDFs (uploaded to R2, not versioned)
 *.pdf
+
+# Build output
+dist/
+public/

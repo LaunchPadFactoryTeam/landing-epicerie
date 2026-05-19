@@ -7,7 +7,7 @@
 		"enabled": true
 	},
 	"assets": {
-		"directory": "epiceries",
+		"directory": "public",
 		"binding": "ASSETS"
 	},
 	"compatibility_flags": [
