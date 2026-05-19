@@ -10,6 +10,9 @@
 		"directory": "public",
 		"binding": "ASSETS"
 	},
+	"build": {
+		"command": "bash build.sh"
+	},
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
