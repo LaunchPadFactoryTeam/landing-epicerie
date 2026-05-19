@@ -1,0 +1,22 @@
+# Forcer LF pour les scripts shell (exécutés sur Linux CI)
+*.sh text eol=lf
+
+# Forcer LF pour les fichiers texte standard
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+
+# Binaires — pas de conversion de fins de ligne
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
