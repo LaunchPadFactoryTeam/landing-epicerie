@@ -1,0 +1,39 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "landing-epicerie",
+	"main": "src/worker.js",
+	"compatibility_date": "2026-05-06",
+	"observability": {
+		"enabled": true
+	},
+	// ⭐ Design v2 — pointe sur le nouveau dossier design-v2/
+	// Pour tester : wrangler dev --config wrangler-v2.jsonc
+	// Pour déployer : remplacer "epiceries" par "design-v2" dans wrangler.jsonc
+	"assets": {
+		"directory": "design-v2",
+		"binding": "ASSETS"
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// --- D1 : leads + downloads ---
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "launchpad-leads",
+			"database_id": "4cbcf4f9-e184-49db-bd5f-da67cc62ceb2"
+		}
+	],
+	// --- R2 : PDF privés ---
+	"r2_buckets": [
+		{
+			"binding": "PDFS",
+			"bucket_name": "launchpad-guides"
+		}
+	],
+	"vars": {
+		"NOTIFY_TO_EMAIL": "launchpadfactory.contact@gmail.com",
+		"NOTIFY_FROM_EMAIL": "launchpadfactory.contact@gmail.com",
+		"NOTIFY_FROM_NAME": "LaunchPad — Site"
+	}
+}

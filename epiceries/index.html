@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solutions digitales sur mesure pour épiceries fines | LaunchPad</title>
-  <meta name="description" content="LaunchPad accompagne les épiceries fines dans leur transformation digitale : site vitrine, app mobile, automatisations et outils sur mesure. Déjà +50 épiciers nous font confiance. Parlons de votre projet." />
+  <title>Solutions digitales sur mesure pour épiceries fines | LaunchPad Factory</title>
+  <meta name="description" content="LaunchPad Factory accompagne les épiceries fines dans leur transformation digitale : site vitrine, app mobile, automatisations et outils sur mesure. Déjà +50 épiciers nous font confiance. Parlons de votre projet." />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Solutions digitales sur mesure pour épiceries fines | LaunchPad" />
+  <meta property="og:title" content="Solutions digitales sur mesure pour épiceries fines | LaunchPad Factory" />
   <meta property="og:description" content="+50 épiciers nous font confiance. Site vitrine, app mobile, outils sur mesure — pensés pour les épiceries fines indépendantes." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -15,45 +14,44 @@
   <link rel="canonical" href="https://launchpadfactory.fr/epiceries-fines" />
   <link rel="icon" type="image/png" href="/epiceries/assets/img/logo.png" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "LaunchPad",
+    "name": "LaunchPad Factory",
     "description": "Agence de création de solutions digitales sur mesure pour les épiceries fines en France",
     "url": "https://launchpadfactory.fr/epiceries-fines",
     "areaServed": "France",
-    "serviceType": ["Création de site web", "Développement application mobile", "Automatisation", "Développement SaaS"]
+    "serviceType": ["Création de site web", "Développement application mobile", "Automatisation", "Marketing digital"]
   }
   </script>
 </head>
 <body>
 
-  <!-- =========== HEADER =========== -->
+  <!-- NAV -->
   <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-      <a href="#" class="brand" aria-label="LaunchPad — accueil">
-        <img src="assets/img/logo.png" alt="Logo LaunchPad" class="brand-logo" />
-        <span class="brand-name">LaunchPad</span>
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="LaunchPad Factory — accueil">
+        <span class="logo-dot" aria-hidden="true"></span>
+        <span class="logo-name">LaunchPad <em>Factory</em></span>
       </a>
 
       <nav class="primary-nav" id="primaryNav" aria-label="Navigation principale">
         <ul>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#services">Solutions</a></li>
+          <li><a href="#ressources">Guides</a></li>
+          <li><a href="#carnet">Carnet</a></li>
           <li><a href="traceo.html">Traceo</a></li>
-          <li><a href="#agence">L'agence</a></li>
-          <li><a href="#processus">Processus</a></li>
-          <li><a href="#ressources">Ressources</a></li>
         </ul>
-        <a href="#contact" class="btn btn-primary btn-sm nav-cta js-open-contact" data-cta-source="nav">Réserver un appel</a>
+        <a href="#contact" class="btn btn-primary btn-sm nav-cta js-open-contact" data-cta-source="nav">
+          Échangeons →
+        </a>
       </nav>
 
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primaryNav">
@@ -64,278 +62,205 @@
 
   <main>
 
-    <!-- =========== HERO =========== -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
         <img src="https://images.unsplash.com/photo-1630097208434-8575671e9f63?q=80&w=1740&auto=format&fit=crop" alt="" />
         <div class="hero-overlay"></div>
       </div>
-      <div class="container hero-inner">
-        <span class="eyebrow">Agence digitale épicerie fine</span>
-        <h1>L'agence digitale qui parle le langage des épiceries fines</h1>
-        <p class="hero-sub">On gère votre environnement digital pour que vous puissiez vous concentrer sur l'essentiel : conseiller, vendre et faire grandir votre épicerie.</p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary btn-lg js-open-contact" data-cta-source="hero">→ Réserver un appel découverte gratuit</a>
+      <span class="hero-label" aria-hidden="true">[ photo · rayonnage d'épicerie fine ]</span>
+
+      <div class="hero-content">
+        <span class="badge badge-olive">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Vertical · Épiceries fines
+        </span>
+
+        <h1>
+          L'agence qui parle<br />
+          <em class="serif-italic">le langage du goût.</em>
+        </h1>
+
+        <div class="hero-grid">
+          <div class="hero-left">
+            <p class="hero-sub">
+              On s'occupe de tout le digital pour accompagner votre croissance, afin que vous vous concentriez sur l'essentiel&nbsp;: conseiller, vendre, faire grandir votre épicerie.
+            </p>
+            <div class="hero-ctas">
+              <a href="#contact" class="btn btn-accent-olive btn-lg js-open-contact" data-cta-source="hero">Réserver un appel →</a>
+              <a href="#ressources" class="btn btn-secondary-dark btn-lg">Télécharger le guide</a>
+            </div>
+          </div>
         </div>
-        <p class="hero-proof">
-          <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          +50 épiciers nous font déjà confiance en France
-        </p>
       </div>
     </section>
 
-    <!-- =========== PROBLÈMES =========== -->
-    <section class="section problems">
+    <!-- SERVICES -->
+    <section class="section services-section" id="services">
       <div class="container">
-        <div class="problems-layout">
-          <div class="problems-intro">
-            <span class="eyebrow">Le quotidien d'un épicier</span>
-            <h2>Vous reconnaissez-vous ?</h2>
-            <p class="section-lead">Ces défis, on les connaît bien. On travaille avec des épiceries fines au quotidien pour simplifier leur gestion et leur faire gagner un temps précieux.</p>
+        <header class="section-head">
+          <div class="eyebrow eyebrow-olive">§ Nos pratiques pour vous · §02</div>
+          <h2>Quatre métiers, <em class="serif-italic">appliqués à votre boutique.</em></h2>
+          <p class="section-lead">Chaque outil que nous construisons pour les épiceries fines a été pensé avec elles. Pas de générique, pas de copié-collé d'autres verticales.</p>
+        </header>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-glyph" aria-hidden="true">✦</div>
+            <span class="tag">SITE</span>
+            <h3>Site vitrine ou e-commerce</h3>
+            <p>Vitrine ou boutique en ligne — pensée pour mettre vos produits en lumière.</p>
+            <span class="service-link">Voir en détail →</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-glyph" aria-hidden="true">◆</div>
+            <span class="tag">TRACEO</span>
+            <h3>Application DLC sur mesure</h3>
+            <p>L'app qui suit vos dates limite. Conçue avec et pour les épiceries fines.</p>
+            <a href="traceo.html" class="service-link">Voir en détail →</a>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-glyph" aria-hidden="true">★</div>
+            <span class="tag">GROWTH</span>
+            <h3>Présence locale &amp; GMB</h3>
+            <p>Avis, photos, posts, Q&amp;R. Votre fiche Google travaille pour vous toute l'année.</p>
+            <span class="service-link">Voir en détail →</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-glyph" aria-hidden="true">◐</div>
+            <span class="tag">CONTENT</span>
+            <h3>Newsletter &amp; réseaux</h3>
+            <p>Un calendrier éditorial qui parle à vos clients sans devenir un job à plein temps.</p>
+            <span class="service-link">Voir en détail →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSTAT -->
+    <section class="constat-section">
+      <div class="constat-disc" aria-hidden="true"></div>
+      <div class="container">
+        <div class="constat-grid">
+
+          <div class="constat-left">
+            <div class="eyebrow eyebrow-olive-on-dark">§ Le constat</div>
+            <h2 class="constat-title">
+              Vous vous<br />
+              <em class="serif-italic">reconnaissez ?</em>
+            </h2>
+            <p class="constat-lead">Ces quatre symptômes reviennent dans 9 épiceries fines sur 10. Ils n'ont pas grand-chose à voir avec votre produit — ils sont juste là où le digital n'a pas suivi.</p>
+            <a href="#contact" class="btn btn-accent-olive btn-md js-open-contact" data-cta-source="constat">Diagnostic gratuit — 30 min →</a>
           </div>
 
-          <div class="problems-list">
-            <article class="problem-item reveal">
-              <div class="problem-num">01</div>
+          <div class="constat-right">
+            <div class="problem-item">
+              <span class="problem-num">01 /</span>
               <div class="problem-content">
                 <h3>Invisible en ligne</h3>
-                <p>Vous n'avez pas de site, ou un site qui ne vous représente plus : vos clients ne vous trouvent pas sur internet.</p>
+                <p>Vos clients premium achètent en ligne. Si on ne vous trouve pas, on va ailleurs.</p>
               </div>
-            </article>
-            
-            <article class="problem-item reveal">
-              <div class="problem-num">02</div>
+            </div>
+            <div class="problem-item">
+              <span class="problem-num">02 /</span>
               <div class="problem-content">
                 <h3>Outils dispersés</h3>
-                <p>Gestion des stocks, DLC, prises de commandes... Vous jonglez entre des outils coûteux qui ne communiquent pas entre eux.</p>
+                <p>Caisse, e-commerce, compta. Vous jonglez entre des outils qui ne se parlent pas.</p>
               </div>
-            </article>
-
-            <article class="problem-item reveal">
-              <div class="problem-num">03</div>
+            </div>
+            <div class="problem-item">
+              <span class="problem-num">03 /</span>
               <div class="problem-content">
                 <h3>Tâches chronophages</h3>
-                <p>Des saisies papier, des inventaires fastidieux, des processus répétitifs qui mériteraient vraiment d'être digitalisés.</p>
+                <p>Des heures à mettre à jour, copier-coller, ressaisir. Du temps loin du comptoir.</p>
               </div>
-            </article>
-
-            <article class="problem-item reveal">
-              <div class="problem-num">04</div>
+            </div>
+            <div class="problem-item">
+              <span class="problem-num">04 /</span>
               <div class="problem-content">
                 <h3>Ventes dormantes</h3>
-                <p>Vous avez la sensation de ne pas exploiter pleinement les réseaux ou votre fichier client pour booster l'animation boutique.</p>
+                <p>Une base client qu'on n'arrive pas à réveiller. Et un GMB sans avis récents.</p>
               </div>
-            </article>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- =========== SERVICES =========== -->
-    <section class="section services alt-bg" id="services">
+    <!-- CARNET -->
+    <section class="section carnet-section" id="carnet">
       <div class="container">
-        <header class="section-head">
-          <span class="eyebrow">Nos services</span>
-          <h2>Nos solutions, pensées pour les épiceries fines</h2>
-          <p class="section-lead">De la création de site internet épicerie fine au logiciel sur mesure : un accompagnement complet pour la digitalisation des épiceries fines en France.</p>
-        </header>
+        <div class="carnet-head">
+          <header class="section-head align-left no-mb">
+            <div class="eyebrow eyebrow-olive">§ Carnet · §05</div>
+            <h2>Le carnet des <em class="serif-italic">épiceries fines.</em></h2>
+          </header>
+          <a href="#ressources" class="btn btn-secondary btn-md">Tous les articles →</a>
+        </div>
 
-        <div class="grid grid-3">
-          <article class="service-card reveal">
-            <div class="icon-square" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        <div class="articles-grid">
+          <article class="article-card reveal">
+            <div class="article-thumb" style="background: var(--olive)">
+              <span class="tag tag-dark">GUIDE · 04</span>
             </div>
-            <h3>Site sur mesure</h3>
-            <p>Présentation de vos services, de vos produits, e-commerce et click &amp; collect… une présence en ligne élégante et à votre image, qui rassure vos clients et vous positionne comme une référence.</p>
-            <span class="card-tag">À partir de 500€</span>
+            <div class="article-body">
+              <h3>5 leviers pour activer votre LinkedIn d'épicerie</h3>
+              <p>Ce qu'on a appris en accompagnant 12 épiceries fines sur 6 mois.</p>
+              <div class="article-meta">
+                <span>15.04.2026</span>
+                <span>8 min de lecture</span>
+              </div>
+            </div>
           </article>
 
-          <article class="service-card reveal">
-            <div class="icon-square" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+          <article class="article-card reveal">
+            <div class="article-thumb" style="background: var(--olive-deep)">
+              <span class="tag tag-dark">CASE STUDY</span>
             </div>
-            <h3>Application sur mesure</h3>
-            <p>Besoin d'un outil que personne n'a encore créé pour faciliter votre quotidien ? C'est le cœur de notre activité.</p>
-            <span class="card-tag">Web &amp; mobile</span>
+            <div class="article-body">
+              <h3>Comment l'Épicerie Lebon a doublé son CA en ligne</h3>
+              <p>Refonte du site, Traceo, automatisation newsletter. Le pas-à-pas, métriques à l'appui.</p>
+              <div class="article-meta">
+                <span>02.04.2026</span>
+                <span>12 min de lecture</span>
+              </div>
+            </div>
           </article>
 
-          <article class="service-card reveal">
-            <div class="icon-square" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10"/><path d="M4 17h6"/><circle cx="17" cy="7" r="3"/><circle cx="13" cy="17" r="3"/></svg>
+          <article class="article-card reveal">
+            <div class="article-thumb" style="background: var(--ink)">
+              <span class="tag tag-dark">OUTIL</span>
             </div>
-            <h3>Automatisations &amp; intégrations</h3>
-            <p>Reliez vos outils entre eux, éliminez les double-saisies et récupérez du temps sur les tâches répétitives.</p>
-            <span class="card-tag">Gain de temps</span>
+            <div class="article-body">
+              <h3>Traceo · L'app DLC qui change la donne</h3>
+              <p>Présentation de notre app maison, pensée avec les épiceries fines.</p>
+              <div class="article-meta">
+                <span>20.03.2026</span>
+                <span>5 min de lecture</span>
+              </div>
+            </div>
           </article>
         </div>
-
-        <div class="section-footer-cta reveal">
-          <p>L'une de ces solutions vous intéresse pour votre boutique ?</p>
-          <a href="#contact" class="btn btn-primary js-open-contact" data-cta-source="problems">→ Réserver un appel pour en parler</a>
-        </div>
       </div>
     </section>
 
-    <!-- =========== APP DLC =========== -->
-    <section class="section app-dlc" id="app-dlc">
-      <div class="container">
-        <div class="app-dlc-grid">
-
-          <div class="app-dlc-text reveal">
-            <span class="eyebrow accent">Notre application maison</span>
-            <h2>Ne laissez plus périmer vos marges en rayon</h2>
-            <p class="lead">La première application de gestion des DLC pensée pour les épiceries fines, pour vous libérer de l'administratif et vous recentrer sur le conseil et la vente.</p>
-            <p>Avant de créer des solutions sur mesure pour nos clients, on les construit aussi pour le terrain. Cette application aide déjà plus de 50 épiceries fines à suivre leurs produits, anticiper les DLC approchantes, réduire les pertes et identifier plus vite les bonnes actions commerciales à lancer.</p>
-
-            <ul class="benefit-list">
-              <li>
-                <span class="bullet" aria-hidden="true">1</span>
-                <div>
-                  <strong>Scan rapide des produits</strong>
-                  <span>et suivi automatique des DLC.</span>
-                </div>
-              </li>
-              <li>
-                <span class="bullet" aria-hidden="true">2</span>
-                <div>
-                  <strong>Alertes intelligentes</strong>
-                  <span>pour anticiper les pertes et agir au bon moment.</span>
-                </div>
-              </li>
-              <li>
-                <span class="bullet" aria-hidden="true">3</span>
-                <div>
-                  <strong>Lecture simple des invendus</strong>
-                  <span>pour ajuster achats, promotions et mise en avant en boutique.</span>
-                </div>
-              </li>
-            </ul>
-
-            <a href="traceo.html" class="btn btn-outline">→ En savoir plus sur l'application</a>
-          </div>
-
-          <div class="app-dlc-visual reveal">
-            <div class="phone-stage">
-              <div class="phone-glow" aria-hidden="true"></div>
-              <img class="phone-img" src="assets/img/traceo_inital_teaser.png" alt="Application mobile de gestion DLC pour épiceries fines affichée sur un téléphone" />
-
-              <div class="float-badge float-badge-1">
-                <span class="badge-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
-                </span>
-                <div>
-                  <strong>Scan instantané</strong>
-                  <span>code-barres en 1 sec</span>
-                </div>
-              </div>
-
-              <div class="float-badge float-badge-2">
-                <span class="badge-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17h12l-1.5-2V11a4.5 4.5 0 0 0-9 0v4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
-                </span>
-                <div>
-                  <strong>Alertes DLC</strong>
-                  <span>avant qu'il soit trop tard</span>
-                </div>
-              </div>
-
-              <div class="float-badge float-badge-3">
-                <span class="badge-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>
-                </span>
-                <div>
-                  <strong>Statistiques simples</strong>
-                  <span>marges &amp; invendus</span>
-                </div>
-              </div>
-
-              <div class="float-pill float-pill-1">Réduction des pertes</div>
-              <div class="float-pill float-pill-2">Promotions au bon moment</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =========== AGENCE =========== -->
-    <section class="section agency alt-bg" id="agence">
-      <div class="container">
-        <header class="section-head">
-          <span class="eyebrow">Qui sommes-nous</span>
-          <h2>Une agence digitale qui a fait ses preuves dans votre secteur</h2>
-          <p class="section-lead">LaunchPad est une agence de création de solutions digitales sur mesure, spécialisée dans l'accompagnement des épiceries fines indépendantes. On ne fait pas du généraliste : on connaît vos contraintes, votre saisonnalité, vos clients, et le poids de votre quotidien opérationnel.</p>
-        </header>
-
-        <div class="grid grid-3 stats">
-          <div class="stat-card reveal">
-            <span class="stat-number">+50</span>
-            <span class="stat-label">Épiciers utilisent notre app DLC</span>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-number">3</span>
-            <span class="stat-label">Applications sur mesure créées pour des entreprises</span>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-number">30 min</span>
-            <span class="stat-label">Pour faire le point sur vos besoins, vos outils et vos priorités</span>
-          </div>
-        </div>
-
-        <div class="section-footer-cta reveal">
-          <a href="#" class="btn btn-primary">→ Faire le point avec nous gratuitement</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========== TÉMOIGNAGES =========== -->
-    <section class="section testimonials">
-      <div class="container">
-        <header class="section-head">
-          <span class="eyebrow">Preuves &amp; références</span>
-          <h2>Ils nous ont fait confiance</h2>
-        </header>
-
-        <div class="grid grid-2">
-          <figure class="testimonial-card reveal">
-            <blockquote>« Avant LaunchPad, je gérais mes DLC sur papier. Maintenant tout est dans l'app, je gagne facilement 1h par jour. »</blockquote>
-            <figcaption>
-              <strong>Sophie M.</strong>
-              <span>Gérante d'une épicerie fine — Lyon</span>
-            </figcaption>
-          </figure>
-
-          <figure class="testimonial-card reveal">
-            <blockquote>« Un site qui me ressemble enfin, et un vrai accompagnement après la livraison. On sent qu'ils connaissent notre métier. »</blockquote>
-            <figcaption>
-              <strong>Antoine R.</strong>
-              <span>Épicier fin &amp; cave — Bordeaux</span>
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="logo-strip" aria-label="Quelques clients qui nous font confiance">
-          <div class="logo-placeholder">LA MAISON DUMONT</div>
-          <div class="logo-placeholder">ÉPICERIE BELLEVILLE</div>
-          <div class="logo-placeholder">CAVE &amp; SAVEURS</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========== LEAD MAGNET =========== -->
-    <section class="section lead-magnet alt-bg" id="ressources">
+    <!-- LEAD MAGNET -->
+    <section class="section lead-section" id="ressources">
       <div class="container">
         <div class="lead-grid">
 
           <div class="lead-content reveal">
-            <span class="eyebrow accent">Ressources gratuites</span>
-            <h2>Pas encore prêt pour un projet ? Commencez par une ressource utile.</h2>
-            <p>Recevez gratuitement l'une de nos deux ressources pensées pour les épiceries fines. Des conseils concrets, sans jargon, à appliquer rapidement selon votre priorité du moment.</p>
+            <div class="eyebrow eyebrow-olive">Ressources gratuites</div>
+            <h2>Pas encore prêt ? Commencez par <em class="serif-italic">un guide utile.</em></h2>
+            <p class="lead-body">Recevez gratuitement l'une de nos deux ressources pensées pour les épiceries fines. Des conseils concrets, sans jargon, à appliquer rapidement selon votre priorité du moment.</p>
 
             <form class="lead-form" id="leadForm" novalidate>
               <fieldset class="guide-choice">
                 <legend>Je souhaite recevoir</legend>
-
                 <label class="guide-option">
                   <input type="radio" name="guide" value="linkedin" required checked />
                   <span class="guide-radio" aria-hidden="true"></span>
@@ -344,7 +269,6 @@
                     <span>Pour développer une clientèle B2B.</span>
                   </span>
                 </label>
-
                 <label class="guide-option">
                   <input type="radio" name="guide" value="email" required />
                   <span class="guide-radio" aria-hidden="true"></span>
@@ -366,9 +290,9 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-block">→ Je reçois mon guide gratuitement</button>
+              <button type="submit" class="btn btn-primary btn-block">Je reçois mon guide gratuitement →</button>
 
-              <p class="form-rgpd">En téléchargeant ce guide, vous acceptez de recevoir des emails de LaunchPad. Désabonnement en 1 clic à tout moment.</p>
+              <p class="form-rgpd">En téléchargeant ce guide, vous acceptez de recevoir des emails de LaunchPad Factory. Désabonnement en 1 clic à tout moment.</p>
 
               <div class="form-success" id="formSuccess" hidden role="status">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -378,14 +302,14 @@
           </div>
 
           <div class="lead-visual reveal" aria-hidden="true">
-            <div class="pdf-mockup pdf-mockup-1">
-              <span class="pdf-tag">Guide PDF</span>
+            <div class="pdf-mockup pdf-1">
+              <span class="tag">Guide PDF</span>
               <h3>LinkedIn &amp; paniers gourmands</h3>
               <p>Attirer des clients professionnels en moins d'une semaine.</p>
               <span class="pdf-pages">24 pages</span>
             </div>
-            <div class="pdf-mockup pdf-mockup-2">
-              <span class="pdf-tag">Guide PDF</span>
+            <div class="pdf-mockup pdf-2">
+              <span class="tag">Guide PDF</span>
               <h3>Email marketing en épicerie fine</h3>
               <p>Fidéliser vos clients et générer plus de ventes.</p>
               <span class="pdf-pages">32 pages</span>
@@ -396,155 +320,74 @@
       </div>
     </section>
 
-    <!-- =========== PROCESSUS =========== -->
-    <section class="section process" id="processus">
+    <!-- CTA BLOCK -->
+    <section class="cta-section">
+      <div class="cta-disc" aria-hidden="true"></div>
       <div class="container">
-        <header class="section-head">
-          <span class="eyebrow">Méthode</span>
-          <h2>Comment ça se passe ?</h2>
-          <p class="section-lead">Un parcours simple, transparent, sans mauvaise surprise — du premier appel à la mise en ligne et au-delà.</p>
-        </header>
-
-        <div class="journey">
-          <ol class="journey-steps">
-            <li class="journey-step reveal" data-step="01">
-              <div class="journey-marker" aria-hidden="true">
-                <span class="marker-dot"></span>
-                <span class="marker-num">01</span>
-              </div>
-              <div class="journey-card">
-                <div class="journey-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg>
-                </div>
-                <span class="journey-kicker">Étape 1 — Discussion</span>
-                <h3>Appel découverte gratuit</h3>
-                <p>30 minutes pour discuter de votre quotidien, comprendre vos besoins et explorer les solutions possibles. Sans pression, sans démarchage.</p>
-                <span class="journey-duration">30 minutes</span>
-              </div>
-            </li>
-
-            <li class="journey-step reveal" data-step="02">
-              <div class="journey-marker" aria-hidden="true">
-                <span class="marker-dot"></span>
-                <span class="marker-num">02</span>
-              </div>
-              <div class="journey-card">
-                <div class="journey-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
-                </div>
-                <span class="journey-kicker">Étape 2 — Cadrage</span>
-                <h3>Proposition sur mesure</h3>
-                <p>Un devis clair, sans surprise, adapté à votre budget et à vos priorités. On détaille chaque ligne, vous décidez à tête reposée.</p>
-                <span class="journey-duration">5 jours ouvrés</span>
-              </div>
-            </li>
-
-            <li class="journey-step reveal" data-step="03">
-              <div class="journey-marker" aria-hidden="true">
-                <span class="marker-dot"></span>
-                <span class="marker-num">03</span>
-              </div>
-              <div class="journey-card">
-                <div class="journey-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-4 4 4 6-6 4 4"/><path d="M14 7h7v7"/></svg>
-                </div>
-                <span class="journey-kicker">Étape 3 — Construction</span>
-                <h3>Développement &amp; suivi</h3>
-                <p>Vous êtes impliqué à chaque étape, pas juste au début et à la fin. Points réguliers, démos, ajustements : tout est transparent.</p>
-                <span class="journey-duration">Suivi hebdomadaire</span>
-              </div>
-            </li>
-
-            <li class="journey-step reveal" data-step="04">
-              <div class="journey-marker" aria-hidden="true">
-                <span class="marker-dot"></span>
-                <span class="marker-num">04</span>
-              </div>
-              <div class="journey-card">
-                <div class="journey-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a3 3 0 0 0-3-3h-2l-3 3H8a3 3 0 0 0 0 6h2"/><path d="M4 16a3 3 0 0 0 3 3h2l3-3h4a3 3 0 0 0 0-6h-2"/></svg>
-                </div>
-                <span class="journey-kicker">Étape 4 — Suite</span>
-                <h3>Accompagnement post-livraison</h3>
-                <p>On ne disparaît pas une fois le projet livré. Maintenance, évolutions, conseils : on reste votre partenaire digital sur la durée.</p>
-                <span class="journey-duration">Sur la durée</span>
-              </div>
-            </li>
-          </ol>
+        <div class="cta-content">
+          <div class="eyebrow eyebrow-olive">★ On y va ?</div>
+          <h2>Et chez vous, <em class="serif-italic">ça donne quoi ?</em></h2>
+          <p class="cta-lead">Un appel découverte de 30 minutes pour faire un état des lieux du digital de votre épicerie, et voir ce qu'on peut bouger en priorité.</p>
+          <div class="cta-actions">
+            <a href="#contact" class="btn btn-primary btn-lg js-open-contact" data-cta-source="cta">Réserver l'appel →</a>
+            <a href="#ressources" class="btn btn-secondary btn-lg">Télécharger le guide LinkedIn</a>
+          </div>
         </div>
-        
-        <div class="section-footer-cta reveal">
-          <a href="#contact" class="btn btn-accent btn-lg js-open-contact" data-cta-source="processus">→ Déclencher l'Étape 1 : Réserver mon appel</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========== CTA FINAL =========== -->
-    <section class="section final-cta">
-      <div class="container final-cta-inner">
-        <h2>Votre épicerie mérite une présence digitale à la hauteur de vos produits.</h2>
-        <p>Prenez 30 minutes pour en parler avec nous. C'est gratuit, sans engagement, et vous repartez avec des idées concrètes — même si on ne travaille pas ensemble.</p>
-        <a href="#contact" class="btn btn-accent btn-lg js-open-contact" data-cta-source="final">→ Réserver mon appel découverte</a>
-        <p class="reassurance">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          Aucun démarchage. Juste une conversation entre professionnels.
-        </p>
       </div>
     </section>
 
   </main>
 
-  <!-- =========== FOOTER =========== -->
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <a href="index.html" class="brand brand-light">
-          <img src="assets/img/logo.png" alt="Logo LaunchPad" class="brand-logo" />
-          <span class="brand-name">LaunchPad</span>
-        </a>
-        <p>Agence de création de solutions digitales sur mesure pour les épiceries fines indépendantes en France.</p>
-      </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo logo-dark" aria-label="LaunchPad Factory — accueil">
+            <span class="logo-dot" aria-hidden="true"></span>
+            <span class="logo-name">LaunchPad <em>Factory</em></span>
+          </a>
+          <p>Agence digitale française. On conçoit, on développe, on déploie. Olive sauge · vertical épiceries fines.</p>
+        </div>
 
-      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Pratiques</h4>
+          <ul>
+            <li><a href="#services">Sites &amp; e-commerce</a></li>
+            <li><a href="traceo.html">Application DLC</a></li>
+            <li><a href="#services">Présence locale</a></li>
+            <li><a href="#services">Newsletter &amp; réseaux</a></li>
+          </ul>
+        </div>
+
         <div class="footer-col">
           <h4>Agence</h4>
           <ul>
             <li><a href="https://launchpadfactory.webflow.io/" target="_blank" rel="noopener">Site LaunchPad</a></li>
-            <li><a href="#" aria-label="LinkedIn de LaunchPad">LinkedIn</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Traceo</h4>
-          <ul>
-            <li><a href="traceo.html">Présentation</a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.launchpadfactory.traceo" target="_blank" rel="noopener">Google Play</a></li>
-            <li><a href="https://apps.apple.com/fr/app/traceo/id6754067857" target="_blank" rel="noopener">App Store</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Légal</h4>
-          <ul>
+            <li><a href="#carnet">Carnet</a></li>
+            <li><a href="#">Recrutement</a></li>
             <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
+            <li><a href="mailto:hello@launchpadfactory.fr">hello@launchpadfactory.fr</a></li>
             <li><a href="#contact" class="js-open-contact" data-cta-source="footer">Réserver un appel</a></li>
-            <li><a href="#ressources">Nos guides gratuits</a></li>
+            <li><a href="#">LinkedIn</a></li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <small>© 2026 LaunchPad — Tous droits réservés</small>
+
+      <div class="footer-bottom">
+        <span>© 2026 LaunchPad Factory · Le digital, fait main</span>
+        <span>Made in France · v2.0</span>
       </div>
     </div>
   </footer>
 
-  <!-- =========== MODAL CONTACT =========== -->
+  <!-- MODAL CONTACT -->
   <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
     <div class="contact-modal-backdrop" data-close-contact></div>
 
@@ -554,13 +397,12 @@
       </button>
 
       <div class="contact-modal-header">
-        <span class="eyebrow accent">Réserver un appel</span>
+        <div class="eyebrow eyebrow-olive">Réserver un appel</div>
         <h2 id="contactModalTitle">Parlons de votre projet</h2>
         <p>Laissez-nous quelques infos et vos disponibilités. <strong>On vous recontacte sous 24h ouvrées</strong> avec 2 ou 3 créneaux qui collent à votre rythme — c'est gratuit et sans engagement.</p>
       </div>
 
       <form class="contact-form" id="contactForm" novalidate>
-        <!-- Honeypot (anti-bot) -->
         <div class="hp-field" aria-hidden="true">
           <label for="contact_website">Site web</label>
           <input type="text" id="contact_website" name="website" tabindex="-1" autocomplete="off" />
@@ -610,45 +452,27 @@
           <div class="availability-grid">
             <label class="availability-option">
               <input type="checkbox" name="availability" value="matin" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                Matin <em>(8h–12h)</em>
-              </span>
+              <span class="availability-pill">Matin <em>(8h–12h)</em></span>
             </label>
             <label class="availability-option">
               <input type="checkbox" name="availability" value="midi" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                Midi <em>(12h–14h)</em>
-              </span>
+              <span class="availability-pill">Midi <em>(12h–14h)</em></span>
             </label>
             <label class="availability-option">
               <input type="checkbox" name="availability" value="apres-midi" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 4v3M4.93 7.93l2.12 2.12M16.95 10.05l2.12-2.12"/></svg>
-                Après-midi <em>(14h–18h)</em>
-              </span>
+              <span class="availability-pill">Après-midi <em>(14h–18h)</em></span>
             </label>
             <label class="availability-option">
               <input type="checkbox" name="availability" value="soir" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-                Soir <em>(18h–20h)</em>
-              </span>
+              <span class="availability-pill">Soir <em>(18h–20h)</em></span>
             </label>
             <label class="availability-option">
               <input type="checkbox" name="availability" value="semaine" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
-                En semaine
-              </span>
+              <span class="availability-pill">En semaine</span>
             </label>
             <label class="availability-option">
               <input type="checkbox" name="availability" value="weekend" />
-              <span class="availability-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
-                Le week-end
-              </span>
+              <span class="availability-pill">Le week-end</span>
             </label>
           </div>
           <input type="text" id="contact_avail_notes" name="availability_notes" maxlength="200" placeholder="Précisions (ex : « plutôt le mardi », « avant 10h »…)" class="availability-notes" />
@@ -656,16 +480,13 @@
 
         <label class="form-consent">
           <input type="checkbox" name="consent" required />
-          <span>
-            En envoyant ce formulaire, j'accepte d'être recontacté par LaunchPad au sujet de ma demande. Mes données ne sont ni revendues, ni utilisées pour du démarchage. <a href="#" target="_blank" rel="noopener">En savoir plus</a>.
-          </span>
+          <span>En envoyant ce formulaire, j'accepte d'être recontacté par LaunchPad Factory au sujet de ma demande. Mes données ne sont ni revendues, ni utilisées pour du démarchage. <a href="#" target="_blank" rel="noopener">En savoir plus</a>.</span>
         </label>
 
-        <!-- Cloudflare Turnstile (anti-spam) — la div est rendue uniquement si la clé est configurée -->
         <div class="cf-turnstile" data-sitekey="" data-theme="light" data-size="flexible"></div>
 
         <div class="contact-form-actions">
-          <button type="submit" class="btn btn-accent btn-lg btn-block">→ Envoyer ma demande</button>
+          <button type="submit" class="btn btn-accent-olive btn-lg btn-block">Envoyer ma demande →</button>
           <p class="form-error" id="contactFormError" hidden></p>
         </div>
 
