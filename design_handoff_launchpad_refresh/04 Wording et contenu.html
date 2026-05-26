@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wording & contenu · LaunchPad Factory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #161210;
+    --ink-soft: #5a4f49;
+    --ink-mute: #8a807a;
+    --paper: #fbf6ef;
+    --cream: #f1ead9;
+    --cream-deep: #e8dfc8;
+    --line: rgba(22, 18, 16, 0.12);
+    --line-strong: rgba(22, 18, 16, 0.22);
+    --orange: #ff5c2c;
+    --orange-tint: rgba(255, 92, 44, 0.10);
+    --olive: #5d6b3f;
+    --olive-tint: rgba(93, 107, 63, 0.10);
+    --display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "Geist", "Inter Tight", -apple-system, sans-serif;
+    --mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--orange); color: var(--paper); }
+
+  /* Layout */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .wrap-narrow { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  section { padding: clamp(64px, 9vw, 112px) 0; border-top: 1px solid var(--line); }
+  section.no-border { border-top: none; }
+
+  /* Type */
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin: 0; line-height: 1.05; }
+  h1 { font-size: clamp(3rem, 7vw, 6.4rem); line-height: 0.88; letter-spacing: -0.04em; font-weight: 700; }
+  h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.03em; }
+  h3 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.015em; }
+  h4 { font-size: 1rem; font-family: var(--sans); font-weight: 600; }
+  p { margin: 0 0 1em; color: var(--ink-soft); text-wrap: pretty; max-width: 64ch; }
+  .lead { font-size: 1.2rem; line-height: 1.55; color: var(--ink); }
+  em.it { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
+  em.it-olive { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--olive); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+  .eyebrow.olive { color: var(--olive); }
+
+  .mono { font-family: var(--mono); font-size: 0.78rem; }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 0 96px;
+    border-top: none;
+    position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.95;
+  }
+  .cover-top { display: flex; justify-content: space-between; align-items: center; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 700; font-size: 1.15rem;
+    color: var(--paper);
+  }
+  .brand-dot {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--orange);
+  }
+  .doc-meta {
+    font-family: var(--mono); font-size: 0.74rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(251,246,239,0.55);
+  }
+  .cover-main { margin-top: 56px; }
+  .cover-main h1 { color: var(--paper); position: relative; }
+  .cover-main h1 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
+  .cover-main .lead {
+    color: rgba(251,246,239,0.78); font-size: 1.2rem;
+    max-width: 640px; margin-top: 28px;
+  }
+  .cover-foot {
+    margin-top: 72px;
+    display: grid; grid-template-columns: 1fr; gap: 28px;
+    padding-top: 28px; border-top: 1px solid rgba(251,246,239,0.16);
+    font-family: var(--mono); font-size: 0.78rem; color: rgba(251,246,239,0.6);
+    letter-spacing: 0.06em;
+  }
+  @media (min-width: 800px) { .cover-foot { grid-template-columns: repeat(4, 1fr); } }
+  .cover-foot dt { color: var(--orange); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .cover-foot dd { color: var(--paper); margin: 0; font-family: var(--sans); font-size: 0.95rem; }
+
+  /* Section header */
+  .sec-head { max-width: 720px; margin-bottom: 56px; }
+  .sec-head h2 { margin-bottom: 14px; }
+  .sec-head .lead { color: var(--ink-soft); }
+
+  /* Page banner inside doc */
+  .page-banner {
+    border: 1.5px solid var(--ink); border-radius: 20px;
+    padding: 32px 36px;
+    margin-bottom: 48px;
+    display: grid; gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 800px) {
+    .page-banner { grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; }
+  }
+  .page-banner.dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .page-banner.dark .pb-meta { color: rgba(251,246,239,0.6); }
+  .page-banner.olive { border-color: var(--olive); background: var(--olive-tint); }
+  .pb-mark {
+    width: 80px; height: 80px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 700; font-size: 2rem;
+    background: var(--orange); color: var(--paper);
+    flex-shrink: 0;
+  }
+  .page-banner.olive .pb-mark { background: var(--olive); }
+  .page-banner.dark .pb-mark { background: var(--orange); color: var(--paper); }
+  .pb-body { min-width: 0; }
+  .pb-body h2 { font-size: 2rem; margin-bottom: 4px; letter-spacing: -0.025em; }
+  .page-banner.dark .pb-body h2 { color: var(--paper); }
+  .pb-meta {
+    font-family: var(--mono); font-size: 0.74rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .pb-url { font-family: var(--mono); font-size: 0.85rem; color: var(--orange); }
+  .page-banner.olive .pb-url { color: var(--olive); }
+  .pb-tag {
+    align-self: flex-start;
+    background: var(--cream); color: var(--ink);
+    padding: 6px 12px; border-radius: 999px;
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Block (per section of a page) */
+  .block {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--paper);
+  }
+  .block-head {
+    padding: 18px 24px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    background: var(--cream);
+  }
+  .block-num {
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 1.6rem; color: var(--orange); line-height: 1;
+    min-width: 36px;
+  }
+  .olive-section .block-num { color: var(--olive); }
+  .block-title {
+    font-family: var(--display); font-weight: 700; font-size: 1.15rem;
+    color: var(--ink); letter-spacing: -0.012em;
+  }
+  .block-meta {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+    padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--paper);
+  }
+  .block-body { padding: 24px 28px 28px; }
+
+  /* Copy specimen */
+  .copy {
+    font-family: var(--sans); color: var(--ink); margin: 0 0 0.4em;
+    line-height: 1.4;
+  }
+  .copy.head {
+    font-family: var(--display); font-weight: 700; font-size: 2.2rem;
+    color: var(--ink); letter-spacing: -0.03em; line-height: 0.98;
+    margin-bottom: 0.4em;
+  }
+  .copy.head em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
+  .olive-section .copy.head em { color: var(--olive); }
+  .copy.sub {
+    color: var(--ink-soft); font-size: 1.05rem; line-height: 1.55;
+    max-width: 64ch; margin-bottom: 0.5em;
+  }
+  .copy.eyebrow-text {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .copy.eyebrow-text::before { content: '§'; }
+  .olive-section .copy.eyebrow-text { color: var(--olive); }
+
+  /* Variants block (alt copy options) */
+  .variants {
+    margin-top: 18px;
+    padding: 18px 20px;
+    background: var(--cream);
+    border-radius: 12px;
+    font-size: 0.92rem;
+  }
+  .variants-label {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute); margin-bottom: 10px;
+  }
+  .variants ul { padding: 0; margin: 0; list-style: none; }
+  .variants li {
+    padding: 6px 0; color: var(--ink); font-size: 0.96rem;
+    border-bottom: 1px dashed var(--line);
+    display: grid; grid-template-columns: 22px 1fr;
+    gap: 8px; align-items: baseline;
+  }
+  .variants li:last-child { border-bottom: none; }
+  .variants li::before {
+    content: '·'; font-family: var(--mono); color: var(--orange);
+    font-size: 1rem; text-align: center;
+  }
+  .olive-section .variants li::before { color: var(--olive); }
+
+  /* CTA / question rows */
+  .ask {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--orange-tint);
+    border-left: 3px solid var(--orange);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+  .ask strong { color: var(--orange); font-weight: 600; }
+  .olive-section .ask {
+    background: var(--olive-tint);
+    border-left-color: var(--olive);
+  }
+  .olive-section .ask strong { color: var(--olive); }
+
+  /* TOC */
+  .toc {
+    display: grid; grid-template-columns: 1fr; gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 800px) { .toc { grid-template-columns: repeat(3, 1fr); } }
+  .toc a {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 22px 24px;
+    text-decoration: none; color: var(--ink);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: background 200ms ease;
+  }
+  @media (min-width: 800px) {
+    .toc a { border-bottom: none; }
+    .toc a:last-child { border-right: none; }
+  }
+  .toc a:hover { background: var(--cream); }
+  .toc-num { font-family: var(--mono); font-size: 0.74rem; color: var(--orange); letter-spacing: 0.14em; }
+  .toc-label { font-family: var(--display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.015em; }
+  .toc-desc { font-size: 0.86rem; color: var(--ink-soft); margin-top: 4px; }
+
+  /* Voice grid */
+  .voice {
+    display: grid; grid-template-columns: 1fr; gap: 14px;
+    margin-top: 32px;
+  }
+  @media (min-width: 800px) { .voice { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  .voice-card {
+    padding: 28px 30px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .voice-card.do { border-left: 4px solid var(--olive); }
+  .voice-card.dont { border-left: 4px solid var(--orange); }
+  .voice-card h3 { font-size: 1.1rem; margin-bottom: 14px; }
+  .voice-card h3 .tag {
+    display: inline-block; vertical-align: middle;
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; margin-right: 8px;
+    font-weight: 500;
+  }
+  .voice-card.do h3 .tag { background: var(--olive); color: var(--paper); }
+  .voice-card.dont h3 .tag { background: var(--orange); color: var(--paper); }
+  .voice-card ul { padding: 0; margin: 0; list-style: none; }
+  .voice-card li {
+    padding: 10px 0; border-bottom: 1px solid var(--line);
+    font-size: 0.95rem; color: var(--ink);
+    display: grid; grid-template-columns: 18px 1fr; gap: 8px;
+    align-items: baseline;
+  }
+  .voice-card li:last-child { border-bottom: none; }
+  .voice-card.do li::before { content: '✓'; color: var(--olive); font-weight: 700; }
+  .voice-card.dont li::before { content: '✕'; color: var(--orange); font-weight: 700; }
+  .voice-card li em { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-weight: 400; font-size: 0.92rem; margin-left: 8px; }
+
+  /* Final ask block */
+  .ask-final {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 24px;
+    padding: 56px 48px;
+    margin-top: 40px;
+    position: relative; overflow: hidden;
+  }
+  .ask-final::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: var(--orange); opacity: 0.95;
+  }
+  .ask-final h2 { color: var(--paper); margin-bottom: 16px; }
+  .ask-final h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
+  .ask-final p { color: rgba(251,246,239,0.78); margin-bottom: 18px; max-width: 600px; }
+  .ask-final ol {
+    margin: 0; padding: 0; counter-reset: q;
+    position: relative; z-index: 2;
+  }
+  .ask-final ol li {
+    list-style: none;
+    padding: 18px 0 18px 56px;
+    border-top: 1px solid rgba(251,246,239,0.16);
+    position: relative; counter-increment: q;
+    font-size: 1rem; color: var(--paper);
+    max-width: 720px;
+  }
+  .ask-final ol li:last-child { border-bottom: 1px solid rgba(251,246,239,0.16); }
+  .ask-final ol li::before {
+    content: counter(q, decimal-leading-zero);
+    position: absolute; left: 0; top: 18px;
+    font-family: var(--mono); font-size: 0.92rem; color: var(--orange);
+    letter-spacing: 0.06em;
+  }
+  .ask-final ol li strong { display: block; color: var(--paper); font-weight: 600; margin-bottom: 4px; font-size: 1.05rem; font-family: var(--display); letter-spacing: -0.01em; }
+  .ask-final ol li span { color: rgba(251,246,239,0.65); font-size: 0.92rem; }
+
+  /* Footer */
+  footer.doc-footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<section class="cover no-border" data-screen-label="01 Cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <span class="brand"><span class="brand-dot"></span>LaunchPad Factory</span>
+      <span class="doc-meta">DOC 04 · WORDING · v0.1</span>
+    </div>
+    <div class="cover-main">
+      <h1>Le digital, <em>fait main</em>.<br />Le wording, <em>fait juste</em>.</h1>
+      <p class="lead">Avant de mettre les pages en HTML, on fige le wording. Ce document est ton brouillon de travail : chaque section a une proposition de copy, plus des variantes alternatives, plus 1-2 questions à clarifier. Tu valides, tu corriges, tu reformules — puis on attaque l'intégration.</p>
+    </div>
+    <dl class="cover-foot">
+      <div><dt>Pages couvertes</dt><dd>Agence · Épicerie · Article</dd></div>
+      <div><dt>Tagline pivot</dt><dd>Le digital, fait main</dd></div>
+      <div><dt>Ton dominant</dt><dd>Confiant · concret · sobre</dd></div>
+      <div><dt>À valider par</dt><dd>Toi (LaunchPad)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════════ TOC ═══════════════ -->
+<section class="no-border" style="padding: 48px 0;">
+  <div class="wrap">
+    <nav class="toc" aria-label="Sommaire">
+      <a href="#voix">
+        <span class="toc-num">02</span>
+        <span class="toc-label">Voix de marque</span>
+        <span class="toc-desc">Ton, vocabulaire, do / don't</span>
+      </a>
+      <a href="#agence">
+        <span class="toc-num">03</span>
+        <span class="toc-label">Page agence</span>
+        <span class="toc-desc">launchpadfactory.fr (refonte)</span>
+      </a>
+      <a href="#epicerie">
+        <span class="toc-num">04</span>
+        <span class="toc-label">Page épiceries</span>
+        <span class="toc-desc">/epiceries (refonte)</span>
+      </a>
+      <a href="#article">
+        <span class="toc-num">05</span>
+        <span class="toc-label">Template article</span>
+        <span class="toc-desc">Structure éditoriale</span>
+      </a>
+      <a href="#offres">
+        <span class="toc-num">06</span>
+        <span class="toc-label">Noms d'offres</span>
+        <span class="toc-desc">Naming des services</span>
+      </a>
+      <a href="#questions">
+        <span class="toc-num">07</span>
+        <span class="toc-label">Questions ouvertes</span>
+        <span class="toc-desc">Ce qu'il me manque pour finir</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<!-- ═══════════════ 02 · VOIX DE MARQUE ═══════════════ -->
+<section id="voix">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">02 — Voix de marque</span>
+      <h2>Le ton qu'on garde, <em class="it">celui qu'on évite</em>.</h2>
+      <p class="lead">Une agence digitale française qui sait coder ET designer. Le ton doit être confiant sans arrogance, concret sans froideur, sobre sans tristesse. Un studio qui montre ce qu'il fait plutôt que de promettre.</p>
+    </div>
+
+    <div class="voice">
+      <div class="voice-card do">
+        <h3><span class="tag">DO</span>Ce qu'on dit</h3>
+        <ul>
+          <li><span>« On conçoit, on développe, on déploie. »</span></li>
+          <li><span>« Fait à la main, en France, par la même équipe. »</span></li>
+          <li><span>« Site, application, automatisation, marketing. »</span></li>
+          <li><span>« Pas de no-code générique. »</span></li>
+          <li><span>« Sous 24h ouvrées. »</span></li>
+          <li><span>« On vous recontacte sous 24h. » <em>concret, daté, vérifiable</em></span></li>
+          <li><span>« On reste votre partenaire digital sur la durée. »</span></li>
+        </ul>
+      </div>
+      <div class="voice-card dont">
+        <h3><span class="tag">DON'T</span>Ce qu'on évite</h3>
+        <ul>
+          <li><span>« Accélérez votre croissance digitale » <em>creux, daté startup 2018</em></span></li>
+          <li><span>« Solutions innovantes et sur-mesure » <em>« sur-mesure » oui, « innovantes » non</em></span></li>
+          <li><span>« Expert·e·s passionné·e·s » <em>fade, partout</em></span></li>
+          <li><span>« Transformation digitale » <em>jargon B2B</em></span></li>
+          <li><span>« ROI » sans chiffre derrière</span></li>
+          <li><span>Emojis dans le corps de page <em>réservé à la marquee / live ticker</em></span></li>
+          <li><span>Superlatifs sans preuve ("la meilleure", "leader", "n°1")</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="voice" style="margin-top: 18px;">
+      <div class="voice-card do">
+        <h3><span class="tag">RÈGLES</span>3 règles d'or</h3>
+        <ul>
+          <li><span><strong>Toujours du concret.</strong> Un chiffre, une durée, un nom. Pas d'adjectif sans preuve.</span></li>
+          <li><span><strong>Phrases courtes.</strong> Sujet + verbe + complément. Le point est ton ami.</span></li>
+          <li><span><strong>Le « on » plutôt que le « nous ».</strong> Proche, français, sans solennité.</span></li>
+        </ul>
+      </div>
+      <div class="voice-card do">
+        <h3><span class="tag">RYTHME</span>Italiques & accents</h3>
+        <ul>
+          <li><span>Le mot-clé d'une headline passe en <em class="it">italique orange</em> (Instrument Serif).</span></li>
+          <li><span>Pour la page épicerie : italique <em class="it-olive">olive</em> en place de l'orange.</span></li>
+          <li><span>Les eyebrows utilisent le caractère <code style="font-family: var(--mono); background: var(--cream); padding: 1px 6px; border-radius: 3px; font-size: 0.86rem;">§</code> en préfixe.</span></li>
+          <li><span>Les numéros de sections (§01, §02…) servent à ancrer la lecture.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 03 · PAGE AGENCE ═══════════════ -->
+<section id="agence">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — Page agence</span>
+      <h2>launchpadfactory.fr — <em class="it">refonte vitrine.</em></h2>
+      <p class="lead">La home générique. Cible : prospects (PME, marques, indépendants) qui cherchent une équipe digitale française pour concevoir un outil sur-mesure. C'est ton showroom — la preuve par les projets, pas par les promesses.</p>
+    </div>
+
+    <div class="page-banner dark">
+      <div class="pb-mark">★</div>
+      <div class="pb-body">
+        <span class="pb-meta">PAGE 01 · AGENCE</span>
+        <h2>launchpadfactory.fr</h2>
+        <span class="pb-url">/ home</span>
+      </div>
+      <span class="pb-tag">Direction orange</span>
+    </div>
+
+    <!-- §01 HERO -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§01</span>
+        <span class="block-title">Hero — le pitch en 3 secondes</span>
+        <span class="block-meta">~ Above the fold</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Agence digitale · France</p>
+        <p class="copy head">Le digital,<br /><em>fait main</em>.</p>
+        <p class="copy sub">On conçoit, on développe, on déploie — pour les marques qui veulent reprendre la main sur leur outil. Web, mobile, automatisation, marketing.</p>
+        <p class="copy mono" style="margin-top: 14px; color: var(--ink-soft);">CTA : « Réserver un appel » · « Voir le showroom »</p>
+
+        <div class="variants">
+          <div class="variants-label">Sous-titre — 2 variantes alternatives</div>
+          <ul>
+            <li>Une agence française qui code, designe et déploie vos outils digitaux. Web, mobile, automatisation, marketing.</li>
+            <li>On bâtit les outils numériques que votre business attend — site, app, automatisation. Sur-mesure, en France.</li>
+          </ul>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> est-ce que « reprendre la main sur leur outil » te parle, ou tu préfères un angle plus direct comme « pour les marques qui veulent un outil à leur image » ?</div>
+      </div>
+    </article>
+
+    <!-- §02 LE CONSTAT -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§02</span>
+        <span class="block-title">Le constat — « vous vous reconnaissez ? »</span>
+        <span class="block-meta">Problèmes adressés</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Le constat · §02</p>
+        <p class="copy head">Vous vous <em>reconnaissez</em> ?</p>
+        <p class="copy sub">Quatre symptômes qui reviennent chez 9 PME sur 10. Le digital n'a pas suivi le rythme du business.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 12px;">
+          <div><strong style="color: var(--orange); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">01 / Un site qui n'apporte rien</strong><br /><span style="font-size: 0.94rem;">Vitrine figée, parcours qui ne convertit pas, contenu qui ne respire pas — un site qui occupe l'URL sans jouer son rôle.</span></div>
+          <div><strong style="color: var(--orange); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">02 / Des outils dispersés</strong><br /><span style="font-size: 0.94rem;">Caisse, e-commerce, CRM, compta. La même donnée saisie trois fois par jour.</span></div>
+          <div><strong style="color: var(--orange); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">03 / Pas de visibilité data</strong><br /><span style="font-size: 0.94rem;">Vous décidez au feeling. Vous ne savez pas ce qui marche, où mettre l'effort.</span></div>
+          <div><strong style="color: var(--orange); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">04 / Pas d'équipe digitale</strong><br /><span style="font-size: 0.94rem;">Personne en interne pour bouger vite. Tout passe par un prestataire à deux semaines.</span></div>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> ces 4 problèmes te paraissent-ils les bons pour la cible PME générique ? Si tu en as 1-2 qui reviennent plus souvent dans tes RDV de qualif, on les remplace.</div>
+      </div>
+    </article>
+
+    <!-- §03 SHOWROOM / SERVICES -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§03</span>
+        <span class="block-title">Showroom — trois preuves récentes</span>
+        <span class="block-meta">Portfolio compact</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Showroom · §03</p>
+        <p class="copy head">Trois preuves <em>récentes</em>.</p>
+        <p class="copy sub">Pas une liste de services. Des projets livrés. Vous verrez ce qu'on fait, comment on le fait, et combien de temps ça prend.</p>
+
+        <div class="variants">
+          <div class="variants-label">3 case studies à mettre en avant — proposition</div>
+          <ul>
+            <li><strong>Traceo</strong> — application mobile DLC, déployée chez +50 épiceries fines (votre app maison)</li>
+            <li><strong>E-commerce + ERP</strong> — boutique en ligne raccordée au stock physique <em>(nom client à préciser)</em></li>
+            <li><strong>Pipeline marketing</strong> — newsletter + GMB + social automatisés <em>(nom client à préciser)</em></li>
+          </ul>
+        </div>
+
+        <div class="ask"><strong>À remplir :</strong> donne-moi <strong>3 vrais noms de clients</strong> (ou anonymisés "Boutique parisienne", "Marque française de café") avec en 1 phrase chacun : ce qu'on a fait + l'impact mesurable (chiffre, délai, gain). C'est la section la plus puissante de la page — il me faut du concret.</div>
+      </div>
+    </article>
+
+    <!-- §04 NOS PRATIQUES -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§04</span>
+        <span class="block-title">Nos pratiques — ce qu'on sait faire</span>
+        <span class="block-meta">Services / disciplines</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Nos pratiques · §04</p>
+        <p class="copy head">Quatre métiers, <em>un seul atelier</em>.</p>
+        <p class="copy sub">Pas de sous-traitance, pas de revente d'outils tiers. Chaque projet est conçu, codé, déployé par la même équipe — en France.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 14px;">
+          <div><strong style="color: var(--ink);">Web</strong><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Vitrines, e-commerce, applications web métier. Code maison, performance native, autonomie d'édition.</span></div>
+          <div><strong style="color: var(--ink);">Mobile</strong><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Applications iOS / Android sur-mesure. Conçues avec vous, maintenues par nous, intégrées à vos outils existants.</span></div>
+          <div><strong style="color: var(--ink);">Automatisation</strong><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Caisse, e-commerce, CRM, compta. On relie vos outils pour que les données circulent sans ressaisie.</span></div>
+          <div><strong style="color: var(--ink);">Marketing</strong><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Email marketing, Google My Business, social. Mesurable, automatisable, sans surplus d'outils.</span></div>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> les noms d'offres sont volontairement courts (« Web », « Mobile »…). Tu préfères des noms plus descriptifs (« Sites & e-commerce », « Apps métier ») ? Voir <a href="#offres" style="color: var(--orange);">§06 — Noms d'offres</a>.</div>
+      </div>
+    </article>
+
+    <!-- §05 NOTRE APPROCHE -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§05</span>
+        <span class="block-title">Notre approche — comment on travaille</span>
+        <span class="block-meta">Process en 4 étapes</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">L'atelier · §05</p>
+        <p class="copy head">Comment on <em>travaille</em>.</p>
+        <p class="copy sub">Un parcours court, transparent, sans mauvaise surprise. Du premier appel à la mise en ligne — et au-delà.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 14px;">
+          <div><strong style="color: var(--ink);">01 / Discussion</strong> · 30 min<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Un appel pour comprendre votre quotidien, vos besoins, vos contraintes. Sans pression, sans démarchage.</span></div>
+          <div><strong style="color: var(--ink);">02 / Cadrage</strong> · 5 jours ouvrés<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Un devis clair, sans surprise, adapté à votre budget. On détaille chaque ligne. Vous décidez à tête reposée.</span></div>
+          <div><strong style="color: var(--ink);">03 / Construction</strong> · suivi hebdomadaire<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Vous êtes impliqué à chaque étape, pas juste au début et à la fin. Démos, ajustements, transparence.</span></div>
+          <div><strong style="color: var(--ink);">04 / Suite</strong> · sur la durée<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">On ne disparaît pas une fois livré. Maintenance, évolutions, conseils — votre partenaire digital sur la durée.</span></div>
+        </div>
+
+        <div class="ask"><strong>Note :</strong> on récupère exactement la structure de la home épicerie actuelle, qui marche bien. Les durées indiquées (30 min, 5 jours…) sont les mêmes — confirme-les ou ajuste.</div>
+      </div>
+    </article>
+
+    <!-- §06 SOCIAL PROOF / STATS -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§06</span>
+        <span class="block-title">Preuves chiffrées — stats sur le fold de fin</span>
+        <span class="block-meta">3-4 KPI</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">En chiffres · §06</p>
+
+        <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+          <div><strong style="font-family: var(--display); font-weight: 700; font-size: 2.4rem; color: var(--ink); display: block; letter-spacing: -0.03em;">+50</strong><span style="font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono);">PROJETS LIVRÉS</span></div>
+          <div><strong style="font-family: var(--display); font-weight: 700; font-size: 2.4rem; color: var(--ink); display: block; letter-spacing: -0.03em;">03</strong><span style="font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono);">APPS PUBLIÉES</span></div>
+          <div><strong style="font-family: var(--display); font-weight: 700; font-size: 2.4rem; color: var(--ink); display: block; letter-spacing: -0.03em;">24h</strong><span style="font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono);">1ER RETOUR</span></div>
+          <div><strong style="font-family: var(--display); font-weight: 700; font-size: 2.4rem; color: var(--ink); display: block; letter-spacing: -0.03em;">100 %</strong><span style="font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono);">CODE EN FRANCE</span></div>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> +50 projets et 3 apps publiées, c'est correct ? Si oui, on garde. Sinon, donne-moi les vrais chiffres. <strong>« 100% code en France »</strong> est-il vrai (pas de sous-traitance offshore) ? Si oui c'est un argument fort à mettre.</div>
+      </div>
+    </article>
+
+    <!-- §07 CTA FINAL -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§07</span>
+        <span class="block-title">CTA final — l'appel à l'action de fin</span>
+        <span class="block-meta">Avant footer</span>
+      </header>
+      <div class="block-body">
+        <p class="copy head">Un projet en tête ?<br /><em>Parlons-en.</em></p>
+        <p class="copy sub">30 minutes pour discuter de votre projet. C'est gratuit, sans engagement — et vous repartez avec des idées concrètes, même si on ne travaille pas ensemble.</p>
+        <p class="copy mono" style="margin-top: 14px; color: var(--ink-soft);">CTA primaire : « Réserver un appel découverte » · Réassurance : « On vous répond sous 24h ouvrées »</p>
+
+        <div class="ask"><strong>Variante à choisir :</strong> headline « Un projet en tête ? Parlons-en. » OU « Votre projet mérite un atelier qui en prend soin. » OU « Prêt à reprendre la main sur votre outil ? »</div>
+      </div>
+    </article>
+
+    <!-- §08 FOOTER -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§08</span>
+        <span class="block-title">Footer — éléments à inclure</span>
+        <span class="block-meta">Bas de page</span>
+      </header>
+      <div class="block-body">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+          <div>
+            <strong style="color: var(--ink);">Colonne 1 — Marque</strong><br />
+            <span style="font-size: 0.94rem; color: var(--ink-soft);">Logo · « Agence digitale française. Le digital, fait main. » · Adresse</span>
+          </div>
+          <div>
+            <strong style="color: var(--ink);">Colonne 2 — Pratiques</strong><br />
+            <span style="font-size: 0.94rem; color: var(--ink-soft);">Web · Mobile · Automatisation · Marketing</span>
+          </div>
+          <div>
+            <strong style="color: var(--ink);">Colonne 3 — Ressources</strong><br />
+            <span style="font-size: 0.94rem; color: var(--ink-soft);">Showroom · Carnet (blog) · Verticale épiceries fines</span>
+          </div>
+          <div>
+            <strong style="color: var(--ink);">Colonne 4 — Légal</strong><br />
+            <span style="font-size: 0.94rem; color: var(--ink-soft);">Contact · Mentions légales · Politique de confidentialité</span>
+          </div>
+        </div>
+
+        <div class="ask"><strong>À fournir :</strong> adresse postale de l'agence, email de contact public, et si tu as un compte LinkedIn / Instagram, leurs URLs (pour les icônes de bas de page).</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════ 04 · PAGE ÉPICERIE ═══════════════ -->
+<section id="epicerie" class="olive-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow olive">04 — Page épiceries fines</span>
+      <h2>launchpadfactory.fr/epiceries — <em class="it-olive">déclinaison verticale.</em></h2>
+      <p class="lead">La page actuelle qui marche déjà bien. On garde la quasi-totalité de la copy validée (« Vous reconnaissez-vous ? », « Ne laissez plus périmer vos marges »…), on adapte juste le wording de surface pour aligner sur le nouveau ton et la nouvelle identité visuelle. Accent <strong style="color: var(--olive);">olive</strong> en place de l'orange.</p>
+    </div>
+
+    <div class="page-banner olive">
+      <div class="pb-mark">◐</div>
+      <div class="pb-body">
+        <span class="pb-meta">PAGE 02 · VERTICALE ÉPICERIES</span>
+        <h2>launchpadfactory.fr<span style="color: var(--olive);">/epiceries</span></h2>
+        <span class="pb-url">/ verticale épiceries fines</span>
+      </div>
+      <span class="pb-tag" style="background: var(--olive); color: var(--paper);">Accent olive</span>
+    </div>
+
+    <!-- §01 HERO -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§01</span>
+        <span class="block-title">Hero — l'angle vertical</span>
+        <span class="block-meta">Above the fold</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Verticale · Épiceries fines</p>
+        <p class="copy head">L'agence digitale<br />qui parle votre <em>langage</em>.</p>
+        <p class="copy sub">On s'occupe de tout le digital pour accompagner votre croissance, afin que vous vous concentriez sur l'essentiel : conseiller, vendre, et faire grandir votre épicerie.</p>
+        <p class="copy mono" style="margin-top: 14px; color: var(--ink-soft);">CTA : « Réserver un appel découverte » · « Voir nos ressources »</p>
+
+        <div class="variants">
+          <div class="variants-label">2 variantes alternatives — pour A/B</div>
+          <ul>
+            <li>« Le digital, fait main — pour les épiceries fines. »</li>
+            <li>« Site, app, automatisation : on bâtit les outils digitaux de votre épicerie. »</li>
+          </ul>
+        </div>
+
+        <div class="ask"><strong>Note :</strong> la copy actuelle (« On gère votre environnement digital… ») fonctionne déjà très bien — on la garde, on la rafraîchit juste légèrement. Tu valides ?</div>
+      </div>
+    </article>
+
+    <!-- §02 LE CONSTAT -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§02</span>
+        <span class="block-title">Le quotidien d'un épicier — vous reconnaissez-vous ?</span>
+        <span class="block-meta">À garder presque à l'identique</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Le quotidien d'un épicier · §02</p>
+        <p class="copy head">Vous vous <em>reconnaissez</em> ?</p>
+        <p class="copy sub">Ces défis, on les connaît bien. On travaille avec des épiceries fines au quotidien pour simplifier leur gestion et leur faire gagner un temps précieux.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 12px;">
+          <div><strong style="color: var(--olive); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">01 / Invisible en ligne</strong><br /><span style="font-size: 0.94rem;">Vous n'avez pas de site, ou un site qui ne vous représente plus : vos clients ne vous trouvent pas sur internet.</span></div>
+          <div><strong style="color: var(--olive); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">02 / Outils dispersés</strong><br /><span style="font-size: 0.94rem;">Gestion des stocks, DLC, prises de commandes… Vous jonglez entre des outils coûteux qui ne communiquent pas.</span></div>
+          <div><strong style="color: var(--olive); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">03 / Tâches chronophages</strong><br /><span style="font-size: 0.94rem;">Des saisies papier, des inventaires fastidieux, des processus répétitifs qui mériteraient d'être digitalisés.</span></div>
+          <div><strong style="color: var(--olive); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em;">04 / Ventes dormantes</strong><br /><span style="font-size: 0.94rem;">Vous avez la sensation de ne pas exploiter pleinement vos réseaux ou votre fichier client pour animer la boutique.</span></div>
+        </div>
+
+        <div class="ask"><strong>Validation rapide :</strong> on garde ces 4 ? Tu en as un 5e qui revient souvent en RDV de qualif épicerie ?</div>
+      </div>
+    </article>
+
+    <!-- §03 SERVICES ÉPICERIE -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§03</span>
+        <span class="block-title">Solutions pensées pour les épiceries fines</span>
+        <span class="block-meta">3 cartes services</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Nos solutions · §03</p>
+        <p class="copy head">Trois outils, <em>un seul artisan</em>.</p>
+        <p class="copy sub">De la création de site internet épicerie fine au logiciel sur-mesure : un accompagnement complet pour la digitalisation des épiceries fines en France.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 14px;">
+          <div><strong style="color: var(--ink);">Site sur mesure</strong> · <em style="color: var(--olive); font-style: normal; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em;">À PARTIR DE 500€</em><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Présentation de vos services, de vos produits, e-commerce et click &amp; collect — une présence en ligne élégante, à votre image, qui rassure vos clients.</span></div>
+          <div><strong style="color: var(--ink);">Application sur mesure</strong> · <em style="color: var(--olive); font-style: normal; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em;">WEB &amp; MOBILE</em><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Besoin d'un outil que personne n'a encore créé pour faciliter votre quotidien ? C'est le cœur de notre métier.</span></div>
+          <div><strong style="color: var(--ink);">Automatisations &amp; intégrations</strong> · <em style="color: var(--olive); font-style: normal; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em;">GAIN DE TEMPS</em><br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Reliez vos outils entre eux, éliminez les double-saisies, récupérez du temps sur les tâches répétitives.</span></div>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> on garde la mention « à partir de 500€ » sur le site ? Ça donne un repère, mais ça peut aussi écraser les projets plus ambitieux.</div>
+      </div>
+    </article>
+
+    <!-- §04 TRACEO (app DLC) -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§04</span>
+        <span class="block-title">Traceo — notre application maison</span>
+        <span class="block-meta">Hero produit</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text" style="color: var(--olive);">Notre application maison · §04</p>
+        <p class="copy head">Ne laissez plus<br />périmer vos <em>marges</em>.</p>
+        <p class="copy sub">La première application de gestion des DLC pensée pour les épiceries fines. Elle vous libère de l'administratif pour vous recentrer sur le conseil et la vente.</p>
+        <p class="copy sub" style="margin-top: 12px;">Avant de créer des solutions sur mesure pour nos clients, on les construit aussi pour le terrain. Cette application aide déjà plus de <strong>50 épiceries fines</strong> à suivre leurs produits, anticiper les pertes et libérer du temps en boutique.</p>
+        <p class="copy mono" style="margin-top: 14px; color: var(--ink-soft);">CTA : « En savoir plus sur Traceo » · vers /traceo</p>
+
+        <div class="ask"><strong>Note :</strong> copy actuelle solide. Question : tu veux qu'on rebatize l'app au passage, ou « Traceo » reste le nom retenu ?</div>
+      </div>
+    </article>
+
+    <!-- §05 AGENCE / QUI -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§05</span>
+        <span class="block-title">Qui sommes-nous — la preuve par le secteur</span>
+        <span class="block-meta">Trust block</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text">Qui sommes-nous · §05</p>
+        <p class="copy head">Une agence qui a fait ses <em>preuves</em><br />dans votre secteur.</p>
+        <p class="copy sub">LaunchPad Factory est une agence digitale française, spécialisée dans l'accompagnement des épiceries fines indépendantes. On ne fait pas du générique adapté à votre métier — on a appris votre métier, et on construit en conséquence.</p>
+
+        <div class="ask"><strong>À ajouter idéalement :</strong> 1 ou 2 témoignages clients (épicerie). Même 2 phrases + un prénom + un nom de boutique. C'est ce qui transforme un visiteur intéressé en lead qualifié.</div>
+      </div>
+    </article>
+
+    <!-- §06 RESSOURCES -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§06</span>
+        <span class="block-title">Ressources gratuites — lead magnets</span>
+        <span class="block-meta">Conversion soft</span>
+      </header>
+      <div class="block-body">
+        <p class="copy eyebrow-text" style="color: var(--olive);">Ressources gratuites · §06</p>
+        <p class="copy head">Pas encore prêt ?<br /><em>Commencez ici</em>.</p>
+        <p class="copy sub">Recevez gratuitement l'une de nos ressources pensées pour les épiceries fines. Des conseils concrets, sans jargon, à appliquer rapidement selon votre priorité du moment.</p>
+
+        <div style="margin-top: 22px; display: grid; gap: 14px;">
+          <div><strong style="color: var(--ink);">Guide #01 — LinkedIn &amp; paniers gourmands</strong> · 24 pages<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Attirer des clients professionnels en moins d'une semaine.</span></div>
+          <div><strong style="color: var(--ink);">Guide #02 — Email marketing en épicerie fine</strong> · 32 pages<br /><span style="font-size: 0.94rem; color: var(--ink-soft);">Fidéliser vos clients et générer plus de ventes.</span></div>
+        </div>
+
+        <div class="ask"><strong>Note :</strong> copy existante validée. On garde tel quel. Si tu sors un 3e guide, on l'ajoutera.</div>
+      </div>
+    </article>
+
+    <!-- §07 PROCESSUS -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§07</span>
+        <span class="block-title">Comment ça se passe — méthode 4 étapes</span>
+        <span class="block-meta">Réutilise §05 page agence</span>
+      </header>
+      <div class="block-body">
+        <p class="copy sub" style="margin: 0;"><strong>Identique à la page agence (§05 Notre approche)</strong> — 30 min discussion · 5 jours cadrage · suivi hebdo · sur la durée. Pas besoin de divergence.</p>
+      </div>
+    </article>
+
+    <!-- §08 CTA FINAL -->
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§08</span>
+        <span class="block-title">CTA final — la conclusion émotionnelle</span>
+        <span class="block-meta">Avant footer</span>
+      </header>
+      <div class="block-body">
+        <p class="copy head">Votre épicerie mérite<br />une présence à la <em>hauteur</em> de vos produits.</p>
+        <p class="copy sub">Prenez 30 minutes pour en parler avec nous. C'est gratuit, sans engagement, et vous repartez avec des idées concrètes — même si on ne travaille pas ensemble.</p>
+        <p class="copy mono" style="margin-top: 14px; color: var(--ink-soft);">CTA : « Réserver mon appel découverte »</p>
+
+        <div class="ask"><strong>Note :</strong> phrase la plus forte de la page actuelle. On la garde mot pour mot, c'est trop bien tourné pour y toucher.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════ 05 · TEMPLATE ARTICLE ═══════════════ -->
+<section id="article">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">05 — Template article</span>
+      <h2>Le carnet — <em class="it">structure éditoriale</em>.</h2>
+      <p class="lead">Template de page article unique pour ton « Carnet » (blog). La même structure pour les contenus agence et épicerie — on adapte juste l'accent de couleur selon la rubrique.</p>
+    </div>
+
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§A</span>
+        <span class="block-title">Header article</span>
+        <span class="block-meta">Structure</span>
+      </header>
+      <div class="block-body">
+        <div style="display: grid; gap: 12px;">
+          <div><strong style="color: var(--ink);">Eyebrow</strong> · <span style="font-family: var(--mono); font-size: 0.86rem;">§ Carnet · catégorie · date</span></div>
+          <div><strong style="color: var(--ink);">Titre</strong> · Bricolage Grotesque 700, italique Instrument Serif sur le mot-clé</div>
+          <div><strong style="color: var(--ink);">Sous-titre / chapô</strong> · Geist 18px, lead, max 2 phrases</div>
+          <div><strong style="color: var(--ink);">Métadonnées</strong> · Auteur · Temps de lecture (« 4 min ») · Catégorie</div>
+          <div><strong style="color: var(--ink);">Image hero</strong> · 16/9, plein cadre, légende en mono</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§B</span>
+        <span class="block-title">Corps de l'article</span>
+        <span class="block-meta">Lecture longue</span>
+      </header>
+      <div class="block-body">
+        <div style="display: grid; gap: 12px;">
+          <div><strong style="color: var(--ink);">Largeur</strong> · 720px max (lecture confortable)</div>
+          <div><strong style="color: var(--ink);">Type body</strong> · Geist 18px, line-height 1.65</div>
+          <div><strong style="color: var(--ink);">Headings dans le corps</strong> · h2 Bricolage 32px, h3 Bricolage 22px</div>
+          <div><strong style="color: var(--ink);">Citations</strong> · Instrument Serif italique 24px, barre orange à gauche, ou pleine bande crème</div>
+          <div><strong style="color: var(--ink);">Code / mono</strong> · Geist Mono, bloc cream, padding</div>
+          <div><strong style="color: var(--ink);">Listes</strong> · puces orange (ou olive si article épicerie)</div>
+          <div><strong style="color: var(--ink);">Images intermédiaires</strong> · plein cadre, légende mono dessous</div>
+          <div><strong style="color: var(--ink);">Tableaux</strong> · simples, bordures lignes</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="block">
+      <header class="block-head">
+        <span class="block-num">§C</span>
+        <span class="block-title">Footer article</span>
+        <span class="block-meta">Conversion + bonding</span>
+      </header>
+      <div class="block-body">
+        <div style="display: grid; gap: 12px;">
+          <div><strong style="color: var(--ink);">Bloc auteur</strong> · Avatar + nom + 2 lignes de bio + lien LinkedIn</div>
+          <div><strong style="color: var(--ink);">CTA contextuel</strong> · Si article agence : « Vous avez un projet ? Discutons-en. » · Si article épicerie : « Vous tenez une épicerie ? Voici nos ressources. »</div>
+          <div><strong style="color: var(--ink);">Articles liés</strong> · 3 cartes en bas (même structure que showroom card)</div>
+          <div><strong style="color: var(--ink);">Newsletter inline</strong> · Optionnel — 1 champ email + bouton</div>
+        </div>
+
+        <div class="ask"><strong>À valider :</strong> tu as déjà un système de blog en place (le repo a un dossier <code style="font-family: var(--mono); background: var(--cream); padding: 1px 6px; border-radius: 3px;">epiceries/articles/</code>) ? On garde la même structure de fichiers, ou tu veux qu'on bascule sur un CMS ?</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════ 06 · NOMS D'OFFRES ═══════════════ -->
+<section id="offres">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">06 — Naming des offres</span>
+      <h2>Trois options de naming, <em class="it">à trancher</em>.</h2>
+      <p class="lead">Les noms qu'on utilise pour tes 4 « pratiques » sur la page agence. Trois grammaires possibles — du plus descriptif au plus poétique.</p>
+    </div>
+
+    <div class="voice">
+      <div class="voice-card do">
+        <h3><span class="tag">OPTION A</span>Descriptif & clair</h3>
+        <ul>
+          <li><span><strong>Sites & e-commerce</strong></span></li>
+          <li><span><strong>Applications mobiles</strong></span></li>
+          <li><span><strong>Automatisations & intégrations</strong></span></li>
+          <li><span><strong>Email marketing & GMB</strong></span></li>
+        </ul>
+        <p style="font-size: 0.86rem; color: var(--ink-soft); margin-top: 12px; margin-bottom: 0;">SEO friendly, sans surprise, parfait pour les non-initiés. <em style="color: var(--olive);">Risque : un peu plat.</em></p>
+      </div>
+
+      <div class="voice-card do">
+        <h3><span class="tag">OPTION B</span>Court & confiant</h3>
+        <ul>
+          <li><span><strong>Web</strong></span></li>
+          <li><span><strong>Mobile</strong></span></li>
+          <li><span><strong>Automatisation</strong></span></li>
+          <li><span><strong>Marketing</strong></span></li>
+        </ul>
+        <p style="font-size: 0.86rem; color: var(--ink-soft); margin-top: 12px; margin-bottom: 0;">Studio premium qui assume la concision. <em style="color: var(--olive);">Risque : demande à être éclairci au survol / sur la page détail.</em></p>
+      </div>
+
+      <div class="voice-card do">
+        <h3><span class="tag">OPTION C</span>Atelier & métier</h3>
+        <ul>
+          <li><span><strong>L'atelier web</strong></span></li>
+          <li><span><strong>L'atelier mobile</strong></span></li>
+          <li><span><strong>L'atelier d'orfèvre</strong> · automatisation</span></li>
+          <li><span><strong>L'atelier de mise en lumière</strong> · marketing</span></li>
+        </ul>
+        <p style="font-size: 0.86rem; color: var(--ink-soft); margin-top: 12px; margin-bottom: 0;">Le plus signé, aligné avec « fait main ». <em style="color: var(--olive);">Risque : plus poétique, plus risqué pour la cible B2B très pragmatique.</em></p>
+      </div>
+
+      <div class="voice-card dont">
+        <h3><span class="tag">MA RECO</span>Option B + tooltip</h3>
+        <ul>
+          <li><span>On utilise <strong>l'Option B</strong> en titre de carte (Web · Mobile · Auto · Marketing)</span></li>
+          <li><span>On ajoute le détail Option A en sous-titre de carte</span></li>
+          <li><span>Et on garde la grammaire « L'atelier » de l'Option C pour la section process (§05)</span></li>
+        </ul>
+        <p style="font-size: 0.86rem; color: var(--ink-soft); margin-top: 12px; margin-bottom: 0;"><strong>Best of three worlds.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 07 · QUESTIONS OUVERTES ═══════════════ -->
+<section id="questions" class="no-border">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">07 — Questions ouvertes</span>
+      <h2>Ce qu'il me <em class="it">manque</em> pour finir.</h2>
+      <p class="lead">Récapitulatif des points à valider de ton côté. Tu peux y répondre dans l'ordre, ou en vrac. Une fois ces points clarifiés, je passe à l'intégration HTML des 2 pages.</p>
+    </div>
+
+    <div class="ask-final">
+      <span class="eyebrow" style="color: var(--orange);">À me retourner</span>
+      <h2>Sept <em>derniers points</em>.</h2>
+      <p>Réponds à ce que tu peux. Pour le reste je te ferai une proposition que tu valideras.</p>
+
+      <ol>
+        <li>
+          <strong>Tes 3 case studies pour le Showroom agence</strong>
+          <span>Nom (réel ou anonymisé), 1 phrase de description, 1 résultat mesurable. C'est la section la plus puissante de la page — il me faut du concret.</span>
+        </li>
+        <li>
+          <strong>1-2 témoignages clients pour la page épicerie</strong>
+          <span>2-3 phrases + prénom + nom de boutique + ville. Même anonymisé (« Sophie, épicerie parisienne »), ça transforme la conversion.</span>
+        </li>
+        <li>
+          <strong>Tes vrais chiffres</strong>
+          <span>+50 projets / 3 apps / 24h de retour — c'est correct ? Sinon donne-moi les vrais. Et confirme : 100% du code est-il bien fait en France (pas de sous-traitance offshore) ?</span>
+        </li>
+        <li>
+          <strong>Le naming des offres</strong>
+          <span>Tu valides ma reco (Option B en titre, Option A en sous-titre) ? Ou tu préfères trancher pour une option pure ?</span>
+        </li>
+        <li>
+          <strong>Tagline de fin (CTA final agence)</strong>
+          <span>« Un projet en tête ? Parlons-en. » OU « Votre projet mérite un atelier qui en prend soin. » OU « Prêt à reprendre la main sur votre outil ? » — laquelle ?</span>
+        </li>
+        <li>
+          <strong>Coordonnées publiques</strong>
+          <span>Adresse postale, email public, comptes LinkedIn / Instagram. Pour le footer.</span>
+        </li>
+        <li>
+          <strong>Question Traceo</strong>
+          <span>On garde le nom « Traceo », ou tu veux qu'on en profite pour réfléchir à un autre naming aligné avec la nouvelle marque ?</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-footer">
+  <div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; width: 100%;">
+    <span>LaunchPad Factory · Wording & contenu · Doc 04</span>
+    <span>24.05.2026 — v0.1 · à valider</span>
+  </div>
+</footer>
+
+</body>
+</html>

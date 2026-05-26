@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit & méthodologie · LaunchPad Factory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #162235;
+    --navy-90: #1d2c43;
+    --navy-60: #5a6478;
+    --secondary: #8A6A57;
+    --accent: #B78A3D;
+    --accent-soft: #d8b878;
+    --bg: #F7F3EE;
+    --bg-alt: #EEE6DD;
+    --paper: #fdfaf5;
+    --text: #1C1C1C;
+    --text-soft: #5F5A55;
+    --line: rgba(22, 34, 53, 0.10);
+    --line-strong: rgba(22, 34, 53, 0.22);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* Site générique tokens (extracted) */
+  :root {
+    --gen-orange: #ff603a;
+    --gen-light-orange: #fdc091;
+    --gen-magenta: #c90bf1;
+    --gen-pink: #f46795;
+    --gen-salmon: #f88c71;
+    --gen-green: #caf971;
+    --gen-purple: #b7ade8;
+    --gen-blue: #233af8;
+    --gen-bg: #f3f8f9;
+    --gen-ink: #1f1f1f;
+    --gen-gray: #8e9088;
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { display: block; max-width: 100%; }
+
+  /* Layout primitives */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .wrap-tight { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 96px 0; }
+  section + section { border-top: 1px solid var(--line); }
+
+  /* Type */
+  h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); font-weight: 600; letter-spacing: -0.012em; margin: 0; line-height: 1.15; }
+  h1 { font-size: clamp(2.6rem, 5.2vw, 4.4rem); font-weight: 700; }
+  h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
+  h3 { font-size: 1.25rem; font-weight: 600; }
+  h4 { font-size: 0.78rem; font-family: var(--sans); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-soft); }
+  p { margin: 0 0 1em; color: var(--text-soft); text-wrap: pretty; }
+  .lead { font-size: 1.18rem; line-height: 1.55; color: var(--navy-90); }
+  .ital { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--navy); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--accent);
+  }
+
+  .mono { font-family: var(--mono); font-size: 0.82rem; }
+
+  /* === COVER === */
+  .cover {
+    position: relative;
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 56px 0 80px;
+    background:
+      radial-gradient(ellipse at top right, rgba(183,138,61,0.10), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(138,106,87,0.08), transparent 50%),
+      var(--bg);
+    border-top: none;
+  }
+  .cover-top { display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: var(--navy); }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--navy);
+    position: relative;
+  }
+  .brand-mark::after {
+    content: ''; position: absolute; inset: 8px;
+    background: var(--accent); border-radius: 50%;
+  }
+  .doc-meta {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-soft);
+    letter-spacing: 0.04em;
+  }
+  .cover-main { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: end; }
+  @media (min-width: 900px) { .cover-main { grid-template-columns: 1.6fr 1fr; gap: 80px; } }
+  .cover-title small { display: block; font-family: var(--sans); font-size: 0.86rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 24px; }
+  .cover-title h1 { margin-bottom: 28px; }
+  .cover-title h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .cover-title .lead { max-width: 560px; }
+  .cover-side {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+  }
+  .cover-side dl { margin: 0; display: grid; gap: 18px; }
+  .cover-side dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 4px; }
+  .cover-side dd { margin: 0; color: var(--navy); font-weight: 500; font-size: 0.96rem; }
+
+  /* Index / TOC */
+  .toc {
+    margin-top: 64px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .toc a {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 24px 28px 24px 0;
+    text-decoration: none; color: var(--navy);
+    border-right: 1px solid var(--line);
+    transition: background 200ms ease;
+  }
+  .toc a:last-child { border-right: none; }
+  .toc a:hover { background: rgba(183,138,61,0.06); }
+  .toc-num { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+  .toc-label { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+
+  /* === Section header === */
+  .sec-head { margin-bottom: 56px; max-width: 760px; }
+  .sec-head h2 { margin-bottom: 18px; }
+
+  /* === Côte à côte === */
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+  }
+  @media (min-width: 900px) { .compare-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .compare-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .compare-head {
+    padding: 24px 26px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .compare-tag {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em;
+    color: var(--text-soft);
+  }
+  .compare-title {
+    font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--navy);
+  }
+  .compare-url {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--accent);
+  }
+  .compare-img-wrap {
+    position: relative;
+    background: #0e1828;
+    flex: 1;
+    overflow: hidden;
+    max-height: 460px;
+  }
+  .compare-img-wrap img {
+    width: 100%; display: block;
+    /* show only top portion */
+    object-fit: cover;
+    object-position: top;
+    height: 460px;
+  }
+  .compare-img-wrap::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0; height: 80px;
+    background: linear-gradient(180deg, transparent, var(--paper));
+    pointer-events: none;
+  }
+  .compare-foot {
+    padding: 22px 26px 24px;
+  }
+  .compare-foot p { margin: 0; font-size: 0.95rem; color: var(--text-soft); }
+  .compare-foot p + p { margin-top: 10px; }
+  .compare-pills {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px;
+  }
+  .pill {
+    font-family: var(--mono); font-size: 0.72rem;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--navy);
+  }
+  .pill-warm { color: #a07930; border-color: rgba(183,138,61,0.4); background: rgba(183,138,61,0.06); }
+  .pill-cool { color: var(--gen-blue); border-color: rgba(35,58,248,0.3); background: rgba(35,58,248,0.04); }
+
+  /* === Token strip === */
+  .tokens {
+    display: grid; grid-template-columns: 1fr; gap: 48px;
+  }
+  @media (min-width: 900px) { .tokens { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .token-col h3 { margin-bottom: 6px; }
+  .token-col h3 + .mono { color: var(--text-soft); margin-bottom: 24px; display: block; }
+
+  .swatches { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 28px; }
+  .swatch {
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .swatch-color {
+    height: 64px;
+    display: flex; align-items: flex-end; padding: 10px 12px;
+    color: rgba(255,255,255,0.85);
+    font-family: var(--mono); font-size: 0.72rem;
+  }
+  .swatch-color.is-light { color: rgba(0,0,0,0.6); }
+  .swatch-meta { padding: 10px 12px; }
+  .swatch-name { font-size: 0.82rem; color: var(--navy); font-weight: 600; }
+  .swatch-hex { font-family: var(--mono); font-size: 0.72rem; color: var(--text-soft); }
+
+  .type-sample {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+  }
+  .type-sample .label {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--text-soft);
+    margin-bottom: 12px;
+  }
+  .type-sample .demo { color: var(--navy); margin: 0; line-height: 1.15; }
+
+  /* === Diagnostic === */
+  .diag-grid {
+    display: grid; grid-template-columns: 1fr; gap: 16px;
+  }
+  @media (min-width: 700px) { .diag-grid { grid-template-columns: repeat(3, 1fr); } }
+  .diag-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 26px;
+    display: flex; flex-direction: column;
+  }
+  .diag-tag {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    padding: 5px 10px; border-radius: 6px;
+    margin-bottom: 18px;
+  }
+  .diag-keep { background: rgba(125, 155, 118, 0.18); color: #4d6948; }
+  .diag-drop { background: rgba(192, 57, 43, 0.10); color: #8e2a1e; }
+  .diag-merge { background: rgba(183,138,61,0.14); color: #80601f; }
+  .diag-card h3 { margin-bottom: 12px; font-family: var(--serif); }
+  .diag-card ul { padding: 0; margin: 0; list-style: none; }
+  .diag-card li {
+    padding: 10px 0;
+    font-size: 0.94rem;
+    color: var(--text);
+    border-top: 1px solid var(--line);
+  }
+  .diag-card li:first-child { border-top: none; padding-top: 0; }
+  .diag-card li strong { color: var(--navy); font-weight: 600; }
+
+  /* === Hypothèse / DS preview === */
+  .ds-preview {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (min-width: 1000px) { .ds-preview { grid-template-columns: 1fr 1fr; gap: 56px; } }
+  .ds-preview h3 { font-size: 1.4rem; margin-bottom: 16px; }
+
+  .palette-row { display: flex; gap: 8px; margin-bottom: 24px; }
+  .palette-row .chip {
+    flex: 1; height: 56px; border-radius: 10px;
+    display: flex; align-items: flex-end; padding: 8px;
+    font-family: var(--mono); font-size: 0.66rem;
+  }
+  .palette-row .chip.light { color: rgba(0,0,0,0.5); }
+  .palette-row .chip.dark { color: rgba(255,255,255,0.7); }
+
+  .ds-meta {
+    display: grid; grid-template-columns: auto 1fr; gap: 12px 20px;
+    font-size: 0.9rem;
+  }
+  .ds-meta dt { font-family: var(--mono); font-size: 0.74rem; color: var(--text-soft); padding-top: 3px; }
+  .ds-meta dd { margin: 0; color: var(--navy); }
+
+  /* Mini component demos */
+  .mini-demos { display: flex; flex-direction: column; gap: 20px; }
+  .demo-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 999px;
+    font-family: var(--sans); font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; border: 1.5px solid transparent;
+  }
+  .demo-btn-primary { background: var(--navy); color: #fff; }
+  .demo-btn-accent { background: var(--accent); color: #fff; }
+  .demo-btn-outline { color: var(--navy); border-color: var(--navy); }
+  .demo-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .demo-card-mock {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(22,34,53,0.08);
+  }
+  .demo-card-mock .icon-sq {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--navy); color: var(--accent-soft);
+    display: grid; place-items: center; margin-bottom: 14px;
+    font-family: var(--serif); font-weight: 700;
+  }
+  .demo-card-mock h4 { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; text-transform: none; margin-bottom: 6px; }
+  .demo-card-mock p { font-size: 0.88rem; margin: 0; }
+
+  /* === Roadmap === */
+  .roadmap { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 800px) { .roadmap { grid-template-columns: 1fr; } }
+  .step {
+    display: grid; grid-template-columns: 80px 1fr auto; gap: 24px;
+    align-items: center;
+    padding: 28px 32px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    position: relative;
+    transition: transform 240ms ease, border-color 240ms ease;
+  }
+  .step:hover { transform: translateY(-2px); border-color: rgba(183,138,61,0.35); }
+  .step-num {
+    font-family: var(--serif); font-style: italic; font-size: 2.6rem; color: var(--accent);
+    line-height: 1;
+  }
+  .step-body h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 6px; }
+  .step-body p { margin: 0; font-size: 0.96rem; }
+  .step-meta {
+    text-align: right;
+    font-family: var(--mono); font-size: 0.74rem; color: var(--text-soft);
+    white-space: nowrap;
+  }
+  .step-meta strong { color: var(--accent); display: block; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; }
+  .step.current { background: linear-gradient(135deg, #fffdf7 0%, var(--paper) 100%); border-color: rgba(183,138,61,0.4); }
+  .step.current::before {
+    content: 'ACTUEL';
+    position: absolute; top: -10px; left: 24px;
+    font-family: var(--mono); font-size: 0.66rem;
+    background: var(--navy); color: var(--accent-soft);
+    padding: 3px 10px; border-radius: 4px; letter-spacing: 0.12em;
+  }
+
+  /* === Deliverables === */
+  .deliv-grid {
+    display: grid; grid-template-columns: 1fr; gap: 14px;
+  }
+  @media (min-width: 800px) { .deliv-grid { grid-template-columns: 1fr 1fr; } }
+  .deliv {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 22px 24px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--paper);
+  }
+  .deliv-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--bg-alt);
+    color: var(--accent);
+    display: grid; place-items: center;
+    font-family: var(--serif); font-weight: 700;
+  }
+  .deliv h3 { font-family: var(--serif); font-size: 1.08rem; margin-bottom: 4px; }
+  .deliv p { margin: 0; font-size: 0.9rem; }
+
+  /* === Next action === */
+  .next-action {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 22px;
+    padding: 56px 48px;
+    display: grid; grid-template-columns: 1fr; gap: 32px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 800px) { .next-action { grid-template-columns: 1fr auto; gap: 48px; padding: 64px 56px; } }
+  .next-action::before {
+    content: '';
+    position: absolute;
+    inset: -100px -100px auto auto;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(183,138,61,0.22), transparent 70%);
+    pointer-events: none;
+  }
+  .next-action h2 { color: #fff; margin-bottom: 12px; }
+  .next-action h2 em { color: var(--accent-soft); font-style: italic; font-weight: 500; }
+  .next-action p { color: rgba(255,255,255,0.78); margin: 0; max-width: 540px; font-size: 1.02rem; }
+  .next-action .demo-btn-accent { padding: 16px 28px; font-size: 1rem; box-shadow: 0 8px 24px rgba(183,138,61,0.35); }
+
+  /* Footer */
+  footer {
+    padding: 48px 0 64px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-soft);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+
+  /* Inline accent */
+  .accent-text { color: var(--accent); font-weight: 600; }
+  .navy-text { color: var(--navy); font-weight: 600; }
+
+  /* Small text utilities */
+  .footnote { font-size: 0.82rem; color: var(--text-soft); border-left: 2px solid var(--accent); padding-left: 14px; margin-top: 24px; font-style: italic; font-family: var(--serif); }
+</style>
+</head>
+<body>
+
+<!-- =================== COVER =================== -->
+<header class="cover" data-screen-label="01 Cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <span class="brand"><span class="brand-mark"></span>LaunchPad Factory</span>
+      <span class="doc-meta">DOC 01 · AUDIT · 20.05.2026</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cover-main">
+      <div class="cover-title">
+        <small>Refonte du design system</small>
+        <h1>Deux sites, une<br><em>seule voix visuelle</em> à inventer.</h1>
+        <p class="lead">Vous avez deux landing pages — une agence générique, une dédiée aux épiceries fines — qui ne parlent pas le même langage. Ce document pose les bases d'un design system unifié, en partant de ce qui existe déjà dans votre code.</p>
+      </div>
+      <aside class="cover-side">
+        <dl>
+          <div><dt>Client</dt><dd>LaunchPad Factory</dd></div>
+          <div><dt>Périmètre</dt><dd>2 homepages + DS</dd></div>
+          <div><dt>Direction</dt><dd>Artisanale, soignée</dd></div>
+          <div><dt>Base dominante</dt><dd>Site épiceries fines</dd></div>
+          <div><dt>Variations à explorer</dt><dd>3 directions</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <nav class="toc" aria-label="Sommaire">
+      <a href="#diagnostic">
+        <span class="toc-num">02</span>
+        <span class="toc-label">État des lieux</span>
+      </a>
+      <a href="#tokens">
+        <span class="toc-num">03</span>
+        <span class="toc-label">Tokens extraits</span>
+      </a>
+      <a href="#convergence">
+        <span class="toc-num">04</span>
+        <span class="toc-label">Convergence</span>
+      </a>
+      <a href="#hypothese">
+        <span class="toc-num">05</span>
+        <span class="toc-label">Hypothèse de DS</span>
+      </a>
+      <a href="#roadmap">
+        <span class="toc-num">06</span>
+        <span class="toc-label">Feuille de route</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- =================== ÉTAT DES LIEUX =================== -->
+<section id="diagnostic" data-screen-label="02 État des lieux">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">02 — État des lieux</span>
+      <h2>Côte à côte, le constat est sans appel : ce sont <span class="ital">deux marques</span>, pas une.</h2>
+      <p class="lead">Quand un même visiteur passe de l'un à l'autre, rien ne dit que c'est la même agence. Palette, typo, ton, traitement de l'imagerie, structure des sections — tout diverge. Voilà précisément ce qu'on a sous les yeux.</p>
+    </div>
+
+    <div class="compare-grid">
+
+      <article class="compare-card">
+        <header class="compare-head">
+          <span class="compare-tag">SITE 01 · AGENCE GÉNÉRIQUE</span>
+          <span class="compare-title">launchpadfactory.webflow.io</span>
+          <span class="compare-url">webflow-export/index.html · develop</span>
+        </header>
+        <div class="compare-img-wrap">
+          <img src="assets/site-agence-current.png" alt="Capture du site agence générique">
+        </div>
+        <footer class="compare-foot">
+          <p><strong style="color:var(--navy)">Ton :</strong> vibrant, créatif, énergique, vaguement « agence créa » — gradient orange/magenta omniprésent, typo manuscrite (Kalam) pour signer, illustrations 3D abstraites.</p>
+          <p><strong style="color:var(--navy)">Cible perçue :</strong> startups en quête de vitesse, pas un commerçant artisanal.</p>
+          <div class="compare-pills">
+            <span class="pill" style="background:#ff603a;color:#fff;border-color:#ff603a">#ff603a orange</span>
+            <span class="pill" style="background:#c90bf1;color:#fff;border-color:#c90bf1">#c90bf1 magenta</span>
+            <span class="pill" style="background:#233af8;color:#fff;border-color:#233af8">#233af8 deep blue</span>
+            <span class="pill">Satoshi + Kalam</span>
+            <span class="pill">Gradients agressifs</span>
+          </div>
+        </footer>
+      </article>
+
+      <article class="compare-card">
+        <header class="compare-head">
+          <span class="compare-tag">SITE 02 · ÉPICERIES FINES</span>
+          <span class="compare-title">launchpadfactory.fr</span>
+          <span class="compare-url">epiceries/index.html · main</span>
+        </header>
+        <div class="compare-img-wrap">
+          <img src="assets/site-epiceries-current.png" alt="Capture du site épiceries fines">
+        </div>
+        <footer class="compare-foot">
+          <p><strong style="color:var(--navy)">Ton :</strong> éditorial, premium, posé, presque magazine — palette crème/navy/or, Playfair en titre, photographie de boutique en hero, hiérarchie claire.</p>
+          <p><strong style="color:var(--navy)">Cible perçue :</strong> commerçant exigeant, artisan, propriétaire d'épicerie fine.</p>
+          <div class="compare-pills">
+            <span class="pill" style="background:#162235;color:#fff;border-color:#162235">#162235 navy</span>
+            <span class="pill" style="background:#B78A3D;color:#fff;border-color:#B78A3D">#B78A3D or</span>
+            <span class="pill" style="background:#F7F3EE;color:#1c1c1c">#F7F3EE crème</span>
+            <span class="pill">Playfair + DM Sans</span>
+            <span class="pill">Photo · Texture</span>
+          </div>
+        </footer>
+      </article>
+
+    </div>
+
+    <p class="footnote">Note : les tokens listés ci-dessus sont extraits <strong>tels quels</strong> de vos fichiers CSS (<code>webflow-export/css/launchpadfactory.webflow.css</code> et <code>epiceries/style.css</code>), pas devinés à l'œil.</p>
+  </div>
+</section>
+
+<!-- =================== TOKENS EXTRAITS =================== -->
+<section id="tokens" data-screen-label="03 Tokens">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — Tokens extraits du code</span>
+      <h2>Ce que vos fichiers de style disent, <span class="ital">vraiment.</span></h2>
+      <p class="lead">L'audit ne se fait pas à l'œil : voilà les variables CSS réelles, lues depuis vos deux codebases.</p>
+    </div>
+
+    <div class="tokens">
+
+      <!-- Site agence -->
+      <div class="token-col">
+        <h3>Site agence · launchpadfactory.webflow.io</h3>
+        <span class="mono">webflow-export/css/launchpadfactory.webflow.css · :root</span>
+
+        <h4 style="margin-bottom: 14px;">Palette — 13 couleurs</h4>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#ff603a">#ff603a</div>
+            <div class="swatch-meta"><div class="swatch-name">orange</div><div class="swatch-hex">--link / --orange</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#fdc091">#fdc091</div>
+            <div class="swatch-meta"><div class="swatch-name">light-orange</div><div class="swatch-hex">--light-orange</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#c90bf1">#c90bf1</div>
+            <div class="swatch-meta"><div class="swatch-name">magenta</div><div class="swatch-hex">--magenta</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#f46795">#f46795</div>
+            <div class="swatch-meta"><div class="swatch-name">pink</div><div class="swatch-hex">--pink</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#caf971">#caf971</div>
+            <div class="swatch-meta"><div class="swatch-name">green</div><div class="swatch-hex">--green</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#233af8">#233af8</div>
+            <div class="swatch-meta"><div class="swatch-name">deep-blue</div><div class="swatch-hex">--deep-blue</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#f3f8f9">#f3f8f9</div>
+            <div class="swatch-meta"><div class="swatch-name">bg</div><div class="swatch-hex">--bg</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1f1f1f">#1f1f1f</div>
+            <div class="swatch-meta"><div class="swatch-name">font-color</div><div class="swatch-hex">--font-color</div></div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom: 14px;">Typographie</h4>
+        <div class="type-sample">
+          <div class="label"><span>Satoshi Variable</span><span>500 · body 18px</span></div>
+          <p class="demo" style="font-family:'DM Sans', sans-serif; font-weight:500;">Accélérez votre croissance digitale grâce à des solutions sur-mesure.</p>
+        </div>
+        <div class="type-sample">
+          <div class="label"><span>Kalam Bold</span><span>700 · display ~80px</span></div>
+          <p class="demo" style="font-family:'Caveat', cursive; font-weight:700; font-size: 2.4rem; color: var(--gen-orange);">Savoir-faire</p>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.9rem;"><strong class="navy-text">Lecture :</strong> palette « créa-tech » saturée et désordonnée (13 couleurs sans hiérarchie claire). Le mélange Satoshi + Kalam tente la chaleur, mais Kalam tombe en signature gimmick.</p>
+      </div>
+
+      <!-- Site épicerie -->
+      <div class="token-col">
+        <h3>Site épiceries · launchpadfactory.fr</h3>
+        <span class="mono">epiceries/style.css · :root</span>
+
+        <h4 style="margin-bottom: 14px;">Palette — 8 couleurs, hiérarchisées</h4>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#162235">#162235</div>
+            <div class="swatch-meta"><div class="swatch-name">primary</div><div class="swatch-hex">--c-primary</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#8A6A57">#8A6A57</div>
+            <div class="swatch-meta"><div class="swatch-name">secondary</div><div class="swatch-hex">--c-secondary</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#B78A3D">#B78A3D</div>
+            <div class="swatch-meta"><div class="swatch-name">accent</div><div class="swatch-hex">--c-accent</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#d8b878">#d8b878</div>
+            <div class="swatch-meta"><div class="swatch-name">accent-soft</div><div class="swatch-hex">--c-accent-soft</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#F7F3EE">#F7F3EE</div>
+            <div class="swatch-meta"><div class="swatch-name">bg</div><div class="swatch-hex">--c-bg</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color is-light" style="background:#EEE6DD">#EEE6DD</div>
+            <div class="swatch-meta"><div class="swatch-name">bg-alt</div><div class="swatch-hex">--c-bg-alt</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#7D9B76">#7D9B76</div>
+            <div class="swatch-meta"><div class="swatch-name">success</div><div class="swatch-hex">--c-success</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1C1C1C">#1C1C1C</div>
+            <div class="swatch-meta"><div class="swatch-name">text</div><div class="swatch-hex">--c-text</div></div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom: 14px;">Typographie</h4>
+        <div class="type-sample">
+          <div class="label"><span>DM Sans</span><span>400/500/600 · body 17px</span></div>
+          <p class="demo" style="font-family:'DM Sans', sans-serif; font-weight:500;">L'agence digitale qui parle le langage des épiceries fines.</p>
+        </div>
+        <div class="type-sample">
+          <div class="label"><span>Playfair Display</span><span>600/700 · display</span></div>
+          <p class="demo" style="font-family:'Playfair Display', serif; font-weight:700; font-size: 2.4rem; letter-spacing: -0.01em;">Vous reconnaissez-vous ?</p>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 0.9rem;"><strong class="navy-text">Lecture :</strong> palette resserrée et lisible (8 couleurs, rôles clairs). Pairing serif/sans éditorial qui colle au monde des produits artisanaux. <strong class="accent-text">C'est notre base.</strong></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONVERGENCE =================== -->
+<section id="convergence" data-screen-label="04 Convergence">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">04 — Stratégie de convergence</span>
+      <h2>Garder, fusionner, abandonner — <span class="ital">trois piles</span>.</h2>
+      <p class="lead">Plutôt que d'inventer un troisième langage à partir de rien, on trie ce qui existe. Le site épiceries devient la fondation ; le site agence apporte sa dose d'énergie ; les excès partent à la corbeille.</p>
+    </div>
+
+    <div class="diag-grid">
+
+      <article class="diag-card">
+        <span class="diag-tag diag-keep">À GARDER · ÉPICERIE</span>
+        <h3>La base éditoriale</h3>
+        <ul>
+          <li><strong>Palette navy + crème + or</strong> — chaleureuse, premium, immédiatement « artisanale ».</li>
+          <li><strong>Playfair Display</strong> en titre — donne le ton magazine, parfait pour la cible.</li>
+          <li><strong>DM Sans</strong> en texte — lisible, neutre, moderne sans être stérile.</li>
+          <li><strong>Hero photographique</strong> avec overlay sombre — ancrage dans le réel, pas d'abstraction.</li>
+          <li><strong>Architecture des sections</strong> — eyebrow + h2 + lead, rythmée et claire.</li>
+          <li><strong>Tokens nommés par rôle</strong> — <code>--c-primary</code>, <code>--c-accent</code>, pas par couleur.</li>
+        </ul>
+      </article>
+
+      <article class="diag-card">
+        <span class="diag-tag diag-merge">À FUSIONNER · LES DEUX</span>
+        <h3>Ce qui mérite un upgrade</h3>
+        <ul>
+          <li><strong>L'énergie du site agence</strong> — l'épicerie peut paraître sage. On reprend la dose de couleur, mais maîtrisée.</li>
+          <li><strong>Un accent secondaire vif</strong> — un terracotta ou un olive contrôlé, en place du magenta/orange Webflow.</li>
+          <li><strong>Le ton manuscrit de Kalam</strong> — réinterprété via une italique de Playfair, pour signer sans gimmick.</li>
+          <li><strong>Les illustrations</strong> — remplacer les 3D fluides par des compositions photo + typo, ou des illustrations sur mesure plus tactiles.</li>
+          <li><strong>Le composant carte service</strong> — combiner la clarté épicerie avec une vraie hiérarchie visuelle agence.</li>
+        </ul>
+      </article>
+
+      <article class="diag-card">
+        <span class="diag-tag diag-drop">À ABANDONNER · AGENCE</span>
+        <h3>Les excès Webflow</h3>
+        <ul>
+          <li><strong>Les 13 variables de couleur</strong> — magenta, pink, green, deep blue, purple, salmon, dark salmon… il en reste 4 utiles.</li>
+          <li><strong>Le gradient orange/magenta full-bleed</strong> — daté, trop saturé, hors-cible.</li>
+          <li><strong>La police Kalam</strong> — manuscrit qui sonne agence créa 2018.</li>
+          <li><strong>Le « aunchPad » géant tronqué</strong> — joli mais hors-langage du site épicerie.</li>
+          <li><strong>Le hero illustration 3D fluide</strong> — abstrait, désincarné.</li>
+          <li><strong>Le ton injonctif</strong> (« Accélérez votre croissance ») — à remplacer par quelque chose de plus posé.</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================== HYPOTHÈSE DS =================== -->
+<section id="hypothese" data-screen-label="05 Hypothèse">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">05 — Hypothèse de DS unifié</span>
+      <h2>Une <span class="ital">première piste</span>, à confronter ensuite à 2 alternatives.</h2>
+      <p class="lead">Ce qui suit n'est pas la version finale, c'est l'hypothèse de base. À l'étape suivante, je te livrerai 3 directions distinctes — celle-ci, plus deux variantes (palette plus végétale, et palette plus monochrome graphique).</p>
+    </div>
+
+    <div class="ds-preview">
+
+      <div>
+        <h3>Palette · Navy + Crème + Or</h3>
+        <div class="palette-row">
+          <div class="chip dark" style="background:#162235">#162235</div>
+          <div class="chip dark" style="background:#8A6A57">#8A6A57</div>
+          <div class="chip dark" style="background:#B78A3D">#B78A3D</div>
+          <div class="chip light" style="background:#EEE6DD">#EEE6DD</div>
+          <div class="chip light" style="background:#F7F3EE">#F7F3EE</div>
+        </div>
+
+        <h3 style="margin-top: 32px;">Typographie</h3>
+        <dl class="ds-meta">
+          <dt>Display</dt><dd>Playfair Display 600 / 700 — titres, eyebrows en italique</dd>
+          <dt>Body</dt><dd>DM Sans 400 / 500 / 600 — texte courant, UI</dd>
+          <dt>Mono</dt><dd>JetBrains Mono — métadonnées, tags, mentions techniques</dd>
+        </dl>
+
+        <h3 style="margin-top: 32px;">Échelle & rythme</h3>
+        <dl class="ds-meta">
+          <dt>Container</dt><dd>1240 px max</dd>
+          <dt>Section Y</dt><dd>clamp(64px, 9vw, 120px)</dd>
+          <dt>Radii</dt><dd>8 / 14 / 20 / 999px</dd>
+          <dt>Shadows</dt><dd>4 niveaux, légères, teintées navy</dd>
+        </dl>
+      </div>
+
+      <div class="mini-demos">
+        <h3>Composants atomiques</h3>
+
+        <div>
+          <h4 style="margin-bottom: 12px;">Boutons</h4>
+          <div class="demo-row">
+            <a class="demo-btn demo-btn-primary" href="#">Démarrer un projet</a>
+            <a class="demo-btn demo-btn-accent" href="#">Voir nos guides</a>
+            <a class="demo-btn demo-btn-outline" href="#">En savoir plus</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 12px;">Carte service</h4>
+          <div class="demo-card-mock">
+            <div class="icon-sq">★</div>
+            <h4 style="font-family: var(--serif); font-size: 1.1rem; color: var(--navy); text-transform: none; letter-spacing: -0.01em;">Application sur mesure</h4>
+            <p>Besoin d'un outil que ni Excel ni un SaaS standard ne couvrent ? On le conçoit, le développe, le maintient.</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 12px;">Hero — règle</h4>
+          <p style="font-size: 0.92rem; margin: 0;">Photo réelle en fond, overlay navy 65 → 35 %, eyebrow doré, titre Playfair, lead DM Sans. Pas d'illustration 3D, pas de gradient saturé.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================== ROADMAP =================== -->
+<section id="roadmap" data-screen-label="06 Roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">06 — Feuille de route</span>
+      <h2>Cinq étapes, <span class="ital">cinq livrables</span>.</h2>
+      <p class="lead">À chaque étape, un fichier HTML que tu peux ouvrir, commenter, demander à réviser. Pas de boîte noire.</p>
+    </div>
+
+    <div class="roadmap">
+
+      <article class="step current">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Audit & méthodologie</h3>
+          <p>Ce document. Vue d'ensemble, tokens extraits du code, stratégie de convergence et plan de la suite.</p>
+        </div>
+        <div class="step-meta"><strong>Livré</strong>20 mai 2026</div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>3 directions visuelles atomiques</h3>
+          <p>Sur un même canvas, 3 propositions de DS : palette + typo + traitement d'un hero et d'une carte service. Tu choisis, ou tu mixes.</p>
+        </div>
+        <div class="step-meta"><strong>Prochaine étape</strong>1 fichier · canvas</div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Design system unifié & documenté</h3>
+          <p>Tokens définitifs (couleurs, type, espacement, radii, shadows), composants atomiques et patterns composés. Source de vérité.</p>
+        </div>
+        <div class="step-meta"><strong>À venir</strong>1 fichier · DS</div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Home page agence refondue</h3>
+          <p>Application du DS au site générique (ex-launchpadfactory.webflow.io). Code HTML/CSS prêt à intégrer.</p>
+        </div>
+        <div class="step-meta"><strong>À venir</strong>HTML + CSS</div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Home page épiceries refondue</h3>
+          <p>Application du DS au site épiceries (launchpadfactory.fr) — déjà proche, mais on l'aligne au point près.</p>
+        </div>
+        <div class="step-meta"><strong>À venir</strong>HTML + CSS</div>
+      </article>
+
+    </div>
+
+    <div style="margin-top: 64px;">
+      <h4 style="margin-bottom: 20px;">Ce qui est inclus dans le périmètre final</h4>
+      <div class="deliv-grid">
+        <div class="deliv">
+          <div class="deliv-icon">A</div>
+          <div><h3>Maquettes haute fidélité</h3><p>Les 2 homepages refondues, responsive, dans un seul prototype HTML cliquable.</p></div>
+        </div>
+        <div class="deliv">
+          <div class="deliv-icon">B</div>
+          <div><h3>Code HTML / CSS</h3><p>Code propre, commenté, prêt à intégrer dans ton stack actuel (Cloudflare Workers + vanilla).</p></div>
+        </div>
+        <div class="deliv">
+          <div class="deliv-icon">C</div>
+          <div><h3>Design system documenté</h3><p>Un fichier de DS interactif : tokens, composants, règles d'usage, déclinaisons.</p></div>
+        </div>
+        <div class="deliv">
+          <div class="deliv-icon">D</div>
+          <div><h3>Logo & marque (option)</h3><p>Tu m'as dit qu'on pouvait proposer un nouveau logo. À discuter à l'étape 02.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== NEXT ACTION =================== -->
+<section data-screen-label="07 Suite">
+  <div class="wrap">
+    <div class="next-action">
+      <div>
+        <span class="eyebrow" style="color: var(--accent-soft); margin-bottom: 16px;">Prochaine étape</span>
+        <h2>On enchaîne sur les <em>3 directions visuelles</em> ?</h2>
+        <p>Si l'analyse te paraît juste, dis-moi simplement « go » et je te livre dans la foulée un canvas avec trois propositions de DS distinctes — celle décrite ici, plus deux alternatives plus aventureuses. Tu pourras les comparer côte à côte et choisir / mixer.</p>
+      </div>
+      <a href="#" class="demo-btn demo-btn-accent" onclick="event.preventDefault(); document.querySelector('h1').scrollIntoView({behavior:'smooth'}); return false;">↑ Retour en haut</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; width: 100%;">
+    <span>LaunchPad Factory · Audit & méthodologie · Doc 01</span>
+    <span>20.05.2026 — v1</span>
+  </div>
+</footer>
+
+</body>
+</html>
