@@ -217,7 +217,7 @@ section { padding: var(--section-y) 0; }
 }
 .primary-nav a:hover { color: var(--olive); }
 
-.nav-cta {
+.primary-nav a.nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -229,9 +229,9 @@ section { padding: var(--section-y) 0; }
   font-size: 0.88rem;
   transition: transform var(--t-fast), background var(--t-fast);
 }
-.nav-cta:hover { background: var(--olive-deep); color: var(--paper); transform: translateY(-1px); }
-.nav-cta .arrow { color: var(--olive); }
-.nav-cta:hover .arrow { color: var(--paper); }
+.primary-nav a.nav-cta:hover { background: var(--olive-deep); color: var(--paper); transform: translateY(-1px); }
+.primary-nav a.nav-cta .arrow { color: var(--olive); }
+.primary-nav a.nav-cta:hover .arrow { color: var(--paper); }
 
 .nav-toggle {
   display: inline-flex;
@@ -471,7 +471,6 @@ section { padding: var(--section-y) 0; }
 .constat-head h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--olive); }
 .constat-head .lead { color: var(--ink-soft); max-width: 420px; }
 
-.constat-list {}
 .constat-item {
   display: grid;
   grid-template-columns: 64px 1fr;
@@ -605,11 +604,12 @@ section { padding: var(--section-y) 0; }
 
 .app-dlc-text h2 { margin-bottom: 18px; }
 .app-dlc-text h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--olive); }
+.app-dlc-text a { margin-top: 12px; }
 .app-dlc-text .lead {
   font-size: 1.18rem;
   color: var(--ink);
   font-weight: 500;
-  margin-bottom: 18px;
+  margin-bottom: 28px;
   max-width: 540px;
 }
 .app-dlc-text p {
@@ -620,6 +620,7 @@ section { padding: var(--section-y) 0; }
   max-width: 540px;
 }
 
+
 .benefit-list {
   margin: 28px 0;
   display: flex;
@@ -628,9 +629,14 @@ section { padding: var(--section-y) 0; }
 }
 .benefit-list li {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   align-items: flex-start;
 }
+
+.benefit-list li div {
+  line-height: 1.2;
+}
+
 .benefit-list .bullet {
   flex-shrink: 0;
   width: 36px;
@@ -649,7 +655,6 @@ section { padding: var(--section-y) 0; }
   color: var(--ink);
   font-family: var(--display);
   font-weight: 600;
-  margin-bottom: 2px;
   font-size: 1rem;
   letter-spacing: -0.012em;
 }
@@ -797,7 +802,8 @@ section { padding: var(--section-y) 0; }
   50% { transform: translateY(-8px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .float-badge { animation: none; }
+  .float-badge,
+  .float-chip { animation: none; }
 }
 
 /* ============================================================
@@ -1269,6 +1275,161 @@ section { padding: var(--section-y) 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ============================================================
+   11b. VERTICAL — bridge to agence
+   ============================================================ */
+.vertical { background: var(--paper); }
+.vertical-card {
+  background: var(--cream);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .vertical-card { grid-template-columns: 1.4fr 1fr; gap: 56px; }
+}
+.vertical-card::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; right: -80px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.12;
+}
+.vertical-body { position: relative; z-index: 2; }
+.vertical-body .eyebrow { color: var(--orange); }
+.vertical-body .eyebrow::before { content: '§'; }
+.vertical-body h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.vertical-body h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
+.vertical-body p {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.vertical-body .btn {
+  background: var(--orange);
+  color: var(--paper);
+}
+.vertical-body .btn:hover { background: var(--orange-deep); transform: translateY(-1px); box-shadow: var(--sh-md); color: var(--paper); }
+
+.vertical-visual {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+.vertical-stamp {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--orange);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.3;
+  position: relative;
+  transform: rotate(-6deg);
+  padding: 30px;
+}
+.vertical-stamp em { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 2.2rem; color: var(--orange); line-height: 1; margin: 8px 0; letter-spacing: -0.02em; }
+
+/* --- Chip badges autour du téléphone --- */
+.float-chip {
+  position: absolute;
+  padding: 9px 18px;
+  border-radius: var(--r-pill);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--sh-sm);
+  animation: floaty 6s ease-in-out infinite;
+  white-space: nowrap;
+  z-index: 4;
+}
+.float-chip-1 { top: 8%; right: -10%; background: var(--olive); color: var(--paper); animation-delay: 0.8s; }
+.float-chip-2 { bottom: 10%; left: -10%; background: var(--ink); color: var(--paper); animation-delay: 2.2s; }
+@media (max-width: 900px) {
+  .float-chip-1 { right: 0; }
+  .float-chip-2 { left: 0; }
+}
+
+/* --- Formulaire lead magnet --- */
+.lead-form-block { margin-top: 28px; }
+.guide-choice { border: none; padding: 0; margin: 0 0 18px; }
+.guide-choice legend {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 12px;
+  display: block;
+}
+.guide-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.guide-option:has(input:checked) { border-color: var(--olive); background: var(--olive-tint); }
+.guide-option input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.guide-option .guide-text strong { display: block; font-size: 0.92rem; color: var(--ink); margin-bottom: 2px; }
+.guide-option .guide-text span { font-size: 0.82rem; color: var(--ink-soft); }
+.form-row-lead { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+@media (max-width: 640px) { .form-row-lead { grid-template-columns: 1fr; } }
+.form-group-lead label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.form-group-lead input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-md);
+  font: inherit;
+  font-size: 0.95rem;
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color var(--t-fast);
+  box-sizing: border-box;
+}
+.form-group-lead input:focus { outline: none; border-color: var(--olive); }
+.btn-block { width: 100%; justify-content: center; }
+.form-rgpd-lead { font-size: 0.75rem; color: var(--ink-mute); line-height: 1.5; margin-top: 10px; }
+.form-success-lead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--olive-tint);
+  border: 1.5px solid var(--olive);
+  border-radius: var(--r-md);
+  font-size: 0.92rem;
+  color: var(--olive-deep);
+  margin-top: 16px;
+}
+.form-success-lead svg { width: 20px; height: 20px; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -1291,7 +1452,7 @@ section { padding: var(--section-y) 0; }
       <nav class="nav" aria-label="Principale">
         <a href="/" class="brand" aria-label="LaunchPad Factory">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span>LaunchPad <em>Factory</em></span>
+          <span>LaunchPad <em>Épicerie</em></span>
         </a>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
           <span></span><span></span><span></span>
@@ -1381,7 +1542,7 @@ section { padding: var(--section-y) 0; }
     <div class="wrap">
       <div class="section-head reveal" style="text-align: center; margin-left: auto; margin-right: auto;">
         <span class="eyebrow" style="justify-content: center;">Nos solutions · §03</span>
-        <h2>Trois outils,<br /><em>un seul artisan</em>.</h2>
+        <h2>Trois outils,<br /><em class="it">un seul artisan</em>.</h2>
         <p class="lead" style="margin-left: auto; margin-right: auto;">De la création de site internet épicerie fine au logiciel sur-mesure : un accompagnement complet pour la digitalisation des épiceries fines en France.</p>
       </div>
 
@@ -1390,7 +1551,7 @@ section { padding: var(--section-y) 0; }
         <article class="service-card reveal">
           <div class="service-icon"><em>S</em></div>
           <h3>Site sur <em>mesure</em></h3>
-          <p>Présentation de vos services, de vos produits, e-commerce et click &amp; collect — une présence en ligne élégante, à votre image, qui rassure vos clients et vous positionne comme la référence locale.</p>
+          <p>Présentation de vos services, de vos produits, e-commerce et click &amp; collect — une présence en ligne élégante, à votre image, qui rassure vos clients et vous positionne comme une référence locale.</p>
           <span class="service-tag">À partir de 500€</span>
         </article>
 
@@ -1404,7 +1565,7 @@ section { padding: var(--section-y) 0; }
         <article class="service-card reveal">
           <div class="service-icon"><em>O</em></div>
           <h3>Automatisations &amp; <em>intégrations</em></h3>
-          <p>Reliez vos outils entre eux, éliminez les double-saisies, récupérez du temps sur les tâches répétitives — sans changer toute votre stack.</p>
+          <p>Reliez vos outils entre eux, éliminez les double-saisies, récupérez du temps sur les tâches répétitives.</p>
           <span class="service-tag">Gain de temps</span>
         </article>
 
@@ -1421,30 +1582,30 @@ section { padding: var(--section-y) 0; }
 
         <div class="app-dlc-text reveal">
           <span class="eyebrow">Notre application maison · §04</span>
-          <h2>Ne laissez plus<br />périmer vos <em>marges</em>.</h2>
+          <h2>Ne laissez plus<br /><em>périmer vos marges</em><br />en rayon.</h2>
           <p class="lead">La première application de gestion des DLC pensée pour les épiceries fines, pour vous libérer de l'administratif et vous recentrer sur le conseil et la vente.</p>
-          <p>Avant de créer des solutions sur mesure pour nos clients, on les construit aussi pour le terrain. Cette application aide déjà plus de <strong style="color: var(--ink);">50 épiceries fines</strong> à suivre leurs produits, anticiper les pertes et libérer du temps en boutique.</p>
+          <p>Avant de créer des solutions sur mesure pour nos clients, on les construit aussi pour le terrain. Cette application aide déjà plus de <strong style="color: var(--ink);">50 épiceries fines</strong> à suivre leurs produits, anticiper les pertes et identifier plus vite les bonnes actions commerciales à lancer.</p>
 
           <ul class="benefit-list">
             <li>
-              <span class="bullet">DLC</span>
+              <span class="bullet">1</span>
               <div>
-                <strong>Suivi des dates limites</strong>
-                <span>Plus d'oubli, plus de produit périmé en rayon. Notifications automatiques avant chaque échéance.</span>
+                <strong>Scan rapide des produits</strong>
+                <span>et suivi automatique des DLC.</span>
               </div>
             </li>
             <li>
-              <span class="bullet">€</span>
+              <span class="bullet">2</span>
               <div>
-                <strong>Pilotage des marges</strong>
-                <span>Anticipez les pertes, ajustez les promos, pilotez vos rayons à l'œil avec des données fiables.</span>
+                <strong>Alertes intelligentes</strong>
+                <span>pour anticiper les pertes et agir au bon moment.</span>
               </div>
             </li>
             <li>
-              <span class="bullet">⏱</span>
+              <span class="bullet">3</span>
               <div>
-                <strong>Temps regagné en boutique</strong>
-                <span>Moins d'inventaires manuels, plus de temps pour conseiller, vendre, fidéliser.</span>
+                <strong>Lecture simple des invendus</strong>
+                <span>pour ajuster achats, promotions et mise en avant en boutique.</span>
               </div>
             </li>
           </ul>
@@ -1462,6 +1623,7 @@ section { padding: var(--section-y) 0; }
                 <span>à surveiller</span>
               </div>
             </div>
+            <div class="float-chip float-chip-1">Alertes DLC</div>
             <div class="phone-frame">
               <div class="phone-screen">
                 <div class="ps-bar"></div>
@@ -1499,6 +1661,7 @@ section { padding: var(--section-y) 0; }
                 </div>
               </div>
             </div>
+            <div class="float-chip float-chip-2">−18% de pertes</div>
             <div class="float-badge float-badge-2">
               <div class="badge-icon">↓</div>
               <div>
@@ -1545,18 +1708,17 @@ section { padding: var(--section-y) 0; }
 
         <div class="agence-text reveal">
           <span class="eyebrow">Qui sommes-nous · §06</span>
-          <h2>Une agence qui a fait ses<br /><em>preuves</em> dans votre secteur.</h2>
-          <p>LaunchPad Factory est une agence digitale française, spécialisée dans l'accompagnement des épiceries fines indépendantes. On ne fait pas du générique adapté à votre métier — on a appris votre métier, et on construit en conséquence.</p>
-          <p>Du site vitrine à l'application sur-mesure, en passant par l'automatisation et l'email marketing : on couvre l'ensemble de votre environnement digital. Sans sous-traitance, sans no-code générique. <strong style="color: var(--ink);">Code 100% en France, par la même équipe</strong>, du brief à la maintenance.</p>
+          <h2>Une agence qui a fait ses <em>preuves</em> dans votre secteur.</h2>
+          <p>LaunchPad est une agence de création de solutions digitales sur mesure, spécialisée dans l'accompagnement des épiceries fines indépendantes. On ne fait pas du généraliste : on connaît vos contraintes, votre saisonnalité, vos clients, et le poids de votre quotidien opérationnel.</p>
         </div>
 
         <div class="stat-card-grid reveal">
           <div class="stat-card">
-            <span class="num">+<em>50</em></span>
+            <span class="num"><em>+50</em></span>
             <span class="label">Épiceries accompagnées</span>
           </div>
           <div class="stat-card">
-            <span class="num"><em>04</em></span>
+            <span class="num"><em>03</em></span>
             <span class="label">Apps publiées</span>
           </div>
           <div class="stat-card">
@@ -1564,8 +1726,8 @@ section { padding: var(--section-y) 0; }
             <span class="label">1<sup>er</sup> retour</span>
           </div>
           <div class="stat-card">
-            <span class="num"><em>100</em>%</span>
-            <span class="label">Code en France</span>
+            <span class="num"><em>30 min</em></span>
+            <span class="label">pour faire le point</span>
           </div>
         </div>
 
@@ -1585,26 +1747,45 @@ section { padding: var(--section-y) 0; }
           <h2>Pas encore prêt ?<br /><em>Commencez ici</em>.</h2>
           <p>Recevez gratuitement l'une de nos ressources pensées pour les épiceries fines. Des conseils concrets, sans jargon, à appliquer rapidement selon votre priorité du moment.</p>
 
-          <div class="guides-grid">
-            <a href="/guides/linkedin" class="guide-card">
-              <span class="gc-num">01</span>
-              <div>
-                <strong>LinkedIn &amp; paniers gourmands</strong>
-                <span>Attirer des clients professionnels en moins d'une semaine.</span>
-                <span class="gc-pages">24 PAGES · PDF</span>
-              </div>
-            </a>
-            <a href="/guides/email" class="guide-card">
-              <span class="gc-num">02</span>
-              <div>
-                <strong>Email marketing en épicerie fine</strong>
-                <span>Fidéliser vos clients et générer plus de ventes.</span>
-                <span class="gc-pages">32 PAGES · PDF</span>
-              </div>
-            </a>
-          </div>
+          <form class="lead-form-block" id="leadForm" novalidate>
+            <fieldset class="guide-choice">
+              <legend>Je souhaite recevoir</legend>
+              <label class="guide-option">
+                <input type="radio" name="guide" value="linkedin" required checked />
+                <span class="guide-text">
+                  <strong>LinkedIn &amp; paniers gourmands</strong>
+                  <span>Attirer des clients professionnels en moins d'une semaine.</span>
+                </span>
+              </label>
+              <label class="guide-option">
+                <input type="radio" name="guide" value="email" required />
+                <span class="guide-text">
+                  <strong>Email marketing en épicerie fine</strong>
+                  <span>Fidéliser vos clients et générer plus de ventes.</span>
+                </span>
+              </label>
+            </fieldset>
 
-          <a href="#contact" class="btn btn-olive-outline">Recevoir un guide gratuitement <span class="arrow">→</span></a>
+            <div class="form-row-lead">
+              <div class="form-group-lead">
+                <label for="lf-firstname">Prénom</label>
+                <input type="text" id="lf-firstname" name="firstname" placeholder="Votre prénom" required maxlength="80" />
+              </div>
+              <div class="form-group-lead">
+                <label for="lf-email">Email</label>
+                <input type="email" id="lf-email" name="email" placeholder="votre@email.com" required maxlength="254" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-accent btn-lg btn-block">Je reçois mon guide gratuitement <span class="arrow">→</span></button>
+
+            <p class="form-rgpd-lead">En téléchargeant ce guide, vous acceptez de recevoir des emails de LaunchPad Factory. Désabonnement en 1 clic à tout moment.</p>
+
+            <div class="form-success-lead" id="leadFormSuccess" hidden role="status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              Merci ! Votre guide arrive dans quelques instants.
+            </div>
+          </form>
         </div>
 
         <div class="leadmag-visual reveal" aria-hidden="true">
@@ -1674,17 +1855,39 @@ section { padding: var(--section-y) 0; }
     </div>
   </section>
 
+  <section class="vertical" id="vertical">
+    <div class="wrap">
+      <div class="vertical-card reveal">
+        <div class="vertical-body">
+          <span class="eyebrow">Autre expertise · §09</span>
+          <h2>Vous venez d'un<br /><em>autre secteur</em> ?</h2>
+          <p>On a une page entière dédiée à l'agence. Showroom, services web &amp; mobile, automatisations, marketing — tout est là, sans abonnement, sans engagement.</p>
+          <a href="/" class="btn btn-lg">Voir le site de l'agence <span class="arrow">→</span></a>
+        </div>
+        <div class="vertical-visual">
+          <div class="vertical-stamp">
+            On travaille<em>avec vous.</em>
+            +7 projets livrés
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ============================================================
        11. FINAL CTA
        ============================================================ -->
   <section class="final-cta" id="contact">
     <div class="wrap">
       <div class="final-cta-inner">
-        <span class="eyebrow">Réserver · §09</span>
+        <span class="eyebrow">Réserver · §10</span>
         <h2>Votre épicerie mérite une présence à la <em>hauteur</em> de vos produits.</h2>
         <p>Prenez 30 minutes pour en parler avec nous. C'est gratuit, sans engagement, et vous repartez avec des idées concrètes — même si on ne travaille pas ensemble.</p>
-        <a href="mailto:launchpadfactoryteam@gmail.com?subject=Mon%20%C3%A9picerie%20%C3%A0%20discuter" class="btn btn-accent btn-lg">Réserver mon appel découverte <span class="arrow">→</span></a>
-        <p class="reassurance">On vous répond personnellement sous 24h ouvrées.</p>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+          <a href="mailto:launchpadfactoryteam@gmail.com?subject=Mon%20%C3%A9picerie%20%C3%A0%20discuter" class="btn btn-accent btn-lg">Réserver mon appel découverte <span class="arrow">→</span></a>
+          <p class="reassurance" style="margin:0;">On vous répond personnellement sous 24h ouvrées.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1705,22 +1908,12 @@ section { padding: var(--section-y) 0; }
         </div>
 
         <div class="footer-col">
-          <h4>§ Solutions</h4>
-          <ul>
-            <li><a href="#services">Site sur mesure</a></li>
-            <li><a href="#services">App sur mesure</a></li>
-            <li><a href="#services">Automatisations</a></li>
-            <li><a href="/traceo">Traceo (DLC)</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
           <h4>§ Ressources</h4>
           <ul>
-            <li><a href="/guides/linkedin">Guide LinkedIn</a></li>
-            <li><a href="/guides/email">Guide Email marketing</a></li>
-            <li><a href="/carnet">Carnet (blog)</a></li>
-            <li><a href="/">L'agence ↗</a></li>
+            <li><a href="#ressources">Nos guides</a></li>
+            <li><a href="/guides/email">Traceo</a></li>
+            <li><a href="/carnet">Notre actualité</a></li>
+            <li><a href="/">L'agence</a></li>
           </ul>
         </div>
 
@@ -1730,7 +1923,6 @@ section { padding: var(--section-y) 0; }
           <p><a href="mailto:launchpadfactoryteam@gmail.com">launchpadfactoryteam@gmail.com</a></p>
           <ul style="margin-top: 14px;">
             <li><a href="#" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">Instagram ↗</a></li>
           </ul>
         </div>
 
@@ -1793,6 +1985,53 @@ section { padding: var(--section-y) 0; }
         });
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
       els.forEach(el => io.observe(el));
+    })();
+
+    // Lead form — appel API /api/lead + téléchargement PDF
+    (function () {
+      const form = document.getElementById('leadForm');
+      const successEl = document.getElementById('leadFormSuccess');
+      if (!form) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalLabel = submitBtn ? submitBtn.textContent : '';
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        const data = new FormData(form);
+        const payload = {
+          firstname: (data.get('firstname') || '').toString().trim(),
+          email: (data.get('email') || '').toString().trim(),
+          guide: (data.get('guide') || '').toString(),
+        };
+
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours…'; }
+
+        try {
+          const res = await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error('request_failed');
+          const json = await res.json();
+          if (!json.downloadUrl) throw new Error('no_url');
+
+          // Déclenche le téléchargement du PDF
+          window.location.href = json.downloadUrl;
+
+          // Réinitialise et affiche le message de succès
+          form.querySelectorAll('input:not([type="radio"])').forEach(i => { i.value = ''; });
+          if (successEl) { successEl.hidden = false; successEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        } catch (err) {
+          alert('Une erreur est survenue. Merci de réessayer dans un instant.');
+          console.error(err);
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+        }
+      });
     })();
   </script>
 

@@ -497,6 +497,10 @@ section { padding: var(--section-y) 0; }
 @media (min-width: 1000px) {
   .constat-grid { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
 }
+@media (max-width: 1000px) {
+  .constat::before { left:unset; right:-120px; top: -120px; bottom: unset; }
+}
+
 .constat-head .eyebrow { color: var(--orange); }
 .constat-head h2 { color: var(--paper); margin-bottom: 22px; }
 .constat-head h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--orange); }
@@ -984,7 +988,8 @@ section { padding: var(--section-y) 0; }
   position: absolute;
   top: -140px; left: 50%;
   transform: translateX(-50%);
-  width: 480px; height: 480px;
+  width: 37vw; height: 37vw;
+  max-width: 480px; max-height: 480px;
   border-radius: 50%;
   background: var(--orange);
   opacity: 0.95;
@@ -1117,7 +1122,7 @@ section { padding: var(--section-y) 0; }
        ============================================================ -->
   <div class="announce" aria-label="Annonces">
     <div class="announce-track">
-      <span>★ DISPONIBLES POUR 2 NOUVEAUX PROJETS · ÉTÉ 2026 <span class="dot">·</span> WEB · MOBILE · AUTOMATISATION · MARKETING <span class="dot">·</span> CODE 100% FRANCE <span class="dot">·</span> RÉPONSE SOUS 24H OUVRÉES <span class="dot">·</span></span>
+      <span>★ DISPONIBLES POUR 2 NOUVEAUX PROJETS · ÉTÉ 2026 <span class="dot">·</span> WEB · MOBILE · AUTOMATISATION <span class="dot">·</span> CODE MADE IN FRANCE <span class="dot">·</span> RÉPONSE SOUS 24H OUVRÉES <span class="dot">·</span></span>
       <span aria-hidden="true">★ DISPONIBLES POUR 2 NOUVEAUX PROJETS · ÉTÉ 2026 <span class="dot">·</span> WEB · MOBILE · AUTOMATISATION · MARKETING <span class="dot">·</span> CODE 100% FRANCE <span class="dot">·</span> RÉPONSE SOUS 24H OUVRÉES <span class="dot">·</span></span>
     </div>
   </div>
@@ -1152,7 +1157,7 @@ section { padding: var(--section-y) 0; }
        3. HERO
        ============================================================ -->
   <section class="hero" id="hero">
-    <span class="hero-sticker" aria-hidden="true">Showroom v2</span>
+    <span class="hero-sticker" aria-hidden="true">By LaunchPad</span>
 
     <div class="wrap hero-inner">
       <span class="hero-eyebrow">Agence digitale · France</span>
@@ -1162,11 +1167,11 @@ section { padding: var(--section-y) 0; }
         <div>
           <p class="hero-sub">
             On conçoit, on développe, on déploie.<br />
-            <span class="muted">Web, mobile, automatisation, marketing — pour les marques qui veulent reprendre la main sur leur outil.</span>
+            <span class="muted">Web, mobile, automatisation — pour les entreprises qui veulent reprendre la main sur leur outil.</span>
           </p>
           <div class="hero-cta-row">
             <a href="#contact" class="btn btn-primary btn-lg">Réserver un appel <span class="arrow">→</span></a>
-            <a href="#showroom" class="btn btn-outline btn-lg">Voir le showroom</a>
+            <a href="#showroom" class="btn btn-outline btn-lg">Voir nos projets</a>
           </div>
         </div>
 
@@ -1211,21 +1216,21 @@ section { padding: var(--section-y) 0; }
             <span class="constat-num">02 /</span>
             <div class="constat-content">
               <h3>Des outils dispersés</h3>
-              <p>Caisse, e-commerce, CRM, compta. La même donnée saisie trois fois par jour. Une stack qui s'est empilée sans plan d'ensemble.</p>
+              <p>Caisse, CRM, facturation, CMS, stock, comptabilité. La même donnée saisie trois fois par jour. Des outils qui se sont empilés sans plan d'ensemble.</p>
             </div>
           </li>
           <li class="constat-item">
             <span class="constat-num">03 /</span>
             <div class="constat-content">
-              <h3>Pas de visibilité data</h3>
-              <p>Vous prenez des décisions au feeling. Vous ne savez pas ce qui marche, ce qui coince, où l'effort doit aller en priorité.</p>
+              <h3>Des données, sans analyse</h3>
+              <p>Vous ne mettez pas vos données au coeur de vos décisions. Vous ne savez pas ce qui marche, ce qui coince, où l'effort doit aller en priorité.</p>
             </div>
           </li>
           <li class="constat-item">
             <span class="constat-num">04 /</span>
             <div class="constat-content">
-              <h3>Pas d'équipe digitale</h3>
-              <p>Personne en interne pour bouger le site, lancer la campagne, déployer la feature. Tout passe par un prestataire qui met deux semaines.</p>
+              <h3>Des prestataires hors de prix</h3>
+              <p>Des prestataires qui facturent de manière abusive chaque modification, livrent avec des délais énormes, et disparaissent après le lancement.</p>
             </div>
           </li>
         </ul>
@@ -1240,8 +1245,8 @@ section { padding: var(--section-y) 0; }
     <div class="wrap">
       <div class="showroom-head-row">
         <div class="showroom-head reveal">
-          <span class="eyebrow">Showroom · §03</span>
-          <h2>Trois preuves <em>récentes</em>.</h2>
+          <span class="eyebrow">Projets · §03</span>
+          <h2>Trois projets <em>récents</em>.</h2>
           <p class="lead">Pas une liste de services — des projets livrés. Vous voyez ce qu'on fait, comment on le fait, et combien de temps ça prend.</p>
         </div>
         <div class="showroom-meta reveal">
@@ -1260,7 +1265,7 @@ section { padding: var(--section-y) 0; }
           </div>
           <div class="case-body">
             <span class="case-meta">App mobile · iOS · Android · +50 épiceries</span>
-            <h3><em>Traceo</em></h3>
+            <h3>Traceo</h3>
             <p>Application mobile maison pour le suivi des dates limites de consommation en épicerie fine. Conception, développement, maintenance — entièrement par nous, déjà déployée chez plus de 50 commerçants.</p>
             <div class="case-foot">
               <div class="case-tech">
@@ -1277,12 +1282,12 @@ section { padding: var(--section-y) 0; }
         <article class="case reveal">
           <div class="case-image bg-ink">
             <span class="case-tag">№02 · Web</span>
-            <span class="case-mark">Auto<em>dan</em></span>
+            <span class="case-mark">Autodan</span>
           </div>
           <div class="case-body">
-            <span class="case-meta">Concession auto · Nice · Vitrine + e-commerce</span>
-            <h3>Auto<em>dan</em></h3>
-            <p>Site vitrine et e-commerce pour une concession automobile niçoise. Notre client a la main sur le contenu : mise à jour des voitures, création de fiches, gestion du catalogue — tout en autonomie.</p>
+            <span class="case-meta">Concession auto · Nice · Vitrine </span>
+            <h3>Autodan</h3>
+            <p>Site vitrine et flotte de véhicules pour une concession automobile niçoise. Notre client a la main sur le contenu : mise à jour des voitures, création de fiches, gestion du catalogue — tout en autonomie.</p>
             <div class="case-foot">
               <div class="case-tech">
                 <span class="chip">Webflow</span>
@@ -1302,11 +1307,11 @@ section { padding: var(--section-y) 0; }
           </div>
           <div class="case-body">
             <span class="case-meta">Événementiel · Paris · App métier</span>
-            <h3><em>Aeternam</em></h3>
-            <p>Application sur-mesure pour piloter une activité de maîtres d'hôtels événementiels. Facturation, événements, organisation des équipes (barmen, fournisseurs) — un seul outil, web et mobile, en production.</p>
+            <h3>Æternam</h3>
+            <p>Application sur-mesure pour piloter une activité de maîtres d'hôtels événementiels. Facturation, événements, organisation des équipes (barman, serveurs, fournisseurs) — un seul outil, web et mobile, en production.</p>
             <div class="case-foot">
               <div class="case-tech">
-                <span class="chip">App native</span>
+                <span class="chip">Mobile</span>
                 <span class="chip">Web</span>
                 <span class="chip">Métier</span>
               </div>
@@ -1330,8 +1335,8 @@ section { padding: var(--section-y) 0; }
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Nos pratiques · §04</span>
-        <h2>Quatre métiers,<br /><em>un seul atelier</em>.</h2>
-        <p class="lead">Pas de sous-traitance, pas de revente d'outils tiers. Chaque projet est conçu, codé, déployé par la même équipe — en France.</p>
+        <h2>Quatre métiers,<br /><em class="it">un seul atelier</em>.</h2>
+        <p class="lead">Une équipe d'artisans du digital&nbsp;: pluridisciplinaire, moderne et proche de vous. Chaque projet est pensé, conçu et réalisé avec soin, pour livrer une solution qui vous ressemble vraiment.</p>
       </div>
 
       <div class="pratiques-grid">
@@ -1339,12 +1344,12 @@ section { padding: var(--section-y) 0; }
         <article class="prat reveal">
           <span class="prat-num">01 / Pratique</span>
           <h3>Web</h3>
-          <span class="prat-sub">— sites & e-commerce</span>
-          <p>Vitrines, e-commerce, applications web métier. Code maison, performance native, autonomie d'édition pour vos équipes.</p>
+          <span class="prat-sub">— vitrine & e-commerce</span>
+          <p>Vitrines, e-commerce, applications web métier. Site sur-mesure offrant une autonomie d'édition pour vos équipes.</p>
           <div class="prat-tags">
             <span class="tag">CMS</span>
             <span class="tag">·</span>
-            <span class="tag">Headless</span>
+            <span class="tag">Cross-platform</span>
             <span class="tag">·</span>
             <span class="tag">Webflow</span>
           </div>
@@ -1368,27 +1373,13 @@ section { padding: var(--section-y) 0; }
           <span class="prat-num">03 / Pratique</span>
           <h3>Automatisation</h3>
           <span class="prat-sub">— intégrations</span>
-          <p>Caisse, e-commerce, CRM, compta. On relie vos outils pour que les données circulent sans ressaisie ni double-saisie.</p>
+          <p>Caisse, CRM, facturation, CMS, stock, comptabilité. On relie vos outils pour que les données circulent sans ressaisie.</p>
           <div class="prat-tags">
             <span class="tag">API</span>
             <span class="tag">·</span>
             <span class="tag">Webhooks</span>
             <span class="tag">·</span>
             <span class="tag">No-code</span>
-          </div>
-        </article>
-
-        <article class="prat reveal">
-          <span class="prat-num">04 / Pratique</span>
-          <h3>Marketing</h3>
-          <span class="prat-sub">— email & présence</span>
-          <p>Email marketing, Google My Business, social. Mesurable, automatisable, sans surplus d'outils ni dépendance externe.</p>
-          <div class="prat-tags">
-            <span class="tag">Newsletter</span>
-            <span class="tag">·</span>
-            <span class="tag">GMB</span>
-            <span class="tag">·</span>
-            <span class="tag">SEO</span>
           </div>
         </article>
 
@@ -1413,7 +1404,7 @@ section { padding: var(--section-y) 0; }
           <span class="step-num"><em>01</em></span>
           <div class="step-content">
             <h3>Discussion</h3>
-            <p>Un appel pour comprendre votre quotidien, vos besoins, vos contraintes. Sans pression, sans démarchage déguisé.</p>
+            <p>Un appel pour comprendre votre quotidien, vos besoins, vos contraintes. Sans pression, sans démarchage déguisé, sans engagement de votre part.</p>
           </div>
           <span class="step-duration">30 min</span>
         </li>
@@ -1456,10 +1447,10 @@ section { padding: var(--section-y) 0; }
     <div class="wrap">
       <div class="vertical-card reveal">
         <div class="vertical-body">
-          <span class="eyebrow">Verticale dédiée · §06</span>
+          <span class="eyebrow">Expertise dédiée · §06</span>
           <h2>Vous tenez une<br /><em>épicerie fine</em> ?</h2>
-          <p>On a une page entière qui vous est dédiée. Guides PDF gratuits, application maison pour les dates limites de consommation, retours d'expérience d'épiciers — tout est là, sans abonnement, sans engagement.</p>
-          <a href="/epiceries" class="btn btn-lg">Voir la verticale épiceries <span class="arrow">→</span></a>
+          <p>On a une page entière qui vous est dédiée. </br>Guides PDF gratuits, application maison pour les dates limites de consommation, retours d'expérience d'épiciers — tout est là, sans abonnement, sans engagement.</p>
+          <a href="/epiceries" class="btn btn-lg">Voir l'espace épiceries <span class="arrow">→</span></a>
         </div>
         <div class="vertical-visual">
           <div class="vertical-stamp">
@@ -1477,11 +1468,13 @@ section { padding: var(--section-y) 0; }
   <section class="final-cta" id="contact">
     <div class="wrap">
       <div class="final-cta-inner">
-        <span class="eyebrow">Démarrer · §07</span>
+        <span class="eyebrow">Le commencement · §07</span>
         <h2>Un projet en tête ?<br /><em>Parlons-en</em>.</h2>
         <p>30 minutes pour discuter de votre projet. C'est gratuit, sans engagement — et vous repartez avec des idées concrètes, même si on ne travaille pas ensemble.</p>
-        <a href="mailto:launchpadfactoryteam@gmail.com?subject=Projet%20%C3%A0%20discuter" class="btn btn-accent btn-lg">Réserver un appel découverte <span class="arrow">→</span></a>
-        <p class="reassurance">On vous répond personnellement sous 24h ouvrées.</p>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+          <a href="mailto:launchpadfactoryteam@gmail.com?subject=Projet%20%C3%A0%20discuter" class="btn btn-accent btn-lg">Réserver un appel découverte <span class="arrow">→</span></a>
+          <p class="reassurance" style="margin:0;">On vous répond personnellement sous 24h ouvrées.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1502,21 +1495,11 @@ section { padding: var(--section-y) 0; }
         </div>
 
         <div class="footer-col">
-          <h4>§ Pratiques</h4>
-          <ul>
-            <li><a href="#pratiques">Web</a></li>
-            <li><a href="#pratiques">Mobile</a></li>
-            <li><a href="#pratiques">Automatisation</a></li>
-            <li><a href="#pratiques">Marketing</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
           <h4>§ Ressources</h4>
           <ul>
             <li><a href="#showroom">Showroom</a></li>
-            <li><a href="/carnet">Carnet (blog)</a></li>
-            <li><a href="/epiceries">Verticale épiceries</a></li>
+            <li><a href="/carnet">Notre actualité</a></li>
+            <li><a href="/epiceries">Espace épiceries</a></li>
             <li><a href="/traceo">Traceo (app DLC)</a></li>
           </ul>
         </div>
@@ -1527,7 +1510,6 @@ section { padding: var(--section-y) 0; }
           <p><a href="mailto:launchpadfactoryteam@gmail.com">launchpadfactoryteam@gmail.com</a></p>
           <ul style="margin-top: 14px;">
             <li><a href="#" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">Instagram ↗</a></li>
           </ul>
         </div>
 
