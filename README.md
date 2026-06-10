@@ -2,7 +2,7 @@
 
 Landing pages **LaunchPad** déployées sur **Cloudflare Workers** (Static Assets + D1 + R2).
 
-- `/` → landing agence LaunchPad (export Webflow, 100 % assets locaux)
+- `/` → landing agence LaunchPad (HTML/CSS/JS vanilla)
 - `/epiceries/` → landing commerciale épiceries fines (HTML/CSS/JS vanilla)
 
 ---
@@ -11,25 +11,22 @@ Landing pages **LaunchPad** déployées sur **Cloudflare Workers** (Static Asset
 
 ```
 landing-epicerie/
-├── webflow-export/        # Sources landing agence (export Webflow localisé)
-│   ├── index.html
-│   ├── css/
-│   │   ├── webflow.shared.css   # CSS Webflow fusionné + assets localisés
-│   │   ├── normalize.css
-│   │   └── launchpadfactory.webflow.css
-│   ├── js/
-│   │   └── jquery-3.5.1.min.js  # jQuery hébergé localement
-│   ├── fonts/
-│   │   ├── Satoshi-Variable.ttf
-│   │   └── Kalam-Bold.ttf
-│   └── images/            # 60+ images localisées (plus aucune dépendance CDN)
-│
-├── epiceries/             # Sources landing épicerie fine (vanilla)
-│   ├── index.html
+├── landings/              # Sources des pages (HTML/CSS/JS vanilla) — miroir des URLs
+│   ├── index.html         # Landing agence  →  /
 │   ├── style.css
-│   ├── script.js
-│   ├── traceo.html / traceo.css
-│   └── assets/
+│   ├── script.js          # nav, reveal, modale contact (POST /api/contact)
+│   ├── articles/          # Articles agence  →  /articles (à venir)
+│   └── epiceries/         # Landing épicerie fine  →  /epiceries
+│       ├── index.html
+│       ├── style.css
+│       ├── script.js
+│       ├── assets/
+│       ├── traceo/        # Page produit Traceo  →  /epiceries/traceo
+│       │   ├── index.html
+│       │   ├── traceo.css
+│       │   └── traceo-base.css
+│       └── articles/      # Articles épicerie  →  /epiceries/articles
+│           └── traceo.html / traceo.css
 │
 ├── functions/             # Cloudflare Workers handlers
 │   ├── api/
@@ -45,7 +42,7 @@ landing-epicerie/
 │
 ├── public/                # ⚠️ Généré par build.ps1, ne pas éditer
 │
-├── build.ps1              # Script de build (webflow-export + epiceries → public/)
+├── build.ps1              # Script de build (landings/ → public/)
 ├── schema.sql             # Schéma D1
 ├── wrangler.jsonc         # Config Cloudflare Workers (bindings, assets)
 └── doc/                   # Documentation détaillée (brief, lead-magnet, contact, analytics)

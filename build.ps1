@@ -1,56 +1,48 @@
 # ============================================================
 # build.ps1 — Assemble public/ pour le déploiement Cloudflare
 #
-# Structure finale :
-#   public/           ← landing agence (webflow-export/)
-#   public/epiceries/ ← landing épicerie fine (epiceries/)
+# Structure finale (miroir de landings/) :
+#   public/                    ← landing agence
+#   public/articles/           ← articles agence (à venir)
+#   public/epiceries/          ← landing épicerie fine
+#   public/epiceries/traceo/   ← page produit Traceo
+#   public/epiceries/articles/ ← articles épicerie
 #
 # Usage : .\build.ps1
 # Puis  : npx wrangler deploy
 # ============================================================
 
-$outDir      = "public"
-$webflowSrc  = "webflow-export"
-$epiceriesSrc = "epiceries"
+$outDir = "public"
+$src    = "landings"
 
 # ── Nettoyage ──────────────────────────────────────────────
+# On vide le CONTENU de public/ sans supprimer le dossier lui-même :
+# `wrangler dev` garde un verrou sur public/ sous Windows, et supprimer le
+# dossier échouerait pendant une session dev.
 if (Test-Path $outDir) {
     Write-Host "Nettoyage de $outDir/..." -ForegroundColor Yellow
-    Remove-Item $outDir -Recurse -Force
+    Get-ChildItem -Path $outDir -Force | Remove-Item -Recurse -Force
+} else {
+    New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 }
-New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 
-# ── 1. Landing agence (webflow-export/ → public/) ──────────
-Write-Host "`n[1/2] Copie landing agence ($webflowSrc → $outDir)..." -ForegroundColor Cyan
+# ── Copie des landings (landings/ → public/) ─────────────
+Write-Host "`n[1/1] Copie des landings ($src → $outDir)..." -ForegroundColor Cyan
 
-if (-not (Test-Path $webflowSrc)) {
-    Write-Host "  ERREUR : dossier '$webflowSrc' introuvable." -ForegroundColor Red
-    Write-Host "  Lancez d'abord : .\extract-webflow.ps1" -ForegroundColor Red
+if (-not (Test-Path $src)) {
+    Write-Host "  ERREUR : dossier '$src' introuvable." -ForegroundColor Red
     exit 1
 }
 
-Copy-Item -Path "$webflowSrc\*" -Destination $outDir -Recurse -Force
-Write-Host "  OK" -ForegroundColor Green
-
-# ── 2. Landing épicerie (epiceries/ → public/epiceries/) ───
-Write-Host "`n[2/2] Copie landing épicerie ($epiceriesSrc → $outDir/epiceries)..." -ForegroundColor Cyan
-
-$epicDest = Join-Path $outDir "epiceries"
-New-Item -ItemType Directory -Force -Path $epicDest | Out-Null
-Copy-Item -Path "$epiceriesSrc\*" -Destination $epicDest -Recurse -Force
+Copy-Item -Path "$src\*" -Destination $outDir -Recurse -Force
 Write-Host "  OK" -ForegroundColor Green
 
 # ── _redirects à la racine de public/ ──────────────────────
-# Cloudflare Workers Static Assets lit ce fichier pour les redirections.
+# La gestion du slash final (/epiceries/ → /epiceries) est faite nativement
+# par Cloudflare via assets.html_handling = "drop-trailing-slash".
+# Ce fichier reste vide (placeholder) pour d'éventuelles redirections futures.
 $redirects = @"
-# Trailing slash → sans trailing slash pour les pages webflow
-/about-us/    /about-us    301
-/services/    /services    301
-/pricing/     /pricing     301
-/blog/        /blog        301
-/faq/         /faq         301
-/works/       /works       301
-/contact-us/  /contact-us  301
+# Redirections Cloudflare Static Assets (une par ligne : source destination code)
 "@
 
 $redirects | Set-Content (Join-Path $outDir "_redirects") -Encoding UTF8

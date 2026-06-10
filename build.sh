@@ -5,28 +5,22 @@
 set -e
 
 OUT="public"
-WEBFLOW="webflow-export"
-EPICERIES="epiceries"
+SRC="landings"
 
 echo "Nettoyage de $OUT/..."
-rm -rf "$OUT"
+# On vide le contenu de public/ sans supprimer le dossier (wrangler dev le
+# verrouille sous Windows ; supprimer le dossier échouerait en session dev).
 mkdir -p "$OUT"
+rm -rf "$OUT"/* "$OUT"/.[!.]* 2>/dev/null || true
 
-echo "[1/2] Copie landing agence ($WEBFLOW → $OUT)..."
-cp -r "$WEBFLOW"/. "$OUT/"
-echo "  OK"
-
-echo "[2/2] Copie landing épicerie ($EPICERIES → $OUT/epiceries)..."
-mkdir -p "$OUT/epiceries"
-cp -r "$EPICERIES"/. "$OUT/epiceries/"
+echo "[1/1] Copie des landings ($SRC → $OUT)..."
+cp -r "$SRC"/. "$OUT/"
 echo "  OK"
 
 # _redirects à la racine (Cloudflare Static Assets)
+# Le slash final est géré nativement via assets.html_handling = "drop-trailing-slash".
 cat > "$OUT/_redirects" << 'EOF'
-/about-us/    /about-us    301
-/services/    /services    301
-/pricing/     /pricing     301
-/blog/        /blog        301
+# Redirections Cloudflare Static Assets (une par ligne : source destination code)
 EOF
 
 echo ""

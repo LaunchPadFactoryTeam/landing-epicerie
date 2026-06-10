@@ -8,7 +8,11 @@
 	},
 	"assets": {
 		"directory": "public",
-		"binding": "ASSETS"
+		"binding": "ASSETS",
+		// URLs propres sans slash final (ex. /epiceries, /epiceries/traceo).
+		// Cloudflare sert public/epiceries/index.html sur /epiceries et redirige
+		// /epiceries/ → /epiceries. Évite la boucle de redirection 307↔301.
+		"html_handling": "drop-trailing-slash"
 	},
 	"build": {
 		"command": "bash build.sh"

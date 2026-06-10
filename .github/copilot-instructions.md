@@ -4,11 +4,27 @@ Landing page commerciale **LaunchPad × Épiceries fines** (FR), déployée sur 
 
 ## Architecture (à ne pas casser)
 
-- **Worker unique** (`src/worker.js`) avec routage manuel, **PAS** de Cloudflare Pages Functions auto-routées. Le Worker route `/api/*` vers les handlers de `functions/api/*` puis délègue tout le reste au binding `ASSETS` (qui sert le dossier `epiceries/`).
+- **Worker unique** (`src/worker.js`) avec routage manuel, **PAS** de Cloudflare Pages Functions auto-routées. Le Worker route `/api/*` vers les handlers de `functions/api/*` puis délègue tout le reste au binding `ASSETS` (qui sert le dossier `public/`).
 - Toute nouvelle route API doit être ajoutée explicitement dans `src/worker.js` (ne jamais s'appuyer sur la convention de nommage de fichiers Pages Functions).
 - Les handlers exportent `onRequestPost` / `onRequestGet` (signature `{ request, env, ctx }`) — conserver cette convention.
 - Pas de framework, pas de bundler côté front : **HTML/CSS/JS vanilla** uniquement, 3 fichiers par page max (`index.html`, `style.css`, `script.js`). Seule dépendance externe autorisée : Google Fonts.
-- Pages secondaires (ex. `traceo.html`) suivent la même règle (peuvent avoir leur propre CSS dédié, ex. `traceo.css`).
+- Pages secondaires (ex. la page produit Traceo `/epiceries/traceo`) suivent la même règle (peuvent avoir leur propre CSS dédié, ex. `traceo.css`).
+
+### Source & build (arbo → URLs)
+
+Le dossier **source** est `landings/` ; `public/` est **généré** (build.ps1 / build.sh) et ne doit jamais être édité à la main. L'arbo des dossiers reflète directement les URLs :
+
+| Source | URL servie |
+|---|---|
+| `landings/index.html` | `/` (landing agence) |
+| `landings/articles/` | `/articles` (vide pour l'instant) |
+| `landings/epiceries/index.html` | `/epiceries` (landing épiceries) |
+| `landings/epiceries/traceo/index.html` | `/epiceries/traceo` (page produit Traceo) |
+| `landings/epiceries/articles/traceo.html` | `/epiceries/articles/traceo.html` (article) |
+
+- Les fichiers de référence du design vivent dans `design-system/` (HTML statiques, **hors build**).
+- **URLs propres** : `assets.html_handling: "drop-trailing-slash"` est activé dans `wrangler.jsonc`. Une page servie en index de dossier (`/epiceries`, `/epiceries/traceo`) est accessible **sans slash final** (les canonicals sont sans slash). Conséquence critique : sur ces pages, **toute référence CSS/JS/asset doit être ABSOLUE** (ex. `/epiceries/style.css`), car un chemin relatif se résout contre le dossier parent → 404. Seule la page racine `/` peut garder des chemins relatifs.
+- **Tester en local** : `npx wrangler dev` (miroir fidèle de la prod : Worker + Static Assets + `html_handling`). **Ne pas** utiliser un serveur Python : il ne route pas les URLs propres et force des 301 avec slash final qui cassent tout.
 
 ## Bindings & secrets Cloudflare
 
@@ -18,7 +34,7 @@ Source de vérité = [`wrangler.jsonc`](../wrangler.jsonc). Toute variable non s
 |---|---|---|
 | `DB` | D1 (`launchpad-leads`) | tables `leads`, `downloads`, `contact_requests` |
 | `PDFS` | R2 (`launchpad-guides`) | guides PDF privés |
-| `ASSETS` | Static Assets | sert `epiceries/` |
+| `ASSETS` | Static Assets | sert `public/` (build depuis `landings/`) |
 
 Secrets (jamais commités, gérés via `wrangler secret put` / `wrangler pages secret put`) :
 - `SIGNING_KEY` — HMAC pour signer les URLs de download (rotation invalide tous les tokens en circulation, durée 10 min, donc OK).
@@ -50,7 +66,7 @@ Style : `premium accessible`, `expert mais humain`, `soigné mais concret`. Card
 
 Flux : POST `/api/lead` valide + insère en D1 + signe un **token HMAC** (`{g, e, exp}`, 10 min) → renvoie `{ ok, downloadUrl }` → le front redirige vers `/api/download?t=…` qui vérifie le token, log dans `downloads` et stream le PDF depuis R2.
 
-- **Mapping des guides** = unique source de vérité [`functions/_shared/guides.js`](../functions/_shared/guides.js). Pour ajouter un guide : entrée `r2Key` + `downloadName`, upload R2 sous la même clé, ajouter le `<input type="radio" name="guide" value="…">` dans `index.html`, redéployer.
+- **Mapping des guides** = unique source de vérité [`functions/_shared/guides.js`](../functions/_shared/guides.js). Pour ajouter un guide : entrée `r2Key` + `downloadName`, upload R2 sous la même clé, ajouter le `<input type="radio" name="guide" value="…">` dans `landings/epiceries/index.html`, rebâtir (`build.ps1`) et redéployer.
 - **Insert D1 best-effort** : un échec ne doit jamais bloquer le téléchargement (UX > log). Tracer via `console.error`.
 - Validation serveur obligatoire (email regex + longueur ≤ 254, prénom non vide, guide whitelisté contre `GUIDES`).
 - Réponse PDF : `Content-Disposition: attachment` + `Cache-Control: private, no-store`.
@@ -111,6 +127,9 @@ $bytes = New-Object byte[] 32
 
 - ❌ Ajouter un script analytics tiers dans le HTML (Cloudflare l'injecte déjà à l'edge).
 - ❌ Créer un fichier `functions/api/foo.js` en pensant qu'il sera routé automatiquement → **il faut éditer `src/worker.js`**.
+- ❌ Éditer `public/` à la main : c'est **généré** depuis `landings/` (build.ps1 / build.sh). Toujours modifier la source `landings/`.
+- ❌ Utiliser un chemin **relatif** vers le CSS/JS/asset sur une page servie en index de dossier (`/epiceries`, `/epiceries/traceo`) → 404 sous `drop-trailing-slash`. Toujours **absolu** sur ces pages.
+- ❌ Tester avec un serveur Python : il casse les URLs propres et les redirections. Utiliser `npx wrangler dev`.
 - ❌ Ajouter une variable au dashboard Cloudflare sans la mettre dans `wrangler.jsonc` (effacée au prochain deploy).
 - ❌ Utiliser un framework CSS / un bundler / npm packages côté front.
 - ❌ Exposer une URL R2 publique vers les PDF (ils doivent rester privés derrière `/api/download` + token HMAC).
