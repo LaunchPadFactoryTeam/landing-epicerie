@@ -840,6 +840,7 @@ section { padding: var(--section-y) 0; }
   position: relative;
   z-index: 2;
   max-width: 920px;
+  padding: 0;
 }
 .step {
   display: grid;
@@ -893,6 +894,7 @@ section { padding: var(--section-y) 0; }
   flex-shrink: 0;
 }
 @media (max-width: 700px) {
+  .steps { margin: 0 auto; }
   .step { grid-template-columns: 48px 1fr; }
   .step-duration { grid-column: 2; grid-row: 2; justify-self: start; margin-top: 10px; }
   .step-num { font-size: 1.8rem; }
@@ -988,8 +990,8 @@ section { padding: var(--section-y) 0; }
   position: absolute;
   top: -140px; left: 50%;
   transform: translateX(-50%);
-  width: 37vw; height: 37vw;
-  max-width: 480px; max-height: 480px;
+  width: clamp(300px, 37vw, 480px);
+  height: clamp(300px, 37vw, 480px);
   border-radius: 50%;
   background: var(--orange);
   opacity: 0.95;
