@@ -460,7 +460,10 @@
       list.append(li);
     }
 
-    form.hidden = true;
+    // On masque la carte entiere, pas seulement le formulaire : sinon il reste
+    // une carte vide (bordure + ombre) au-dessus du remerciement.
+    // Repli sur le formulaire seul si la carte venait a disparaitre du markup.
+    (form.closest('.bilan-card') || form).hidden = true;
     progress.hidden = true;
     thanks.hidden = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
