@@ -39,13 +39,17 @@ export const DECISION = {
   autre:          'Autre',
 };
 
-/** Q8 — valeur perçue par rapport aux attentes (volontairement pas « le prix »). */
+/**
+ * Q8 — rapport entre la valeur retirée et l'investissement consenti.
+ * Terrain volontairement distinct de Q2 (conformité au cadrage) : ici on veut un
+ * signal de pricing, sans poser frontalement « était-ce trop cher ? », question
+ * qui rouvrirait la négociation.
+ */
 export const VALUE = {
-  bien_en_dessous: 'Bien en dessous de mes attentes',
-  en_dessous:      'En dessous de mes attentes',
-  conforme:        'Conforme à mes attentes',
-  au_dessus:       'Au-dessus de mes attentes',
-  bien_au_dessus:  'Bien au-dessus de mes attentes',
+  moins:        'Ça vaut moins que ce que j’y ai mis',
+  equilibre:    'C’est équilibré',
+  plus:         'Ça vaut plus que ce que j’y ai mis',
+  sans_reponse: 'Préfère ne pas répondre',
 };
 
 /** Q10 — besoins à 6 mois (choix multiple). Libellés transverses, sans jargon sectoriel. */

@@ -7,6 +7,21 @@
    beaucoup d'air, l'orange réservé à la sélection et aux accents.
    ============================================================= */
 
+/* ---------- Garde-fous contre /style.css ----------
+   La feuille de la landing agence est chargee avant celle-ci et cible des
+   elements nus. Deux de ses regles cassent cette page si on ne les neutralise pas. */
+
+/* 1. `section { padding: var(--section-y) 0 }` = 80 a 128px en haut ET en bas.
+      Nos ecrans sont des <section> : ils heritaient d'un enorme blanc. */
+.bilan-screen { padding: 0; }
+
+/* 2. `.btn { display: inline-flex }` l'emporte sur le `[hidden] { display:none }`
+      du navigateur (une classe bat un selecteur d'attribut du UA stylesheet).
+      Sans ca, « Retour » et « Envoyer » restent visibles a chaque etape.
+      Meme probleme pour tout element auquel on donne un display (.identity-fallback,
+      .choice-list...), d'ou une regle globale plutot qu'au cas par cas. */
+[hidden] { display: none !important; }
+
 .bilan-body {
   background: var(--paper);
   overflow-x: hidden;

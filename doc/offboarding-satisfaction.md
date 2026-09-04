@@ -197,7 +197,7 @@ Prénom, entreprise, projet, date de livraison — injectés depuis le token. Le
 | # | Question | Format | Ce qu'on en fait |
 |---|---|---|---|
 | Q6 | Qu'est-ce qui vous a décidé à travailler avec nous plutôt qu'ailleurs ? | Cases multiples : le prix · le contact humain · les exemples montrés · la compréhension de mon métier · la rapidité · une recommandation · autre (texte) | **Nourrit directement l'argumentaire de vente et le wording de la landing** |
-| Q8 | Par rapport à ce que vous attendiez, la prestation vous semble… | Bien en dessous / En dessous / Conforme / Au-dessus / Bien au-dessus de mes attentes · **optionnel** | Signal de **valeur perçue**. Formulation « attentes » et non « prix » : neutre, ne rouvre pas la négociation |
+| Q8 | Rapporté à ce que le projet vous a coûté — en budget comme en temps — vous diriez que… | Ça vaut moins / C’est équilibré / Ça vaut plus que ce que j’y ai mis / Je préfère ne pas répondre · **optionnel** | Signal de **valeur perçue**. Porte sur le rapport valeur / investissement — terrain distinct de Q2, qui mesure la conformité au cadrage. Ne pose pas frontalement la question du prix, qui rouvrirait la négociation |
 | Q9 | Concrètement, qu'est-ce que ce site doit vous apporter — ou vous apporte déjà ? | Texte libre | Matière brute pour une **étude de cas** et pour parler bénéfice plutôt que fonctionnalité |
 
 > **Q7 supprimée** (« aviez-vous envisagé d'autres options ? »). La cartographie concurrentielle est précieuse mais se récolte mieux à l'oral, pendant l'appel de débrief — à l'écrit, la réponse est convenue.
@@ -582,7 +582,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 |---|---|---|
 | **D1** | Quand envoyer le lien | **J+7** (fenêtre acceptable J+3 → J+7, on prend le max ; ajustable après les premiers retours) |
 | **D3** | Format de présentation | **Multi-écrans** (6 écrans, barre de progression) |
-| **D4** | Question sur le prix | **Conservée**, reformulée en valeur perçue : « par rapport à ce que vous attendiez » |
+| **D4** | Question sur le prix | **Conservée**, reformulée en rapport valeur / investissement : « rapporté à ce que le projet vous a coûté, en budget comme en temps ». Une première reformulation sur « vos attentes » avait été écartée : elle faisait doublon avec Q2 |
 | **D5** | Contrepartie | **Remerciement symbolique non annoncé à l'avance**, non conditionné au contenu (§11) |
 | **D6** | Génération du lien | **Script local Node**, une commande, zéro étape manuelle (§8) |
 | **D7** | URL publique | **`/bilan`** |
@@ -650,5 +650,6 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 | Version | Date | Changements |
 |---|---|---|
 | v0.1 | 2026-09-03 | Rédaction initiale — définition du besoin |
+| v0.4 | 2026-09-04 | Q8 réécrite : la formulation « par rapport à vos attentes » faisait doublon avec Q2. Elle porte désormais sur le rapport valeur / investissement, ce qui restitue le signal de pricing visé par D4 |
 | v0.3 | 2026-09-04 | Implémentation de la v1 (page 6 écrans, 2 endpoints, table D1, script de lien). Ajout de « État d’implémentation » en §8. D1 et D3–D10 appliquées telles quelles ; D2 tranché par défaut à 13 questions, toujours ouvert |
 | v0.2 | 2026-09-03 | Décisions D1, D3–D10 arrêtées. Questionnaire rendu générique agence (1er client : architecte d'intérieur) : vocabulaire neutralisé, options Q10 transverses, Q7 et Q11 supprimées. Sous-choix LinkedIn à deux voies. Capture du site en en-tête écartée. Ajout §10 budget temps. §11 cadre juridique du remerciement symbolique |

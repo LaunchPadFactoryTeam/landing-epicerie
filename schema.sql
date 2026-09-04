@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS satisfaction_responses (
   -- Écran 3 — valeur perçue
   q6_decision TEXT,                         -- valeurs séparées par ',' (cf. contact_requests.availability)
   q6_decision_other TEXT,
-  q8_value TEXT,                            -- bien_en_dessous | en_dessous | conforme | au_dessus | bien_au_dessus
+  q8_value TEXT,                            -- moins | equilibre | plus | sans_reponse
   q9_benefit TEXT,
 
   -- Écran 4 — la suite
