@@ -639,6 +639,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 
 | Document | Lien |
 |---|---|
+| **Plan de test pas à pas (3 environnements)** | [`doc/bilan-plan-de-test.md`](./bilan-plan-de-test.md) |
 | Modale de contact (mécanique D1 + Brevo réutilisée) | [`doc/contact-modal.md`](./contact-modal.md) |
 | Lead magnet (mécanique du token HMAC) | [`doc/lead-magnet.md`](./lead-magnet.md) |
 | Design system | [`design-system/`](../design-system/) |

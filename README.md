@@ -108,6 +108,7 @@ Secrets (`wrangler secret put`) : `SIGNING_KEY`, `BREVO_API_KEY`, `TURNSTILE_SEC
 
 Questionnaire de satisfaction envoyé au client ~7 jours après la mise en ligne.
 Spécification complète : [`doc/offboarding-satisfaction.md`](doc/offboarding-satisfaction.md).
+Procédure de test pas à pas : [`doc/bilan-plan-de-test.md`](doc/bilan-plan-de-test.md).
 
 ### Envoyer un bilan à un client
 
