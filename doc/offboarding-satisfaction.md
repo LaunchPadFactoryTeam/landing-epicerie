@@ -248,11 +248,11 @@ C'est la formulation NPS standard. Deux précisions honnêtes :
 | Option | Formulation client | Valeur pour nous |
 |---|---|---|
 | Post LinkedIn | Parler de votre nouveau site sur LinkedIn | ⭐⭐⭐ Portée + crédibilité |
-| Avis Google | Laisser un avis sur notre fiche Google | ⭐⭐⭐ SEO local + preuve durable |
 | Référence publique | Nous autoriser à citer votre nom, votre logo et des captures du site | ⭐⭐⭐ Débloque le portfolio |
 | Mise en relation | Nous présenter à quelqu'un qui pourrait en avoir besoin | ⭐⭐⭐ Lead qualifié gratuit |
 
-> Quatre options, pas six. Le témoignage vidéo et l'interview étude de cas passent en v2 : forte valeur, mais coût de production incompatible avec la contrainte #5.
+> Trois options. Le témoignage vidéo et l'interview étude de cas passent en v2 : forte valeur, mais coût de production incompatible avec la contrainte #5.
+> L'avis Google a été retiré — l'agence n'a pas encore de fiche Google Business, on ne peut donc envoyer le client nulle part.
 
 #### Le sous-choix LinkedIn (point sensible)
 
@@ -469,7 +469,6 @@ Un questionnaire sans plan d'exploitation ne sert à rien. Chaque sortie doit av
 | Nom + logo + captures | Page projet / portfolio (cf. [`doc/todo.md`](./todo.md) — pages projets à créer) | Sous 1 semaine |
 | LinkedIn — « je m'en occupe » | 2 captures du site envoyées par mail | **Sous 48 h** |
 | LinkedIn — « proposez-moi un texte » | 2 captures + une proposition de texte courte (~8 lignes) | **Sous 48 h** |
-| Case « avis Google » | Lien direct vers la fiche envoyé par mail | Sous 48 h |
 | Case « mise en relation » | Appel pour identifier le contact | Sous 1 semaine |
 | Q6 (critères de décision) | Réécriture du wording de la landing (cf. [`design-system/04 Wording et contenu.html`](../design-system/)) | Trimestriel |
 | Q5 (moments d'inquiétude) | Correctif du process de suivi client | Immédiat |
@@ -618,6 +617,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 - [ ] Mini-admin protégée par Cloudflare Access : liste des réponses, statuts, export CSV
 - [ ] Génération du lien depuis l'admin (remplace le script local)
 - [ ] Notification Telegram en plus de l'email
+- [ ] Créer la fiche Google Business, puis réactiver l'option « avis Google » dans la branche promoteur
 - [ ] Activation du champ `variant` : versions sectorielles du questionnaire
 
 ### Phase 4 — Symétrie du cycle
@@ -650,6 +650,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 | Version | Date | Changements |
 |---|---|---|
 | v0.1 | 2026-09-03 | Rédaction initiale — définition du besoin |
+| v0.5 | 2026-09-04 | Retrait de l’option « avis Google » : sans fiche Google Business, le client n’aurait nulle part où écrire. Réactivation inscrite en roadmap. Libellés du bandeau de notification passés en clair (« Prêt à recommander » plutôt que « Promoteur ») |
 | v0.4 | 2026-09-04 | Q8 réécrite : la formulation « par rapport à vos attentes » faisait doublon avec Q2. Elle porte désormais sur le rapport valeur / investissement, ce qui restitue le signal de pricing visé par D4 |
 | v0.3 | 2026-09-04 | Implémentation de la v1 (page 6 écrans, 2 endpoints, table D1, script de lien). Ajout de « État d’implémentation » en §8. D1 et D3–D10 appliquées telles quelles ; D2 tranché par défaut à 13 questions, toujours ouvert |
 | v0.2 | 2026-09-03 | Décisions D1, D3–D10 arrêtées. Questionnaire rendu générique agence (1er client : architecte d'intérieur) : vocabulaire neutralisé, options Q10 transverses, Q7 et Q11 supprimées. Sous-choix LinkedIn à deux voies. Capture du site en en-tête écartée. Ajout §10 budget temps. §11 cadre juridique du remerciement symbolique |

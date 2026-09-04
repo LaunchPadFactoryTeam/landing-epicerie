@@ -67,7 +67,6 @@ export const NEEDS = {
 /** Q13 — demandes de recommandation (branche promoteur uniquement). */
 export const ASKS = {
   linkedin:        'Parler du site sur LinkedIn',
-  avis_google:     'Laisser un avis Google',
   reference:       'Autoriser nom + logo + captures',
   mise_en_relation:'Nous présenter quelqu’un',
 };

@@ -77,11 +77,15 @@ function pickScale(value, dict) {
 /* Notification email                                                  */
 /* ------------------------------------------------------------------ */
 
-/** Vert / orange / rouge selon le score de recommandation (doc §6). */
+/**
+ * Bandeau du mail : couleur et mention en clair selon le score (doc §6).
+ * Libellés volontairement sans jargon NPS — ce mail se lit en cinq secondes,
+ * « Promoteur / Passif / Détracteur » demandait un décodage inutile.
+ */
 function npsTone(nps) {
-  if (nps >= PROMOTER_THRESHOLD) return { bg: '#2f6b4f', label: 'Promoteur' };
-  if (nps === 7) return { bg: '#b3722a', label: 'Passif' };
-  return { bg: '#a33325', label: 'Détracteur' };
+  if (nps >= PROMOTER_THRESHOLD) return { bg: '#2f6b4f', label: 'Prêt à recommander' };
+  if (nps === 7) return { bg: '#b3722a', label: 'Mitigé' };
+  return { bg: '#a33325', label: 'Insatisfait' };
 }
 
 function scaleRowsHtml(scale, dict) {
@@ -117,7 +121,6 @@ function buildActionsHtml(r) {
         : 'mode non précisé → envoyer les visuels sous 48 h';
     actions.push(`LinkedIn : ${mode}`);
   }
-  if (r.q13Asks.includes('avis_google')) actions.push('Avis Google → envoyer le lien de la fiche sous 48 h');
   if (r.q13Asks.includes('reference')) actions.push('Autorise nom + logo + captures → page projet');
   if (r.q13Asks.includes('mise_en_relation')) actions.push('Propose une mise en relation → appeler sous 1 semaine');
   if (r.q13terCallback === 1) actions.push('⚠ DEMANDE À ÊTRE RAPPELÉ → appel sous 24 h');

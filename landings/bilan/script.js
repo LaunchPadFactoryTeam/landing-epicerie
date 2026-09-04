@@ -439,7 +439,6 @@
         ? 'On vous envoie une proposition de texte et les visuels du site d’ici 48 h.'
         : 'On vous envoie les visuels du site d’ici 48 h.');
     }
-    if (asks.includes('avis_google')) steps.push('On vous envoie le lien direct vers notre fiche Google d’ici 48 h.');
     if (asks.includes('mise_en_relation')) steps.push('On vous appelle dans la semaine pour la mise en relation.');
     if (asks.includes('reference')) steps.push('On vous montrera la page projet avant toute publication.');
     if (payload.q13ter_callback) steps.push('On vous appelle sous 24 h pour en parler de vive voix.');
