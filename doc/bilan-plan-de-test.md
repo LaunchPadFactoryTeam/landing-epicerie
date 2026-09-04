@@ -155,7 +155,11 @@ Rechargez **le même lien** qu'à l'étape 1.6, refaites le parcours, et à l'é
 | 2 | Deux champs : « Qu'est-ce qui nous aurait fait gagner les points manquants ? » et « Souhaitez-vous qu'on vous rappelle ? » |
 | 3 | **Aucune** demande de recommandation nulle part |
 
-Répondez « Oui » au rappel, envoyez, puis :
+Remplissez **les deux** champs de la branche — une phrase dans « Qu’est-ce qui nous aurait fait gagner les points manquants ? », puis « Oui » au rappel — et envoyez.
+
+> ⚠️ Le champ texte est facultatif. Laissé vide, il ressort à `null` en base : c’est le comportement attendu, pas une anomalie. Il faut donc bien y écrire quelque chose pour que le contrôle ci-dessous ait un sens.
+
+Puis :
 
 ```powershell
 npx wrangler d1 execute launchpad-leads --local --command "SELECT COUNT(*) AS lignes FROM satisfaction_responses;"
@@ -165,7 +169,7 @@ npx wrangler d1 execute launchpad-leads --local --command "SELECT id, q12_nps, q
 > ✔️ Attendu, et c'est **le test le plus important** :
 > - le nombre de lignes **n'a pas augmenté** (le même lien met à jour, il ne duplique pas)
 > - `q13_asks` et `q14_verbatim` sont `null` — les réponses promoteur de l'étape 1.7 ont été **effacées**
-> - `q13bis_missing` est rempli, `q13ter_callback = 1`
+> - `q13bis_missing` contient votre phrase, `q13ter_callback = 1`
 > - `created_at` est inchangé, `updated_at` est plus récent
 
 ### 1.11 — Le repli sans lien valide
