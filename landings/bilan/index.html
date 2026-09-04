@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Bilan de fin de mission — LaunchPad Factory." />
+<title>Bilan de fin de mission — LaunchPad Factory</title>
+
+<!-- Page privée, accessible uniquement par lien nominatif : jamais indexée. -->
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/bilan/style.css" />
+</head>
+<body class="bilan-body">
+
+<main class="bilan" id="bilan">
+
+  <!-- ============================================================
+       EN-TÊTE — texte uniquement (aucun asset à produire par client)
+       ============================================================ -->
+  <header class="bilan-head">
+    <p class="eyebrow">Bilan de fin de mission</p>
+    <h1 class="bilan-title" id="bilanTitle">Votre projet</h1>
+    <p class="bilan-meta" id="bilanMeta" hidden></p>
+    <p class="bilan-intro">
+      On arrive au bout — et chez nous, un projet se termine par un vrai bilan.
+      Vos réponses nous servent à progresser, et à mieux accompagner les prochains.
+      <em class="it">Comptez trois minutes.</em>
+    </p>
+  </header>
+
+  <noscript>
+    <p class="bilan-alert">Ce formulaire a besoin de JavaScript pour fonctionner. Si vous préférez, répondez-nous simplement par mail — on prendra le temps de tout noter.</p>
+  </noscript>
+
+  <p class="bilan-alert" id="tokenAlert" hidden>
+    Ce lien n’est plus valide (il expire au bout de 60 jours) ou a été tronqué par votre messagerie.
+    Aucun souci : indiquez-nous simplement qui vous êtes ci-dessous, le reste fonctionne normalement.
+  </p>
+
+  <!-- ============================================================
+       PROGRESSION
+       ============================================================ -->
+  <div class="bilan-card">
+
+  <div class="bilan-progress" id="bilanProgress">
+    <div class="bilan-progress-track">
+      <span class="bilan-progress-fill" id="progressFill"></span>
+    </div>
+    <p class="bilan-progress-label">
+      Étape <strong id="stepNow">1</strong> sur <span id="stepTotal">6</span>
+    </p>
+  </div>
+
+  <form id="bilanForm" class="bilan-form" novalidate>
+
+    <!-- Honeypot — invisible pour l’humain, tentant pour un bot -->
+    <div class="hp-field" aria-hidden="true">
+      <label>Ne remplissez pas ce champ
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <!-- ========================================================
+         ÉCRAN 1 — Satisfaction globale
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="1" aria-labelledby="s1-title">
+      <h2 class="bilan-screen-title" id="s1-title">D’abord, l’essentiel</h2>
+
+      <!-- Repli quand le lien ne porte pas d’identité valide -->
+      <div class="identity-fallback" id="identityFallback" hidden>
+        <div class="field">
+          <label for="fbFirstname">Votre prénom <span class="req">*</span></label>
+          <input type="text" id="fbFirstname" name="firstname" autocomplete="given-name" maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="fbCompany">Votre structure <span class="req">*</span></label>
+          <input type="text" id="fbCompany" name="company" autocomplete="organization" maxlength="120" />
+        </div>
+      </div>
+
+      <div class="scale-field" role="radiogroup" aria-labelledby="lbl-q1_satisfaction" data-scale="1-5" data-name="q1_satisfaction"
+                data-low="Pas vraiment" data-high="Totalement" data-required="true"><span class="scale-label" id="lbl-q1_satisfaction">Globalement, êtes-vous satisfait du site livré ? <span class="req">*</span></span></div>
+
+      <fieldset class="choice-field">
+        <legend>Le résultat correspond-il à ce que vous aviez imaginé au départ ?</legend>
+        <div class="choice-list">
+          <label class="choice"><input type="radio" name="q2_expectation" value="below" /><span>En dessous de ce que j’imaginais</span></label>
+          <label class="choice"><input type="radio" name="q2_expectation" value="match" /><span>Conforme à ce que j’imaginais</span></label>
+          <label class="choice"><input type="radio" name="q2_expectation" value="above" /><span>Au-delà de ce que j’imaginais</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <!-- ========================================================
+         ÉCRAN 2 — L’expérience de collaboration
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="2" aria-labelledby="s2-title" hidden>
+      <h2 class="bilan-screen-title" id="s2-title">Comment ça s’est passé</h2>
+      <p class="bilan-screen-hint">Notez chaque étape de 1 (mauvais souvenir) à 5 (parfait). Passez celles qui ne vous parlent pas.</p>
+
+      <div class="matrix">
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_contact" data-scale="1-5" data-name="q3_contact"><span class="scale-label" id="lbl-q3_contact">Premier contact</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_cadrage" data-scale="1-5" data-name="q3_cadrage"><span class="scale-label" id="lbl-q3_cadrage">Cadrage du besoin</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_design" data-scale="1-5" data-name="q3_design"><span class="scale-label" id="lbl-q3_design">Propositions de design</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_suivi" data-scale="1-5" data-name="q3_suivi"><span class="scale-label" id="lbl-q3_suivi">Suivi pendant la réalisation</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_livraison" data-scale="1-5" data-name="q3_livraison"><span class="scale-label" id="lbl-q3_livraison">Livraison / mise en ligne</span></div>
+      </div>
+
+      <p class="bilan-screen-hint bilan-screen-hint--spaced">Et sur notre façon de communiquer :</p>
+
+      <div class="matrix">
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_reactivite" data-scale="1-5" data-name="q4_reactivite"><span class="scale-label" id="lbl-q4_reactivite">Réactivité</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_clarte" data-scale="1-5" data-name="q4_clarte"><span class="scale-label" id="lbl-q4_clarte">Clarté des explications</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_delais" data-scale="1-5" data-name="q4_delais"><span class="scale-label" id="lbl-q4_delais">Respect des délais</span></div>
+      </div>
+
+      <div class="field">
+        <label for="q5">Y a-t-il eu un moment où vous vous êtes senti perdu, inquiet, ou pas assez informé ? <span class="opt">facultatif</span></label>
+        <textarea id="q5" name="q5_friction" rows="4" maxlength="2000" placeholder="Même un détail nous intéresse — c’est ce qui nous fait progresser."></textarea>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ÉCRAN 3 — Valeur perçue & positionnement
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="3" aria-labelledby="s3-title" hidden>
+      <h2 class="bilan-screen-title" id="s3-title">Ce qui a compté</h2>
+
+      <fieldset class="choice-field">
+        <legend>Qu’est-ce qui vous a décidé à travailler avec nous plutôt qu’ailleurs ?</legend>
+        <p class="bilan-screen-hint">Plusieurs réponses possibles.</p>
+        <div class="choice-list choice-list--grid">
+          <label class="choice"><input type="checkbox" name="q6_decision" value="prix" /><span>Le prix</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="humain" /><span>Le contact humain</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="exemples" /><span>Les exemples montrés</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="metier" /><span>La compréhension de mon métier</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="rapidite" /><span>La rapidité</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="recommandation" /><span>Une recommandation</span></label>
+          <label class="choice"><input type="checkbox" name="q6_decision" value="autre" data-reveal="q6Other" /><span>Autre</span></label>
+        </div>
+        <div class="field field--revealed" id="q6Other" hidden>
+          <label for="q6OtherInput">Précisez</label>
+          <input type="text" id="q6OtherInput" name="q6_decision_other" maxlength="200" />
+        </div>
+      </fieldset>
+
+      <fieldset class="choice-field">
+        <legend>Rapporté à ce que le projet vous a coûté — en budget comme en temps — vous diriez que… <span class="opt">facultatif</span></legend>
+        <div class="choice-list">
+          <label class="choice"><input type="radio" name="q8_value" value="moins" /><span>Ça vaut moins que ce que j’y ai mis</span></label>
+          <label class="choice"><input type="radio" name="q8_value" value="equilibre" /><span>C’est équilibré</span></label>
+          <label class="choice"><input type="radio" name="q8_value" value="plus" /><span>Ça vaut plus que ce que j’y ai mis</span></label>
+          <label class="choice"><input type="radio" name="q8_value" value="sans_reponse" /><span>Je préfère ne pas répondre</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="q9">Concrètement, qu’est-ce que ce site doit vous apporter — ou vous apporte déjà ? <span class="opt">facultatif</span></label>
+        <textarea id="q9" name="q9_benefit" rows="4" maxlength="2000" placeholder="Plus de demandes, une image plus juste, du temps gagné…"></textarea>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ÉCRAN 4 — La suite
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="4" aria-labelledby="s4-title" hidden>
+      <h2 class="bilan-screen-title" id="s4-title">Et pour la suite ?</h2>
+
+      <fieldset class="choice-field">
+        <legend>Sur quoi aimeriez-vous être accompagné dans les 6 prochains mois ?</legend>
+        <p class="bilan-screen-hint">Aucun engagement — c’est juste pour savoir où vous en êtes.</p>
+        <div class="choice-list choice-list--grid">
+          <label class="choice"><input type="checkbox" name="q10_needs" value="maintenance" /><span>Maintenance &amp; mises à jour</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="google" /><span>Être mieux visible sur Google</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="contenus" /><span>Contenus, textes ou photos</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="reseaux" /><span>Réseaux sociaux</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="evolutions" /><span>De nouvelles pages ou fonctionnalités</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="vente_rdv" /><span>Vendre ou prendre rendez-vous en ligne</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="autre" data-reveal="q10Other" /><span>Autre</span></label>
+          <label class="choice"><input type="checkbox" name="q10_needs" value="rien" data-exclusive="true" /><span>Rien pour l’instant</span></label>
+        </div>
+        <div class="field field--revealed" id="q10Other" hidden>
+          <label for="q10OtherInput">Précisez</label>
+          <input type="text" id="q10OtherInput" name="q10_needs_other" maxlength="200" />
+        </div>
+      </fieldset>
+    </section>
+
+    <!-- ========================================================
+         ÉCRAN 5 — Recommandation (branchement)
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="5" aria-labelledby="s5-title" hidden>
+      <h2 class="bilan-screen-title" id="s5-title">Nous recommanderiez-vous ?</h2>
+
+      <div class="scale-field scale-field--nps" role="radiogroup" aria-labelledby="lbl-q12_nps" data-scale="0-10" data-name="q12_nps"
+                data-low="Certainement pas" data-high="Sans hésiter" data-required="true"><span class="scale-label" id="lbl-q12_nps">Quelle est la probabilité que vous parliez de nous à un confrère ou à un professionnel de votre entourage ? <span class="req">*</span></span></div>
+
+      <!-- Branche A — promoteur (score >= 8) -->
+      <div class="branch branch--promoter" id="branchPromoter" hidden>
+        <p class="branch-intro">Merci, ça compte beaucoup pour nous. On démarre, et le bouche-à-oreille est notre meilleur allié.</p>
+
+        <fieldset class="choice-field">
+          <legend>Accepteriez-vous un coup de pouce ? <span class="opt">tout est facultatif</span></legend>
+          <div class="choice-list">
+            <label class="choice"><input type="checkbox" name="q13_asks" value="linkedin" data-reveal="linkedinMode" /><span>Parler de votre nouveau site sur LinkedIn</span></label>
+            <label class="choice"><input type="checkbox" name="q13_asks" value="avis_google" /><span>Laisser un avis sur notre fiche Google</span></label>
+            <label class="choice"><input type="checkbox" name="q13_asks" value="reference" /><span>Nous autoriser à citer votre nom, votre logo et des captures du site</span></label>
+            <label class="choice"><input type="checkbox" name="q13_asks" value="mise_en_relation" /><span>Nous présenter à quelqu’un qui pourrait en avoir besoin</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Sous-choix LinkedIn : deux voies, aucune n’est le mauvais choix -->
+        <fieldset class="choice-field choice-field--sub" id="linkedinMode" hidden>
+          <legend>Comment préférez-vous procéder ?</legend>
+          <div class="choice-list">
+            <label class="choice"><input type="radio" name="q13_linkedin_mode" value="self" /><span>Je m’en occupe — envoyez-moi juste les visuels</span></label>
+            <label class="choice"><input type="radio" name="q13_linkedin_mode" value="assisted" /><span>Proposez-moi un texte, je l’adapterai</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="q14">En une ou deux phrases, que diriez-vous à un professionnel qui hésite à se lancer ? <span class="opt">facultatif</span></label>
+          <textarea id="q14" name="q14_verbatim" rows="3" maxlength="1000"></textarea>
+          <p class="field-note">Cette réponse pourra être publiée sur notre site, avec votre nom et celui de votre structure — uniquement si vous cochez l’autorisation à l’étape suivante.</p>
+        </div>
+      </div>
+
+      <!-- Branche B — passif / détracteur (score <= 7) -->
+      <div class="branch branch--detractor" id="branchDetractor" hidden>
+        <p class="branch-intro">Merci de votre franchise — c’est ce qui nous fait progresser.</p>
+
+        <div class="field">
+          <label for="q13bis">Qu’est-ce qui nous aurait fait gagner les points manquants ? <span class="opt">facultatif</span></label>
+          <textarea id="q13bis" name="q13bis_missing" rows="4" maxlength="2000"></textarea>
+        </div>
+
+        <fieldset class="choice-field">
+          <legend>Souhaitez-vous qu’on vous rappelle pour en parler ?</legend>
+          <div class="choice-list choice-list--inline">
+            <label class="choice"><input type="radio" name="q13ter_callback" value="oui" /><span>Oui, volontiers</span></label>
+            <label class="choice"><input type="radio" name="q13ter_callback" value="non" /><span>Non merci</span></label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ÉCRAN 6 — Le mot de la fin
+         ======================================================== -->
+    <section class="bilan-screen" data-screen="6" aria-labelledby="s6-title" hidden>
+      <h2 class="bilan-screen-title" id="s6-title">Le mot de la fin</h2>
+
+      <div class="field">
+        <label for="q15">Quelque chose à ajouter ? <span class="opt">facultatif</span></label>
+        <textarea id="q15" name="q15_extra" rows="4" maxlength="2000"></textarea>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" />
+        <span>J’accepte que mes réponses soient enregistrées par LaunchPad Factory pour améliorer ses services. <span class="req">*</span></span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" id="publishConsent" name="publish_consent" />
+        <span>J’autorise LaunchPad Factory à citer le nom de ma structure, son logo, des captures du site et mon témoignage sur son site et ses réseaux. <span class="opt">facultatif — vous pouvez nous demander de le retirer à tout moment, sans justification.</span></span>
+      </label>
+    </section>
+
+    <!-- ========================================================
+         NAVIGATION
+         ======================================================== -->
+    <p class="bilan-error" id="formError" hidden role="alert"></p>
+
+    <div class="bilan-nav" id="bilanNav">
+      <button type="button" class="btn btn-outline" id="btnPrev" hidden>← Retour</button>
+      <button type="button" class="btn btn-primary btn-lg" id="btnNext">Continuer <span class="arrow">→</span></button>
+      <button type="submit" class="btn btn-accent btn-lg" id="btnSubmit" hidden>Envoyer mon bilan</button>
+    </div>
+  </form>
+
+  </div><!-- /.bilan-card -->
+
+  <!-- ========================================================
+       ÉCRAN DE REMERCIEMENT — conditionnel
+       ======================================================== -->
+  <section class="bilan-thanks" id="bilanThanks" hidden aria-live="polite">
+    <p class="eyebrow">C’est envoyé</p>
+    <h2 class="bilan-thanks-title" id="thanksTitle">Merci !</h2>
+    <p class="bilan-thanks-lead" id="thanksLead"></p>
+    <ul class="bilan-thanks-list" id="thanksList"></ul>
+    <p class="bilan-thanks-sign">— L’équipe LaunchPad Factory</p>
+  </section>
+
+  <footer class="bilan-foot">
+    <a href="/">launchpadfactory.fr</a>
+  </footer>
+</main>
+
+<script src="/bilan/script.js" defer></script>
+</body>
+</html>

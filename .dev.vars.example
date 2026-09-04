@@ -1,0 +1,19 @@
+# Variables locales pour `wrangler dev` — copier en `.dev.vars` (gitignoré).
+# Les vraies valeurs de production vivent dans les secrets Cloudflare, jamais ici.
+
+# Signature des tokens (lead magnet + liens de bilan).
+# ⚠ En local, mettez ce que vous voulez : les tokens signés avec cette clé ne
+#   sont valides QUE sur http://127.0.0.1:8788.
+#   Pour générer le lien d'un vrai client, il faut la clé de PRODUCTION :
+#     SIGNING_KEY="<cle-prod>" node scripts/bilan-link.mjs --prenom ... --entreprise ...
+SIGNING_KEY=cle-locale-de-dev-non-secrete
+
+# Notification email (optionnel en local : sans clé, la notif est simplement
+# ignorée et l'insertion en base fonctionne quand même).
+# BREVO_API_KEY=xkeysib-...
+# NOTIFY_TO_EMAIL=launchpadfactory.contact@gmail.com
+# NOTIFY_FROM_EMAIL=launchpadfactory.contact@gmail.com
+# NOTIFY_FROM_NAME=LaunchPad — DEV
+
+# Anti-spam de la modale de contact (le bilan n'utilise pas Turnstile).
+# TURNSTILE_SECRET=...

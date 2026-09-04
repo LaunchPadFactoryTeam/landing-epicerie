@@ -1,0 +1,566 @@
+/* =============================================================
+   LaunchPad Factory — Bilan de fin de mission (/bilan)
+   Hérite des tokens, de .btn, .eyebrow et .hp-field de /style.css.
+   Cf. doc/offboarding-satisfaction.md §7 — mobile-first, un écran = une idée.
+
+   Parti pris : un document calme. Fond papier, une seule carte blanche,
+   beaucoup d'air, l'orange réservé à la sélection et aux accents.
+   ============================================================= */
+
+/* ---------- Garde-fous contre /style.css ----------
+   La feuille de la landing agence est chargee avant celle-ci et cible des
+   elements nus. Deux de ses regles cassent cette page si on ne les neutralise pas. */
+
+/* 1. `section { padding: var(--section-y) 0 }` = 80 a 128px en haut ET en bas.
+      Nos ecrans sont des <section> : ils heritaient d'un enorme blanc. */
+.bilan-screen { padding: 0; }
+
+/* 2. `.btn { display: inline-flex }` l'emporte sur le `[hidden] { display:none }`
+      du navigateur (une classe bat un selecteur d'attribut du UA stylesheet).
+      Sans ca, « Retour » et « Envoyer » restent visibles a chaque etape.
+      Meme probleme pour tout element auquel on donne un display (.identity-fallback,
+      .choice-list...), d'ou une regle globale plutot qu'au cas par cas. */
+[hidden] { display: none !important; }
+
+.bilan-body {
+  background: var(--paper);
+  overflow-x: hidden;
+}
+
+.bilan {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 64px) 20px 72px;
+}
+
+/* ---------- En-tête (sur le fond, hors carte) ---------- */
+.bilan-head { margin-bottom: clamp(20px, 3vw, 28px); }
+
+.bilan-head .eyebrow { margin-bottom: 14px; }
+
+.bilan-title {
+  /* Override du h1 de la landing (clamp jusqu'à 8.4rem) : ici c'est un titre
+     de document, pas un hero. */
+  font-size: clamp(1.75rem, 4.6vw, 2.4rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+}
+
+.bilan-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0 0 16px;
+}
+
+.bilan-intro {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  margin: 0;
+}
+
+.bilan-alert {
+  /* Marge basse indispensable : le bandeau precede directement la carte. */
+  margin: 20px 0 24px;
+  padding: 14px 16px;
+  background: var(--orange-tint);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ---------- La carte ---------- */
+.bilan-card,
+.bilan-thanks {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-sm);
+  padding: clamp(22px, 4vw, 38px);
+}
+
+/* ---------- Progression ---------- */
+.bilan-progress {
+  margin: 0 0 clamp(26px, 4vw, 34px);
+}
+
+.bilan-progress-track {
+  height: 3px;
+  background: var(--cream-deep);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.bilan-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+  border-radius: var(--r-pill);
+  transition: width var(--t-base);
+}
+.bilan-progress-label {
+  margin: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.bilan-progress-label strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Écrans ---------- */
+.bilan-screen { animation: bilan-in var(--t-base) both; }
+@keyframes bilan-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bilan-screen, .branch, .bilan-thanks { animation: none; }
+  .bilan-progress-fill { transition: none; }
+}
+
+.bilan-screen-title {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 2.8vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  margin: 0 0 6px;
+}
+.bilan-screen-title:focus { outline: none; }
+
+.bilan-screen-hint {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  margin: 0 0 26px;
+}
+.bilan-screen-hint--spaced { margin-top: 34px; }
+
+/* Espacement commun entre les blocs de question */
+.bilan-screen > .field,
+.bilan-screen > .scale-field,
+.bilan-screen > .choice-field,
+.branch > .field,
+.branch > .choice-field { margin-bottom: clamp(28px, 4vw, 36px); }
+
+.bilan-screen > *:last-child,
+.branch > *:last-child { margin-bottom: 0; }
+
+/* ---------- Libellés ---------- */
+.field > label,
+.scale-label,
+.choice-field > legend,
+.identity-fallback label {
+  display: block;
+  padding: 0;
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+.req { color: var(--orange); font-weight: 700; }
+.opt {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  vertical-align: 1px;
+}
+
+/* ---------- Champs texte ---------- */
+.field { margin: 0; }
+
+.field input[type="text"],
+.field textarea,
+.identity-fallback input[type="text"] {
+  width: 100%;
+  padding: 13px 15px;
+  font: inherit;
+  font-size: 0.96rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 92px;
+  line-height: 1.6;
+  /* Pas de barre de défilement permanente : cf. doc/todo.md ligne 4. */
+  scrollbar-width: thin;
+}
+.field input[type="text"]::placeholder,
+.field textarea::placeholder { color: var(--ink-mute); opacity: 0.75; }
+
+.field input[type="text"]:focus,
+.field textarea:focus,
+.identity-fallback input[type="text"]:focus {
+  outline: 0;
+  border-color: var(--orange);
+  background: var(--white);
+  box-shadow: 0 0 0 3px var(--orange-tint);
+}
+.field input.invalid,
+.identity-fallback input.invalid {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.04);
+}
+
+.field-note {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ink-mute);
+}
+
+.field--revealed { margin-top: 14px !important; margin-bottom: 0 !important; }
+
+.identity-fallback {
+  padding: 20px;
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  margin-bottom: clamp(28px, 4vw, 36px);
+  display: grid;
+  gap: 16px;
+}
+
+/* ---------- Échelles notées (générées par script.js) ---------- */
+/* Les echelles sont des <div role="radiogroup"> : on a quitte le couple
+   fieldset + legend, dont la « boite de legende » ignorait nos marges basses
+   et rendait le rythme de la matrice illisible.
+   Les groupes de cases restent des <fieldset>, d'ou le reset de bordure. */
+.choice-field {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.scale-field { min-width: 0; }
+
+.scale-scale { display: flex; gap: 7px; }
+.scale-opt { flex: 1 1 0; min-width: 0; }
+.scale-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.scale-opt span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+.scale-opt span:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-1px); }
+.scale-opt input:checked ~ span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.scale-opt input:focus-visible ~ span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 9px;
+  font-size: 0.76rem;
+  color: var(--ink-mute);
+}
+
+/* Ligne de matrice : libellé au-dessus, échelle compacte en dessous */
+.matrix {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 4px 18px;
+  margin-bottom: clamp(28px, 4vw, 36px);
+}
+.scale-field--row {
+  /* Le rapport entre ces deux valeurs est ce qui rend la matrice lisible :
+     8px entre un libelle et SON echelle, 44px entre deux lignes (22 + 22).
+     A rythme egal, l'oeil rattache le libelle a l'echelle du dessus. */
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.matrix .scale-field--row:first-child { padding-top: 18px; }
+.matrix .scale-field--row:last-child { border-bottom: 0; padding-bottom: 18px; }
+.scale-field--row .scale-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.scale-field--row .scale-opt span { height: 40px; font-size: 0.85rem; border-radius: var(--r-sm); }
+
+/* Échelle NPS : 11 valeurs, plus serrées */
+.scale-field--nps .scale-scale { gap: 5px; }
+.scale-field--nps .scale-opt span {
+  height: 46px;
+  font-size: 0.82rem;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Choix (cases & radios) ---------- */
+.choice-field > .bilan-screen-hint { margin: -6px 0 12px; }
+
+.choice-list { display: grid; gap: 8px; }
+.choice-list--inline { grid-auto-flow: column; grid-auto-columns: max-content; }
+
+.choice { position: relative; display: block; }
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.choice span {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+/* Indicateur dessiné en CSS : carré arrondi pour les cases, rond pour les radios. */
+.choice span::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  background: var(--white);
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.choice input[type="radio"] ~ span::before { border-radius: 50%; }
+
+.choice span:hover { border-color: var(--ink); color: var(--ink); }
+.choice input:checked ~ span {
+  border-color: var(--orange);
+  background: var(--orange-tint);
+  color: var(--ink);
+  font-weight: 500;
+}
+.choice input:checked ~ span::before {
+  border-color: var(--orange);
+  background: var(--orange);
+  box-shadow: inset 0 0 0 3px var(--white);
+}
+.choice input:focus-visible ~ span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/* ---------- Branchement recommandation ---------- */
+.branch {
+  margin-top: clamp(28px, 4vw, 36px);
+  padding-top: clamp(24px, 3.5vw, 32px);
+  border-top: 1px solid var(--line);
+  animation: bilan-in var(--t-base) both;
+}
+
+.branch-intro {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 26px;
+}
+
+/* Sous-choix LinkedIn : encadré, pour montrer qu'il dépend de la case au-dessus */
+.choice-field--sub {
+  --sub-pad: 20px;
+  margin: -14px 0 clamp(28px, 4vw, 36px) !important;
+  padding: 18px var(--sub-pad);
+  background: var(--cream);
+  border-radius: var(--r-lg);
+}
+/* Un <legend> se positionne sur la boite de BORDURE du fieldset : il ignore
+   son padding horizontal. C'est le seul choice-field qui en a un, d'ou un
+   libelle decale a gauche des options. On lui rend le meme retrait. */
+.choice-field--sub > legend {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  padding-inline: var(--sub-pad);
+}
+.choice-field--sub .choice span { background: var(--white); }
+
+/* ---------- Consentements ---------- */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin: 0 0 12px;
+  padding: 15px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.consent:hover { border-color: var(--ink); }
+.consent input {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: var(--orange);
+  cursor: pointer;
+}
+.consent:has(input:checked) {
+  border-color: var(--orange);
+  background: var(--orange-tint);
+  color: var(--ink);
+}
+.consent .opt {
+  display: block;
+  margin-top: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.bilan-error {
+  margin: 20px 0 0;
+  padding: 12px 15px;
+  background: rgba(192, 57, 43, 0.07);
+  border-left: 3px solid #c0392b;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 0.89rem;
+  line-height: 1.5;
+  color: #8f2b20;
+}
+
+/* ---------- Navigation ---------- */
+.bilan-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(28px, 4vw, 36px);
+  padding-top: clamp(20px, 3vw, 26px);
+  border-top: 1px solid var(--line);
+}
+/* Le bouton d'avancement est toujours à droite, quel que soit l'écran. */
+.bilan-nav .btn-primary,
+.bilan-nav .btn-accent { margin-left: auto; }
+.bilan-nav .btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ---------- Remerciement ---------- */
+.bilan-thanks { animation: bilan-in var(--t-slow) both; }
+.bilan-thanks .eyebrow { margin-bottom: 14px; }
+
+.bilan-thanks-title {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 4.4vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  margin: 0 0 12px;
+}
+.bilan-thanks-lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin: 0 0 24px;
+}
+.bilan-thanks-list {
+  display: grid;
+  gap: 9px;
+  margin: 0 0 28px;
+}
+.bilan-thanks-list li {
+  position: relative;
+  padding: 14px 16px 14px 44px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.bilan-thanks-list li::before {
+  content: '→';
+  position: absolute;
+  left: 18px;
+  color: var(--orange);
+  font-weight: 700;
+}
+.bilan-thanks-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Pied ---------- */
+.bilan-foot {
+  margin-top: 32px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.bilan-foot a:hover { color: var(--orange); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 560px) {
+  .bilan { padding-left: 14px; padding-right: 14px; }
+
+  .bilan-card,
+  .bilan-thanks { border-radius: var(--r-lg); }
+
+  .matrix { padding: 4px 14px; }
+
+  /* Sur petit écran, les échelles à 11 valeurs ne tiennent pas en une ligne :
+     on passe en grille pour rester tapable au pouce (cible >= 44px). */
+  .scale-field--nps .scale-scale {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .scale-ends { font-size: 0.72rem; }
+
+  .choice-list--inline { grid-auto-flow: row; grid-auto-columns: auto; }
+
+  .bilan-nav { flex-wrap: wrap; }
+  .bilan-nav .btn { flex: 1 1 auto; justify-content: center; }
+}
