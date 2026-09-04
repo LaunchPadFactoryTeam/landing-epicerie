@@ -65,7 +65,8 @@
 }
 
 .bilan-alert {
-  margin: 20px 0 0;
+  /* Marge basse indispensable : le bandeau precede directement la carte. */
+  margin: 20px 0 24px;
   padding: 14px 16px;
   background: var(--orange-tint);
   border-left: 3px solid var(--orange);
