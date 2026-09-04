@@ -296,14 +296,19 @@
   margin-bottom: clamp(28px, 4vw, 36px);
 }
 .scale-field--row {
-  padding: 18px 0;
+  /* Le rapport entre ces deux valeurs est ce qui rend la matrice lisible :
+     8px entre un libelle et SON echelle, 44px entre deux lignes (22 + 22).
+     A rythme egal, l'oeil rattache le libelle a l'echelle du dessus. */
+  padding: 22px 0;
   border-bottom: 1px solid var(--line);
 }
-.matrix .scale-field--row:last-child { border-bottom: 0; }
+.matrix .scale-field--row:first-child { padding-top: 18px; }
+.matrix .scale-field--row:last-child { border-bottom: 0; padding-bottom: 18px; }
 .scale-field--row > legend {
   font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
 }
 .scale-field--row .scale-opt span { height: 40px; font-size: 0.85rem; border-radius: var(--r-sm); }
 
