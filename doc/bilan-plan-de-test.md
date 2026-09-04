@@ -251,16 +251,29 @@ npx wrangler d1 execute launchpad-leads --remote --command "SELECT name FROM sql
 
 ### 2.3 — Récupérer l'URL de preview
 
-Elle est publiée par le bot Cloudflare en commentaire de la PR :
+L’URL de preview d’une branche est **stable** : elle se déduit du nom de branche.
 
-```powershell
-gh pr view 2 --comments
+```
+https://<nom-de-branche-avec-des-tirets>-landing-epicerie.launchpadfactoryteam.workers.dev
 ```
 
-> ✔️ Attendu : une ligne **Branch Preview URL**, du type
-> `https://doc-offboarding-satisfaction-landing-epicerie.launchpadfactoryteam.workers.dev`
+Pour la branche `doc/offboarding-satisfaction` :
+`https://doc-offboarding-satisfaction-landing-epicerie.launchpadfactoryteam.workers.dev`
+
+Si vous préférez la lire depuis la PR, **n’utilisez pas `gh pr view 2 --comments`** : il tronque la colonne du tableau et les liens deviennent illisibles. Prenez le markdown brut :
+
+```powershell
+gh pr view 2 --json comments -q '.comments[-1].body' | Select-String -Pattern 'https://S*?workers.dev' -AllMatches | ForEach-Object { $_.Matches.Value } | Select-Object -Unique
+```
+
+> ⚠️ **Ne vous fiez pas au hash de commit affiché par le bot** : il édite un commentaire existant et celui-ci reste souvent en retard de plusieurs commits, alors que le déploiement, lui, est à jour.
 >
-> Vérifiez que le commit cité est bien le dernier (`git log -1 --format=%h`). Si le déploiement est encore en cours, attendez et relancez la commande.
+> Pour savoir ce qui est réellement en ligne, interrogez le contenu servi plutôt que le commentaire — en cherchant une chaîne introduite par votre dernier commit :
+>
+> ```powershell
+> $P = "https://doc-offboarding-satisfaction-landing-epicerie.launchpadfactoryteam.workers.dev"
+> curl.exe -s "$P/bilan/style.css" | Select-String "une-chaine-de-votre-dernier-commit"
+> ```
 
 ### 2.4 — Générer un lien de test pour le preview
 
