@@ -85,10 +85,8 @@
         </div>
       </div>
 
-      <fieldset class="scale-field" data-scale="1-5" data-name="q1_satisfaction"
-                data-low="Pas vraiment" data-high="Totalement" data-required="true">
-        <legend>Globalement, êtes-vous satisfait du site livré ? <span class="req">*</span></legend>
-      </fieldset>
+      <div class="scale-field" role="radiogroup" aria-labelledby="lbl-q1_satisfaction" data-scale="1-5" data-name="q1_satisfaction"
+                data-low="Pas vraiment" data-high="Totalement" data-required="true"><span class="scale-label" id="lbl-q1_satisfaction">Globalement, êtes-vous satisfait du site livré ? <span class="req">*</span></span></div>
 
       <fieldset class="choice-field">
         <legend>Le résultat correspond-il à ce que vous aviez imaginé au départ ?</legend>
@@ -108,19 +106,19 @@
       <p class="bilan-screen-hint">Notez chaque étape de 1 (mauvais souvenir) à 5 (parfait). Passez celles qui ne vous parlent pas.</p>
 
       <div class="matrix">
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q3_contact"><legend>Premier contact</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q3_cadrage"><legend>Cadrage du besoin</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q3_design"><legend>Propositions de design</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q3_suivi"><legend>Suivi pendant la réalisation</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q3_livraison"><legend>Livraison / mise en ligne</legend></fieldset>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_contact" data-scale="1-5" data-name="q3_contact"><span class="scale-label" id="lbl-q3_contact">Premier contact</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_cadrage" data-scale="1-5" data-name="q3_cadrage"><span class="scale-label" id="lbl-q3_cadrage">Cadrage du besoin</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_design" data-scale="1-5" data-name="q3_design"><span class="scale-label" id="lbl-q3_design">Propositions de design</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_suivi" data-scale="1-5" data-name="q3_suivi"><span class="scale-label" id="lbl-q3_suivi">Suivi pendant la réalisation</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q3_livraison" data-scale="1-5" data-name="q3_livraison"><span class="scale-label" id="lbl-q3_livraison">Livraison / mise en ligne</span></div>
       </div>
 
       <p class="bilan-screen-hint bilan-screen-hint--spaced">Et sur notre façon de communiquer :</p>
 
       <div class="matrix">
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q4_reactivite"><legend>Réactivité</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q4_clarte"><legend>Clarté des explications</legend></fieldset>
-        <fieldset class="scale-field scale-field--row" data-scale="1-5" data-name="q4_delais"><legend>Respect des délais</legend></fieldset>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_reactivite" data-scale="1-5" data-name="q4_reactivite"><span class="scale-label" id="lbl-q4_reactivite">Réactivité</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_clarte" data-scale="1-5" data-name="q4_clarte"><span class="scale-label" id="lbl-q4_clarte">Clarté des explications</span></div>
+        <div class="scale-field scale-field--row" role="radiogroup" aria-labelledby="lbl-q4_delais" data-scale="1-5" data-name="q4_delais"><span class="scale-label" id="lbl-q4_delais">Respect des délais</span></div>
       </div>
 
       <div class="field">
@@ -201,10 +199,8 @@
     <section class="bilan-screen" data-screen="5" aria-labelledby="s5-title" hidden>
       <h2 class="bilan-screen-title" id="s5-title">Nous recommanderiez-vous ?</h2>
 
-      <fieldset class="scale-field scale-field--nps" data-scale="0-10" data-name="q12_nps"
-                data-low="Certainement pas" data-high="Sans hésiter" data-required="true">
-        <legend>Quelle est la probabilité que vous parliez de nous à un confrère ou à un professionnel de votre entourage ? <span class="req">*</span></legend>
-      </fieldset>
+      <div class="scale-field scale-field--nps" role="radiogroup" aria-labelledby="lbl-q12_nps" data-scale="0-10" data-name="q12_nps"
+                data-low="Certainement pas" data-high="Sans hésiter" data-required="true"><span class="scale-label" id="lbl-q12_nps">Quelle est la probabilité que vous parliez de nous à un confrère ou à un professionnel de votre entourage ? <span class="req">*</span></span></div>
 
       <!-- Branche A — promoteur (score >= 8) -->
       <div class="branch branch--promoter" id="branchPromoter" hidden>

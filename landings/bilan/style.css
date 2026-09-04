@@ -155,7 +155,7 @@
 
 /* ---------- Libellés ---------- */
 .field > label,
-.scale-field > legend,
+.scale-label,
 .choice-field > legend,
 .identity-fallback label {
   display: block;
@@ -237,13 +237,17 @@
 }
 
 /* ---------- Échelles notées (générées par script.js) ---------- */
-.scale-field,
+/* Les echelles sont des <div role="radiogroup"> : on a quitte le couple
+   fieldset + legend, dont la « boite de legende » ignorait nos marges basses
+   et rendait le rythme de la matrice illisible.
+   Les groupes de cases restent des <fieldset>, d'ou le reset de bordure. */
 .choice-field {
-  border: 0;      /* neutralise la bordure native du fieldset */
+  border: 0;
   padding: 0;
   margin: 0;
-  min-width: 0;   /* évite qu'un fieldset refuse de rétrécir en grille */
+  min-width: 0;
 }
+.scale-field { min-width: 0; }
 
 .scale-scale { display: flex; gap: 7px; }
 .scale-opt { flex: 1 1 0; min-width: 0; }
@@ -304,7 +308,7 @@
 }
 .matrix .scale-field--row:first-child { padding-top: 18px; }
 .matrix .scale-field--row:last-child { border-bottom: 0; padding-bottom: 18px; }
-.scale-field--row > legend {
+.scale-field--row .scale-label {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--ink);
