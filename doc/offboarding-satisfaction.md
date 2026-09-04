@@ -1,8 +1,8 @@
 # 🎯 Offboarding client — Questionnaire de satisfaction & bilan de mission
 
-> **Statut : v0.2 — définition du besoin, décisions structurantes arrêtées.**
+> **Statut : v0.3 — besoin validé, v1 implémentée et en attente de relecture.**
 > Objet : formaliser le besoin d'un dispositif de fin de cycle client (« out-boarding ») matérialisé par une page dédiée sur notre site.
-> Reste ouvert : la longueur définitive du questionnaire (voir §13). Le reste est arbitré et prêt à passer en spec d'implémentation.
+> Reste ouvert : la longueur définitive du questionnaire (D2, §14). Le code de la v1 vit sur la branche `doc/offboarding-satisfaction` — voir « État d’implémentation » en §8.
 
 ---
 
@@ -378,7 +378,7 @@ Le formulaire doit ressembler à **un bilan de fin de mission**, pas à un sonda
 
 ## 8. Architecture technique pressentie
 
-> Section indicative — elle sert à valider la faisabilité et le coût (nul), pas à figer l'implémentation.
+> Section indicative à la rédaction, **désormais implémentée** : l’arborescence ci-dessous correspond au code livré.
 
 ```
 landings/bilan/index.html      →  /bilan          (page publique, token en query)
@@ -427,6 +427,31 @@ Le script lit `SIGNING_KEY` depuis `.dev.vars`, signe le payload `{ c, co, p, d,
 | Turnstile | ❌ Écarté — friction inutile sur un lien privé (réactivable si le fallback sans token est exposé) |
 | Validation server-side stricte + limites de longueur | ✅ Comme `contact.js` |
 | Échappement HTML dans le mail de notif | ✅ Obligatoire (le verbatim est du texte libre client) |
+
+### État d’implémentation
+
+| Exigence | État | Où |
+|---|---|---|
+| F1 page `/bilan` sur lien signé | ✅ | `landings/bilan/` |
+| F2 pré-remplissage depuis le token | ✅ | `GET /api/bilan-context` |
+| F3 fallback sans token | ✅ | bloc identité révélé si le lien est invalide ou expiré |
+| F4 6 écrans + progression | ✅ | `landings/bilan/script.js` |
+| F5 branchement ≥ 8 / ≤ 7 + sous-choix LinkedIn | ✅ | front **et** serveur : la branche est re-décidée côté API, un POST forgé ne peut pas mélanger les deux |
+| F6 stockage D1 | ✅ | table `satisfaction_responses` |
+| F7 notification email actionnable | ✅ | Brevo : bandeau coloré selon le score + bloc « actions à déclencher » |
+| F8 remerciement personnalisé | ✅ | suites listées en fonction des cases cochées |
+| F9 lien en une commande | ✅ | `node scripts/bilan-link.mjs` |
+| F10 reprise `localStorage` | ✅ | clé dérivée du lien, purgée après envoi |
+| F11 une réponse par lien | ✅ | `ON CONFLICT(token_ref) DO UPDATE` |
+| F12 expiration 60 jours | ✅ | message non bloquant + repli sur la saisie manuelle |
+| F13 export CSV | ⬜ | hors périmètre v1, comme prévu |
+
+**Écarts assumés par rapport au document :**
+
+- Le token peut porter l’email du client (option `--email`), non prévue en §8. Sans elle, le bouton « Répondre » de la notification (§6) n’aurait aucune adresse où pointer. L’option reste facultative : sans email, le bouton est simplement omis.
+- L’API ne distingue pas un lien expiré d’un lien altéré (`verifyToken` renvoie `null` dans les deux cas). Le message affiché couvre les deux situations et le repli est identique — F12 était en priorité « Could ».
+
+**Ce qui n’a pas été vérifié :** le rendu visuel et le parcours réel dans un navigateur — aucun navigateur headless n’est installé sur le poste. Les vérifications ont porté sur les endpoints, la base, le contrat front/API et la cohérence des sélecteurs. À valider sur l’URL de preview Cloudflare de la branche.
 
 ### Coût
 
@@ -624,4 +649,5 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 | Version | Date | Changements |
 |---|---|---|
 | v0.1 | 2026-09-03 | Rédaction initiale — définition du besoin |
+| v0.3 | 2026-09-04 | Implémentation de la v1 (page 6 écrans, 2 endpoints, table D1, script de lien). Ajout de « État d’implémentation » en §8. D1 et D3–D10 appliquées telles quelles ; D2 tranché par défaut à 13 questions, toujours ouvert |
 | v0.2 | 2026-09-03 | Décisions D1, D3–D10 arrêtées. Questionnaire rendu générique agence (1er client : architecte d'intérieur) : vocabulaire neutralisé, options Q10 transverses, Q7 et Q11 supprimées. Sous-choix LinkedIn à deux voies. Capture du site en en-tête écartée. Ajout §10 budget temps. §11 cadre juridique du remerciement symbolique |

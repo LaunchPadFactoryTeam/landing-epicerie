@@ -1,0 +1,502 @@
+/* =============================================================
+   LaunchPad Factory — Bilan de fin de mission (/bilan)
+   Hérite des tokens, de .btn, .eyebrow et .hp-field de /style.css.
+   Cf. doc/offboarding-satisfaction.md §7 — mobile-first, un écran = une idée.
+   ============================================================= */
+
+.bilan-body {
+  background: var(--paper);
+  /* La landing masque le débordement horizontal ; ici on veut aussi éviter
+     qu'une échelle NPS un peu large fasse scroller la page entière. */
+  overflow-x: hidden;
+}
+
+.bilan {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(32px, 7vw, 72px) 20px 64px;
+}
+
+/* ---------- En-tête ---------- */
+.bilan-head { margin-bottom: 28px; }
+
+.bilan-title {
+  /* Override du h1 de la landing (clamp jusqu'à 8.4rem) : ici c'est un titre
+     de document, pas un hero. */
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 10px;
+}
+
+.bilan-meta {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  margin: 0 0 18px;
+}
+
+.bilan-intro {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.bilan-alert {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  background: var(--orange-tint);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* ---------- Progression ---------- */
+.bilan-progress { margin: 32px 0 28px; }
+
+.bilan-progress-track {
+  height: 4px;
+  background: var(--cream-deep);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.bilan-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+  border-radius: var(--r-pill);
+  transition: width var(--t-base);
+}
+.bilan-progress-label {
+  margin: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.bilan-progress-label strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Écrans ---------- */
+.bilan-screen {
+  animation: bilan-in var(--t-base) both;
+}
+@keyframes bilan-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bilan-screen { animation: none; }
+  .bilan-progress-fill { transition: none; }
+}
+
+.bilan-screen-title {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.1;
+  margin: 0 0 8px;
+}
+.bilan-screen-hint {
+  font-size: 0.92rem;
+  color: var(--ink-mute);
+  margin: 0 0 22px;
+}
+.bilan-screen-hint--spaced { margin-top: 30px; }
+
+/* ---------- Champs texte ---------- */
+.field { margin: 0 0 24px; }
+.field:last-child { margin-bottom: 0; }
+
+.field label,
+.identity-fallback label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.45;
+}
+.req { color: var(--orange); font-weight: 700; }
+.opt { color: var(--ink-mute); font-weight: 400; font-size: 0.85rem; }
+
+.field input[type="text"],
+.field textarea,
+.identity-fallback input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 0.98rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  color: var(--ink);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.55;
+  /* Pas de barre de défilement permanente : cf. doc/todo.md ligne 4. */
+  scrollbar-width: thin;
+}
+.field input[type="text"]:focus,
+.field textarea:focus,
+.identity-fallback input[type="text"]:focus {
+  outline: 0;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange-tint);
+}
+.field input.invalid,
+.identity-fallback input.invalid {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.04);
+}
+
+.field-note {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-mute);
+}
+
+.field--revealed { margin-top: 14px; }
+
+.identity-fallback {
+  padding: 18px;
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  margin-bottom: 28px;
+}
+.identity-fallback .field:last-child { margin-bottom: 0; }
+
+/* ---------- Échelles notées (générées par script.js) ---------- */
+.scale-field {
+  border: 0;
+  padding: 0;
+  margin: 0 0 30px;
+  min-width: 0;
+}
+.scale-field legend {
+  padding: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.scale-scale {
+  display: flex;
+  gap: 8px;
+}
+.scale-opt { flex: 1 1 0; min-width: 0; }
+.scale-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.scale-opt span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+.scale-opt span:hover { border-color: var(--ink); transform: translateY(-1px); }
+.scale-opt input:checked ~ span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.scale-opt input:focus-visible ~ span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+}
+
+/* Ligne de matrice : libellé au-dessus, échelle compacte en dessous */
+.scale-field--row {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.matrix .scale-field--row:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.scale-field--row legend {
+  font-size: 0.92rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.scale-field--row .scale-opt span { height: 40px; font-size: 0.88rem; }
+
+.matrix {
+  padding: 4px 0;
+  margin-bottom: 26px;
+}
+
+/* Échelle NPS : 11 valeurs, plus serrées */
+.scale-field--nps .scale-scale { gap: 5px; }
+.scale-field--nps .scale-opt span {
+  height: 44px;
+  font-size: 0.85rem;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Choix (cases & radios) ---------- */
+.choice-field {
+  border: 0;
+  padding: 0;
+  margin: 0 0 30px;
+  min-width: 0;
+}
+.choice-field legend {
+  padding: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+.choice-field .bilan-screen-hint { margin-top: -8px; margin-bottom: 14px; }
+
+.choice-list { display: grid; gap: 8px; }
+.choice-list--grid { grid-template-columns: 1fr; }
+.choice-list--inline { grid-auto-flow: column; grid-auto-columns: max-content; }
+
+.choice { position: relative; display: block; }
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.choice span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  font-size: 0.94rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+/* Indicateur dessiné en CSS : coche pour les checkbox, point pour les radios. */
+.choice span::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  background: var(--paper);
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.choice input[type="radio"] ~ span::before { border-radius: 50%; }
+
+.choice span:hover { border-color: var(--ink); color: var(--ink); }
+.choice input:checked ~ span {
+  border-color: var(--orange);
+  background: var(--orange-tint);
+  color: var(--ink);
+  font-weight: 500;
+}
+.choice input:checked ~ span::before {
+  border-color: var(--orange);
+  background: var(--orange);
+  box-shadow: inset 0 0 0 3px var(--paper);
+}
+.choice input:focus-visible ~ span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+/* ---------- Branchement recommandation ---------- */
+.branch {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  animation: bilan-in var(--t-base) both;
+}
+@media (prefers-reduced-motion: reduce) { .branch { animation: none; } }
+
+.branch-intro {
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0 0 22px;
+}
+.branch--promoter .branch-intro { color: var(--ink); }
+
+/* Sous-choix LinkedIn : décalé pour montrer qu'il dépend de la case au-dessus */
+.choice-field--sub {
+  margin: -18px 0 30px;
+  padding: 16px 18px;
+  background: var(--cream);
+  border-radius: var(--r-lg);
+}
+.choice-field--sub legend { font-size: 0.92rem; margin-bottom: 12px; }
+.choice-field--sub .choice span { background: var(--paper); }
+
+/* ---------- Consentements ---------- */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast);
+}
+.consent:hover { border-color: var(--ink); }
+.consent input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--orange);
+  cursor: pointer;
+}
+.consent:has(input:checked) {
+  border-color: var(--orange);
+  background: var(--orange-tint);
+}
+.consent .opt { display: block; margin-top: 4px; }
+
+.bilan-error {
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  background: rgba(192, 57, 43, 0.07);
+  border-left: 3px solid #c0392b;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 0.9rem;
+  color: #8f2b20;
+}
+
+/* ---------- Navigation ---------- */
+.bilan-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.bilan-nav .btn-primary,
+.bilan-nav .btn-accent { margin-left: auto; }
+.bilan-nav .btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ---------- Remerciement ---------- */
+.bilan-thanks {
+  padding: 40px 0 8px;
+  animation: bilan-in var(--t-slow) both;
+}
+@media (prefers-reduced-motion: reduce) { .bilan-thanks { animation: none; } }
+
+.bilan-thanks-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 0 0 14px;
+}
+.bilan-thanks-lead {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin: 0 0 22px;
+}
+.bilan-thanks-list {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+.bilan-thanks-list li {
+  position: relative;
+  padding: 13px 16px 13px 44px;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.bilan-thanks-list li::before {
+  content: '→';
+  position: absolute;
+  left: 18px;
+  color: var(--orange);
+  font-weight: 700;
+}
+.bilan-thanks-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Pied ---------- */
+.bilan-foot {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.bilan-foot a:hover { color: var(--orange); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 560px) {
+  .bilan { padding-left: 16px; padding-right: 16px; }
+
+  /* Sur petit écran, les échelles à 11 valeurs ne tiennent pas en une ligne :
+     on passe en grille pour rester tapable au pouce (cible >= 40px). */
+  .scale-field--nps .scale-scale {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .scale-ends { font-size: 0.74rem; }
+  .scale-opt span { height: 44px; }
+  .scale-field--row .scale-opt span { height: 42px; }
+
+  .choice-list--inline { grid-auto-flow: row; grid-auto-columns: auto; }
+
+  .bilan-nav { flex-wrap: wrap; }
+  .bilan-nav .btn { flex: 1 1 auto; justify-content: center; }
+}

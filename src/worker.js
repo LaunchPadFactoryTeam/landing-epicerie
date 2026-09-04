@@ -2,6 +2,8 @@
 import { onRequestPost as leadHandler } from '../functions/api/lead.js';
 import { onRequestGet as downloadHandler } from '../functions/api/download.js';
 import { onRequestPost as contactHandler } from '../functions/api/contact.js';
+import { onRequestPost as bilanHandler } from '../functions/api/bilan.js';
+import { onRequestGet as bilanContextHandler } from '../functions/api/bilan-context.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -16,6 +18,12 @@ export default {
     }
     if (url.pathname === '/api/contact' && request.method === 'POST') {
       return contactHandler({ request, env, ctx });
+    }
+    if (url.pathname === '/api/bilan' && request.method === 'POST') {
+      return bilanHandler({ request, env, ctx });
+    }
+    if (url.pathname === '/api/bilan-context' && request.method === 'GET') {
+      return bilanContextHandler({ request, env, ctx });
     }
 
     // Tout le reste → assets statiques (servis automatiquement par le binding ASSETS)
