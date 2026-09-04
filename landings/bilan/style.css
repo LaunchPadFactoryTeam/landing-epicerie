@@ -398,12 +398,20 @@
 
 /* Sous-choix LinkedIn : encadré, pour montrer qu'il dépend de la case au-dessus */
 .choice-field--sub {
+  --sub-pad: 20px;
   margin: -14px 0 clamp(28px, 4vw, 36px) !important;
-  padding: 18px 20px;
+  padding: 18px var(--sub-pad);
   background: var(--cream);
   border-radius: var(--r-lg);
 }
-.choice-field--sub > legend { font-size: 0.9rem; margin-bottom: 12px; }
+/* Un <legend> se positionne sur la boite de BORDURE du fieldset : il ignore
+   son padding horizontal. C'est le seul choice-field qui en a un, d'ou un
+   libelle decale a gauche des options. On lui rend le meme retrait. */
+.choice-field--sub > legend {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  padding-inline: var(--sub-pad);
+}
 .choice-field--sub .choice span { background: var(--white); }
 
 /* ---------- Consentements ---------- */
