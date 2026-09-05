@@ -134,6 +134,23 @@ node scripts/bilan-link.mjs --prenom "Sophie" --entreprise "Studio Bellevue" --l
 > ⚠ Le lien est **nominatif** : il porte l'identité du client en clair (base64 non chiffré).
 > Il n'ouvre l'accès à aucune donnée existante — il ne fait que pré-remplir l'en-tête.
 
+### Suivi dans Notion
+
+Chaque réponse est aussi projetée dans la base Notion **Bilans clients — fin de mission**
+(statut, actions à déclencher, verbatim, autorisation de publication).
+
+L’envoi est best-effort : sans `NOTION_TOKEN`, il est simplement ignoré et tout le
+reste fonctionne. D1 reste la source de vérité.
+
+| Réglage | Où |
+|---|---|
+| `NOTION_TOKEN` | Secret — `npx wrangler secret put NOTION_TOKEN` |
+| `NOTION_DATABASE_ID` | Var non sensible, déjà dans [`wrangler.jsonc`](wrangler.jsonc) |
+
+> Le token vient d’une **intégration interne** créée sur https://www.notion.so/my-integrations,
+> et la base doit être partagée avec cette intégration (menu `···` → **Connexions**),
+> sinon Notion répond 404.
+
 ### Lire les réponses
 
 ```powershell

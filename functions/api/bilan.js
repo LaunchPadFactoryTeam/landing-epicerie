@@ -20,6 +20,7 @@ import {
   EXPECTATION, STEPS, COMMUNICATION, DECISION, VALUE, NEEDS, ASKS,
   LINKEDIN_MODE, PROMOTER_THRESHOLD,
 } from '../_shared/bilan.js';
+import { pushToNotion } from '../_shared/notion.js';
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -233,10 +234,34 @@ async function sendNotificationEmail(env, r, ip) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Projection Notion                                                   */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Miroir de la réponse dans la base Notion, pour le suivi des actions.
+ * Volontairement hors du chemin critique : lancé via ctx.waitUntil, et toute
+ * erreur est avalée. D1 reste la source de vérité.
+ */
+async function syncNotion(env, record, tone, rowId, existingPageId) {
+  try {
+    const pageId = await pushToNotion(env, record, tone, rowId, existingPageId);
+    // On mémorise l'id de page pour qu'une re-soumission mette à jour la même
+    // ligne Notion au lieu d'en créer une seconde.
+    if (pageId && !existingPageId && rowId) {
+      await env.DB.prepare('UPDATE satisfaction_responses SET notion_page_id = ? WHERE id = ?')
+        .bind(pageId, rowId)
+        .run();
+    }
+  } catch (err) {
+    console.error('Notion sync failed', err);
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Handler                                                             */
 /* ------------------------------------------------------------------ */
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, ctx }) {
   let body;
   try {
     body = await request.json();
@@ -323,11 +348,13 @@ export async function onRequestPost({ request, env }) {
   };
 
   // ---- Insert / update D1 ----
+  let rowId = null;
+  let notionPageId = null;
   // ON CONFLICT sur token_ref : re-soumettre le même lien met la réponse à jour
   // au lieu de créer un doublon (F11). Les soumissions sans token (token_ref NULL)
   // ne déclenchent jamais le conflit et s'empilent normalement.
   try {
-    await env.DB.prepare(
+    const row = await env.DB.prepare(
       `INSERT INTO satisfaction_responses (
          token_ref, variant, firstname, company, project, delivered_at,
          q1_satisfaction, q2_expectation, q3_steps, q4_communication, q5_friction,
@@ -364,7 +391,8 @@ export async function onRequestPost({ request, env }) {
          duration_seconds = excluded.duration_seconds,
          ip = excluded.ip,
          user_agent = excluded.user_agent,
-         updated_at = datetime('now')`
+         updated_at = datetime('now')
+       RETURNING id, notion_page_id`
     )
       .bind(
         tokenRef,
@@ -391,7 +419,11 @@ export async function onRequestPost({ request, env }) {
         durationSeconds,
         ip, ua
       )
-      .run();
+      .first();
+    if (row) {
+      rowId = row.id;
+      notionPageId = row.notion_page_id || null;
+    }
   } catch (err) {
     // Même arbitrage que /api/contact : la notif email prime, on n'échoue pas la requête.
     console.error('D1 insert (bilan) failed', err);
@@ -400,6 +432,12 @@ export async function onRequestPost({ request, env }) {
   // ---- Notification email ----
   const notif = await sendNotificationEmail(env, record, ip);
   if (!notif.sent) console.warn('Bilan notification not sent', notif.reason);
+
+  // ---- Projection Notion ----
+  // Après la réponse HTTP : le client n'a pas à attendre un service tiers.
+  const notionSync = syncNotion(env, record, npsTone(q12Nps), rowId, notionPageId);
+  if (ctx && typeof ctx.waitUntil === 'function') ctx.waitUntil(notionSync);
+  else await notionSync;
 
   return json({ ok: true });
 }

@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS satisfaction_responses (
   ip TEXT,
   user_agent TEXT,
   status TEXT NOT NULL DEFAULT 'new',       -- new | processed | assets_collected
+  notion_page_id TEXT,                      -- ligne miroir dans la base Notion (projection)
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );

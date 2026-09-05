@@ -388,6 +388,7 @@ landings/bilan/script.js       →  fetch context, navigation écrans, brancheme
 functions/api/bilan.js         →  POST /api/bilan          (validation + D1 + Brevo)
 functions/api/bilan-context.js →  GET  /api/bilan-context  (décodage token → prénom/entreprise)
 functions/_shared/token.js     →  déjà en place (HMAC-SHA256, SIGNING_KEY)
+functions/_shared/notion.js    →  projection vers la base Notion de suivi
 
 scripts/bilan-link.mjs         →  génération du lien en une commande
 src/worker.js                  →  2 routes à ajouter
@@ -477,6 +478,14 @@ Un questionnaire sans plan d'exploitation ne sert à rien. Chaque sortie doit av
 | Q9 | Étude de cas | Selon |
 
 > **Règle : une case cochée = une action datée.** Si on n'a pas le temps de traiter, on ne pose pas la question.
+
+### Où se fait le suivi
+
+Le mail de notification sert d’alerte immédiate ; il n’est pas fait pour retrouver un verbatim six mois plus tard. Chaque réponse est donc aussi projetée dans une base Notion, **Bilans clients — fin de mission** : une ligne par client, avec statut (`À traiter` / `En cours` / `Actifs récupérés`), actions à déclencher, autorisation de publication et verbatim. Les réponses libres et les matrices de notes vont dans le corps de la page.
+
+**D1 reste la source de vérité.** L’envoi vers Notion est best-effort et hors du chemin critique (`ctx.waitUntil`) : si Notion est indisponible, la réponse est déjà en base et le mail déjà parti. La colonne `notion_page_id` mémorise la ligne miroir, pour qu’une re-soumission mette à jour la même fiche au lieu d’en créer une seconde.
+
+> Ce n’est délibérément **pas un tableau de bord** : à 1-5 réponses par an, il n’y a rien à agréger. C’est un archivage avec suivi d’actions.
 
 ---
 
@@ -618,6 +627,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 - [ ] Génération du lien depuis l'admin (remplace le script local)
 - [ ] Notification Telegram en plus de l'email
 - [ ] Créer la fiche Google Business, puis réactiver l'option « avis Google » dans la branche promoteur
+- [ ] Vue Notion filtrée « actions en retard » (statut « À traiter » depuis plus de 48 h)
 - [ ] Activation du champ `variant` : versions sectorielles du questionnaire
 
 ### Phase 4 — Symétrie du cycle
@@ -650,6 +660,7 @@ Le cadre juridique tient tant que trois conditions sont respectées :
 | Version | Date | Changements |
 |---|---|---|
 | v0.1 | 2026-09-03 | Rédaction initiale — définition du besoin |
+| v0.6 | 2026-09-05 | Projection des réponses vers une base Notion pour le suivi des actions (§9). D1 reste la source de vérité ; l’envoi est best-effort et hors chemin critique |
 | v0.5 | 2026-09-04 | Retrait de l’option « avis Google » : sans fiche Google Business, le client n’aurait nulle part où écrire. Réactivation inscrite en roadmap. Libellés du bandeau de notification passés en clair (« Prêt à recommander » plutôt que « Promoteur ») |
 | v0.4 | 2026-09-04 | Q8 réécrite : la formulation « par rapport à vos attentes » faisait doublon avec Q2. Elle porte désormais sur le rapport valeur / investissement, ce qui restitue le signal de pricing visé par D4 |
 | v0.3 | 2026-09-04 | Implémentation de la v1 (page 6 écrans, 2 endpoints, table D1, script de lien). Ajout de « État d’implémentation » en §8. D1 et D3–D10 appliquées telles quelles ; D2 tranché par défaut à 13 questions, toujours ouvert |

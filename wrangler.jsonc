@@ -41,7 +41,10 @@
 	"vars": {
 		"NOTIFY_TO_EMAIL": "launchpadfactory.contact@gmail.com",
 		"NOTIFY_FROM_EMAIL": "launchpadfactory.contact@gmail.com",
-		"NOTIFY_FROM_NAME": "LaunchPad — Site"
+		"NOTIFY_FROM_NAME": "LaunchPad — Site",
+		// Base Notion « Bilans clients — fin de mission ». L'id n'est pas un
+		// secret ; le token d'acces (NOTION_TOKEN) en est un.
+		"NOTION_DATABASE_ID": "5ba6e5a512ad4ae49a3068597d66862f"
 	}
 	// SIGNING_KEY est un secret défini via :
 	//   wrangler pages secret put SIGNING_KEY --project-name landing-epicerie
