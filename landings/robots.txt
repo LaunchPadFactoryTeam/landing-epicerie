@@ -1,0 +1,9 @@
+# Robots de recherche et d'IA autorisés (choix GEO : Traceo doit être
+# connu des moteurs IA). Voir doc/seo.md avant de modifier.
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+Disallow: /bilan
+Disallow: /api/
+
+Sitemap: https://launchpadfactory.fr/sitemap.xml

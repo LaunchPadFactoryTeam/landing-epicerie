@@ -11,8 +11,16 @@
   <meta property="og:description" content="La 1ère application de gestion des DLC conçue pour les épiceries fines. Scannez, suivez, valorisez — déjà adoptée par +50 épiceries en France." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://launchpadfactory.fr/epiceries/traceo" />
+  <meta property="og:site_name" content="LaunchPad" />
+  <meta property="og:image" content="https://launchpadfactory.fr/epiceries/assets/img/traceo-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Traceo, l'application de gestion des DLC pour épiceries fines, sur iPhone." />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="canonical" href="https://launchpadfactory.fr/epiceries/traceo" />
+  <link rel="preload" as="image" href="/epiceries/assets/img/traceo-screenshot-side.webp" fetchpriority="high" />
   <link rel="icon" type="image/png" href="/epiceries/favicon.png" />
   <link rel="apple-touch-icon" href="/epiceries/favicon.png" />
 
@@ -28,13 +36,58 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MobileApplication",
-    "name": "Traceo",
-    "operatingSystem": "iOS, Android",
-    "applicationCategory": "BusinessApplication",
-    "description": "Application mobile de gestion des dates limites de consommation (DLC) pour les épiceries fines et commerces de bouche.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-    "publisher": { "@type": "Organization", "name": "LaunchPad" }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://launchpadfactory.fr/#org",
+        "name": "LaunchPad Factory",
+        "alternateName": "LaunchPad",
+        "url": "https://launchpadfactory.fr/",
+        "logo": "https://launchpadfactory.fr/epiceries/assets/img/logo.png"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://launchpadfactory.fr/epiceries/traceo#webpage",
+        "url": "https://launchpadfactory.fr/epiceries/traceo",
+        "name": "Traceo — L'app de gestion des DLC pour épiceries fines",
+        "inLanguage": "fr-FR",
+        "about": { "@id": "https://launchpadfactory.fr/epiceries/traceo#app" },
+        "publisher": { "@id": "https://launchpadfactory.fr/#org" },
+        "primaryImageOfPage": "https://launchpadfactory.fr/epiceries/assets/img/traceo-og.jpg",
+        "breadcrumb": { "@id": "https://launchpadfactory.fr/epiceries/traceo#breadcrumb" }
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://launchpadfactory.fr/epiceries/traceo#app",
+        "name": "Traceo",
+        "alternateName": ["Traceo by LaunchPad", "Traceo DLC"],
+        "description": "Application mobile de gestion des DLC pour épiceries fines et commerces de bouche : scan code-barres, alertes avant péremption, statistiques des pertes.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "iOS, Android",
+        "url": "https://launchpadfactory.fr/epiceries/traceo",
+        "image": "https://launchpadfactory.fr/epiceries/assets/img/traceo-screenshot-side.png",
+        "downloadUrl": [
+          "https://apps.apple.com/fr/app/traceo/id6754067857",
+          "https://play.google.com/store/apps/details?id=com.launchpadfactory.traceo"
+        ],
+        "sameAs": [
+          "https://apps.apple.com/fr/app/traceo/id6754067857",
+          "https://play.google.com/store/apps/details?id=com.launchpadfactory.traceo"
+        ],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "publisher": { "@id": "https://launchpadfactory.fr/#org" },
+        "featureList": ["Scan code-barres", "Alertes DLC paramétrables", "Inventaire centralisé", "Multi-utilisateurs", "Statistiques des pertes"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://launchpadfactory.fr/epiceries/traceo#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "LaunchPad", "item": "https://launchpadfactory.fr/" },
+          { "@type": "ListItem", "position": 2, "name": "Épiceries fines", "item": "https://launchpadfactory.fr/epiceries" },
+          { "@type": "ListItem", "position": 3, "name": "Traceo", "item": "https://launchpadfactory.fr/epiceries/traceo" }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -45,7 +98,7 @@
     <div class="container header-inner">
       <a href="/epiceries/traceo" class="brand traceo-app-brand" aria-label="Traceo — accueil">
         <span class="traceo-app-logo" aria-hidden="true">
-          <img src="/epiceries/assets/img/logo_traceo.png" alt="" width="34" height="34" />
+          <img src="/epiceries/assets/img/logo_traceo.webp" alt="Logo Traceo" width="34" height="34" />
         </span>
         <span class="traceo-app-brand-text">
           <span class="traceo-app-name">Traceo</span>
@@ -77,7 +130,7 @@
         <div class="traceo-hero-text reveal">
           <div class="traceo-brand">
             <span class="traceo-brand-mark" aria-hidden="true">
-              <img src="/epiceries/assets/img/logo_traceo.png" alt="" width="38" height="38" />
+              <img src="/epiceries/assets/img/logo_traceo.webp" alt="Logo Traceo" width="38" height="38" />
             </span>
             <div>
               <span class="traceo-brand-name">TRACEO</span>
@@ -102,7 +155,7 @@
         <div class="traceo-hero-visual reveal">
           <div class="phone-stage">
             <div class="phone-glow" aria-hidden="true"></div>
-            <img class="phone-img phone-img-bare" src="/epiceries/assets/img/traceo-screenshot-side.png" alt="Application Traceo affichée sur un iPhone : écran d'accueil avec liste des produits expirant aujourd'hui et cette semaine." />
+            <img class="phone-img phone-img-bare" src="/epiceries/assets/img/traceo-screenshot-side.webp" width="900" height="1500" fetchpriority="high" alt="Traceo, application de gestion des DLC, affichée sur un iPhone : écran d'accueil avec liste des produits expirant aujourd'hui et cette semaine." />
 
             <div class="float-badge float-badge-1">
               <span class="badge-icon" aria-hidden="true">
@@ -380,7 +433,7 @@
           </div>
 
           <div class="pilotage-visual reveal">
-            <img src="/epiceries/assets/img/extended_ipad_stats_screenshot-landscape.png" alt="Tableau de bord Traceo affiché sur tablette : graphique en secteurs des pertes par catégorie et histogramme d'évolution mensuelle." />
+            <img src="/epiceries/assets/img/extended_ipad_stats_screenshot-landscape.webp" width="1600" height="1238" loading="lazy" alt="Tableau de bord Traceo affiché sur tablette : graphique en secteurs des pertes par catégorie et histogramme d'évolution mensuelle." />
           </div>
         </div>
       </div>
@@ -447,7 +500,7 @@
           <span class="teaser-bridge-line" aria-hidden="true"></span>
         </div>
 
-        <a class="article-teaser reveal" href="/epiceries/articles/traceo.html">
+        <a class="article-teaser reveal" href="/epiceries/articles/traceo">
           <div class="article-teaser-label">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><path d="M14 17h6"/><path d="M17 14v6"/></svg>
             <span>Étude produit</span>
@@ -526,7 +579,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="/epiceries" class="brand brand-light">
-          <img src="/epiceries/assets/img/logo.png" alt="Logo LaunchPad" class="brand-logo" />
+          <img src="/epiceries/assets/img/logo.webp" alt="Logo LaunchPad" class="brand-logo" width="96" height="96" loading="lazy" />
           <span class="brand-name">LaunchPad</span>
         </a>
         <p>Agence de création de solutions digitales sur mesure pour les épiceries fines indépendantes en France.</p>

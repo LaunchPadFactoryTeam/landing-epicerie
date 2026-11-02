@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pages publiques indexables. Mettre à jour <lastmod> à chaque modification
+     de contenu, et ajouter chaque nouvelle page ou article ici. /bilan est
+     volontairement absent (page privée, noindex). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://launchpadfactory.fr/</loc>
+    <lastmod>2026-06-15</lastmod>
+  </url>
+  <url>
+    <loc>https://launchpadfactory.fr/epiceries</loc>
+    <lastmod>2026-11-02</lastmod>
+  </url>
+  <url>
+    <loc>https://launchpadfactory.fr/epiceries/traceo</loc>
+    <lastmod>2026-11-02</lastmod>
+  </url>
+  <url>
+    <loc>https://launchpadfactory.fr/epiceries/articles/traceo</loc>
+    <lastmod>2026-11-02</lastmod>
+  </url>
+</urlset>
